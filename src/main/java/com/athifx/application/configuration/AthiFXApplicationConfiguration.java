@@ -1,9 +1,8 @@
 package com.athifx.application.configuration;
 
-import com.athifx.application.navigation.view.AView;
 import com.athifx.application.menu.item.MenuItem;
+import com.athifx.application.navigation.view.AView;
 import com.google.common.collect.Lists;
-import com.google.inject.Inject;
 import org.reflections.Reflections;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +13,6 @@ import java.util.Set;
  * Created by Athi
  */
 public class AthiFXApplicationConfiguration {
-
-    @Inject
 
     private List<? super AView> views = Lists.newArrayList();
     private List<? super AView> menuItems = Lists.newArrayList();

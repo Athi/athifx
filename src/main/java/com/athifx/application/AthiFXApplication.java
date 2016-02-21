@@ -40,12 +40,10 @@ public abstract class AthiFXApplication extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    //FIXME define an enum
+    public abstract Class<? extends Group> getMenuGroupsDefinition();
 
-    public abstract Enum<? extends Group> getMenuGroupsDefinition();
-
-    public abstract Enum<? extends Item> getMenuItemsDefinition();
+    //FIXME define an enum
+    public abstract Class<? extends Item> getMenuItemsDefinition();
 
 }
