@@ -2,8 +2,8 @@ package com.athifx.application;
 
 import com.athifx.application.configuration.AthiFXApplicationConfiguration;
 import com.athifx.application.guice.AthiFXInjector;
-import com.athifx.application.menu.group.Group;
-import com.athifx.application.menu.item.Item;
+import com.athifx.application.menu.group.Groups;
+import com.athifx.application.menu.item.Items;
 import com.google.inject.Inject;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,11 +11,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * Created by Athi
  */
-public abstract class AthiFXApplication extends Application {
+public abstract class AthiFXApplication<GROUPS extends Enum<?> & Groups, ITEMS extends Enum<?> & Items> extends Application {
 
     @Inject
     private AthiFXApplicationConfiguration applicationConfiguration;
@@ -37,13 +38,15 @@ public abstract class AthiFXApplication extends Application {
         System.out.println("VIEWS:" + applicationConfiguration.getViews());
         System.out.println("MENU_ITEMS:" + applicationConfiguration.getMenuItems());
 
+        System.out.println("GROUPS" + getGroups());
+
+        System.out.println("ITEMS" + getItems());
+
         primaryStage.show();
     }
 
-    //FIXME define an enum
-    public abstract Class<? extends Group> getMenuGroupsDefinition();
+    public abstract List<GROUPS> getGroups();
 
-    //FIXME define an enum
-    public abstract Class<? extends Item> getMenuItemsDefinition();
+    public abstract List<ITEMS> getItems();
 
 }
