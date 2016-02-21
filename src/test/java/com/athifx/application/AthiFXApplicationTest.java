@@ -1,9 +1,9 @@
-package com.athifx;
+package com.athifx.application;
 
 import org.junit.Before;
 
 /**
- * Created by Athi on 17.02.2016.
+ * Created by Athi
  */
 public class AthiFXApplicationTest {
 

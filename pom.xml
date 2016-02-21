@@ -5,20 +5,49 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.athi</groupId>
-    <artifactId>AthiFX</artifactId>
+    <artifactId>athi-fx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <properties>
+        <source-target.version>1.8</source-target.version>
+
+        <javaee-api.version>7.0</javaee-api.version>
+        <guice.version>4.0</guice.version>
+        <reflections.version>0.9.10</reflections.version>
+
         <junit.version>4.12</junit.version>
     </properties>
 
     <build>
         <plugins>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${source-target.version}</source>
+                    <target>${source-target.version}</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>${reflections.version}</version>
+        </dependency>
 
         <!-- TEST -->
         <dependency>
