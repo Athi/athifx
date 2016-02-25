@@ -40,7 +40,7 @@ public class Log {
     }
 
     public void warning(String message, Throwable throwable) {
-        logger.logp(AthiLoggingLevel.WARRNING, logClass.getName(), "", message, throwable);
+        logger.logp(AthiLoggingLevel.WARNING, logClass.getName(), "", message, throwable);
     }
 
     public void info(String message) {
@@ -48,13 +48,13 @@ public class Log {
     }
 
     public interface LogFile {
+
         String getName();
 
-        String getSufix();
-
+        String getSuffix();
 
         default String getFileName() {
-            return getName() + "." + getSufix();
+            return getName().concat(".").concat(getSuffix());
         }
     }
 
@@ -69,7 +69,7 @@ public class Log {
         private static final int INFO_VALUE = 1100;
 
         private static final Level ERROR = new AthiLoggingLevel(ERROR_NAME, ERROR_VALUE);
-        private static final Level WARRNING = new AthiLoggingLevel(WARNING_NAME, WARNING_VALUE);
+        private static final Level WARNING = new AthiLoggingLevel(WARNING_NAME, WARNING_VALUE);
         private static final Level INFO = new AthiLoggingLevel(INFO_NAME, INFO_VALUE);
 
         public AthiLoggingLevel(String name, int value) {
