@@ -1,5 +1,6 @@
 package com.athifx.application.guice;
 
+import com.athifx.application.log.Log;
 import com.google.inject.TypeLiteral;
 import com.google.inject.spi.InjectionListener;
 import com.google.inject.spi.TypeEncounter;
@@ -15,6 +16,8 @@ import java.lang.reflect.Method;
  */
 class PostConstructInjectionListener implements TypeListener {
 
+    private final static Log LOGGER = Log.getLogger(PostConstructInjectionListener.class);
+
     @Override
     public <I> void hear(TypeLiteral<I> typeLiteral, TypeEncounter<I> typeEncounter) {
         typeEncounter.register((InjectionListener<I>) i -> invokeMethodWithAnnotation(i, PostConstruct.class));
@@ -29,7 +32,7 @@ class PostConstructInjectionListener implements TypeListener {
                     }
                     method.invoke(object);
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage(), e);
                 }
             }
         }

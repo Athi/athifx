@@ -1,6 +1,7 @@
 package com.athifx.application.guice;
 
 import com.athifx.application.AthiFXApplication;
+import com.athifx.application.log.Log;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.matcher.Matchers;
@@ -17,6 +18,8 @@ import java.util.Set;
  * Created by Athi
  */
 public class AthiFXInjector {
+
+    private final static Log LOGGER = Log.getLogger(AthiFXInjector.class);
 
     public static <T extends AthiFXApplication> void createInjector(T self) {
         Guice.createInjector(new AbstractModule() {
@@ -43,7 +46,7 @@ public class AthiFXInjector {
             try {
                 classObjectToBind.put((Class<Object>) type, type.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage(), e);
             }
         }
         return classObjectToBind;
