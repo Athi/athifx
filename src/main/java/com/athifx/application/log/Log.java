@@ -11,12 +11,14 @@ public class Log {
     private final static String LOGGER_NAME = "APPLICATION_LOGGER";
     private final static Logger logger = Logger.getLogger(LOGGER_NAME);
 
+    private static final String DEFAULT_LOG_NAME = "application.log";
+
     private final Class<?> logClass;
 
-    private Log(Class<?> logClass) {
+    private Log(Class<?> logClass, String fileName) {
         this.logClass = logClass;
         try {
-            Handler handler = new FileHandler("application.log", true);
+            Handler handler = new FileHandler(fileName, true);
             handler.setFormatter(new SimpleFormatter());
             logger.addHandler(handler);
             logger.setLevel(Level.ALL);
@@ -26,7 +28,11 @@ public class Log {
     }
 
     public static Log getLogger(Class<?> logClass) {
-        return new Log(logClass);
+        return new Log(logClass, DEFAULT_LOG_NAME);
+    }
+
+    public static <FILE extends Enum & LogFile> Log getLogger(Class<?> logClass, FILE logFile) {
+        return new Log(logClass, logFile.getFileName());
     }
 
     public void error(String message, Throwable throwable) {
@@ -41,19 +47,30 @@ public class Log {
         logger.logp(AthiLoggingLevel.INFO, logClass.getName(), "", message);
     }
 
-    public static class AthiLoggingLevel extends Level {
+    public interface LogFile {
+        String getName();
 
-        public static final String ERROR_NAME = "ERROR";
-        public static final String WARNING_NAME = "WARNING";
-        public static final String INFO_NAME = "INFO";
+        String getSufix();
 
-        public static final int ERROR_VALUE = 1300;
-        public static final int WARNING_VALUE = 1200;
-        public static final int INFO_VALUE = 1100;
 
-        public static final Level ERROR = new AthiLoggingLevel(ERROR_NAME, ERROR_VALUE);
-        public static final Level WARRNING = new AthiLoggingLevel(WARNING_NAME, WARNING_VALUE);
-        public static final Level INFO = new AthiLoggingLevel(INFO_NAME, INFO_VALUE);
+        default String getFileName() {
+            return getName() + "." + getSufix();
+        }
+    }
+
+    private static class AthiLoggingLevel extends Level {
+
+        private static final String ERROR_NAME = "ERROR";
+        private static final String WARNING_NAME = "WARNING";
+        private static final String INFO_NAME = "INFO";
+
+        private static final int ERROR_VALUE = 1300;
+        private static final int WARNING_VALUE = 1200;
+        private static final int INFO_VALUE = 1100;
+
+        private static final Level ERROR = new AthiLoggingLevel(ERROR_NAME, ERROR_VALUE);
+        private static final Level WARRNING = new AthiLoggingLevel(WARNING_NAME, WARNING_VALUE);
+        private static final Level INFO = new AthiLoggingLevel(INFO_NAME, INFO_VALUE);
 
         public AthiLoggingLevel(String name, int value) {
             super(name, value);
