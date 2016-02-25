@@ -6,8 +6,10 @@ import com.google.inject.Guice;
 import com.google.inject.matcher.Matchers;
 import org.reflections.Reflections;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,7 +35,10 @@ public class AthiFXInjector {
         Map<Class<Object>, Object> classObjectToBind = new HashMap<>();
 
         Reflections reflections = new Reflections();
-        Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(SessionScoped.class);
+        Set<Class<?>> typesAnnotatedWith = new HashSet<>();
+        typesAnnotatedWith.addAll(reflections.getTypesAnnotatedWith(SessionScoped.class));
+        typesAnnotatedWith.addAll(reflections.getTypesAnnotatedWith(ApplicationScoped.class));
+
         for (Class<?> type : typesAnnotatedWith) {
             try {
                 classObjectToBind.put((Class<Object>) type, type.newInstance());
