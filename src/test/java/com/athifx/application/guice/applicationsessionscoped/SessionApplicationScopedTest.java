@@ -1,8 +1,7 @@
 package com.athifx.application.guice.applicationsessionscoped;
 
-import com.athifx.application.guice.AthiFXInjector;
 import com.athifx.application.guice.test.AthiFXTestCase;
-import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.inject.Inject;
@@ -12,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Athi
  */
+@Ignore("needs to be tested in a different way")
 public class SessionApplicationScopedTest extends AthiFXTestCase {
 
     @Inject
