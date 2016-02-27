@@ -10,6 +10,7 @@
     <packaging>jar</packaging>
 
     <properties>
+        <projec.build.sourceEncoding>UTF8</projec.build.sourceEncoding>
         <source-target.version>1.8</source-target.version>
 
         <javaee-api.version>7.0</javaee-api.version>
@@ -28,6 +29,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <encoding>${projec.build.sourceEncoding}</encoding>
                     <source>${source-target.version}</source>
                     <target>${source-target.version}</target>
                 </configuration>
@@ -36,6 +38,10 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
+                <configuration>
+                    <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
+                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -44,6 +50,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>4.1.0</version>
+                <configuration>
+                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                    <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
+                </configuration>
             </plugin>
         </plugins>
     </build>
