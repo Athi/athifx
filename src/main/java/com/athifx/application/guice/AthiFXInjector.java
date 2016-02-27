@@ -1,6 +1,5 @@
 package com.athifx.application.guice;
 
-import com.athifx.application.AthiFXApplication;
 import com.athifx.application.log.Log;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -21,11 +20,11 @@ public class AthiFXInjector {
 
     private final static Log LOGGER = Log.getLogger(AthiFXInjector.class);
 
-    public static <T extends AthiFXApplication> void createInjector(T self) {
+    public static <T> void createInjector(T self) {
         Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
-                bind(AthiFXApplication.class).toInstance(self);
+                bind((Class<Object>) self.getClass()).toInstance(self);
 
                 getClassAndInstanceToBind().entrySet().forEach(classObjectEntry -> bind(classObjectEntry.getKey()).toInstance(classObjectEntry.getValue()));
 

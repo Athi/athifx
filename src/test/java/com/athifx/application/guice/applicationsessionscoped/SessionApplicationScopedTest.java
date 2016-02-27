@@ -1,7 +1,7 @@
 package com.athifx.application.guice.applicationsessionscoped;
 
-import com.athifx.application.AthiFXApplicationTestCase;
 import com.athifx.application.guice.AthiFXInjector;
+import com.athifx.application.guice.test.AthiFXTestCase;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Athi
  */
-public class SessionApplicationScopedTest extends AthiFXApplicationTestCase {
+public class SessionApplicationScopedTest extends AthiFXTestCase {
 
     @Inject
     private SessionTestOneClass sessionTestOneClassFirst;
@@ -31,12 +31,6 @@ public class SessionApplicationScopedTest extends AthiFXApplicationTestCase {
 
     @Inject
     private ApplicationTestTwoClass applicationTestTwoClass;
-
-
-    @Before
-    public void setUp() {
-        AthiFXInjector.createInjector(this);
-    }
 
     @Test
     public void testSessionScopedAnnotatedClass() {
