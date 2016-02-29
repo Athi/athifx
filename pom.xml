@@ -4,10 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.athi</groupId>
+    <groupId>org.athi</groupId>
     <artifactId>athi-fx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.10</version>
+        </dependency>
+    </dependencies>
+    <packaging>pom</packaging>
 
     <properties>
         <projec.build.sourceEncoding>UTF8</projec.build.sourceEncoding>
@@ -23,77 +30,11 @@
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
     </properties>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <encoding>${projec.build.sourceEncoding}</encoding>
-                    <source>${source-target.version}</source>
-                    <target>${source-target.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <configuration>
-                    <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
-                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>4.1.0</version>
-                <configuration>
-                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
-                    <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>${javaee-api.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
-        </dependency>
-
-        <!-- TEST -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito-all.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>athi-fx-injector</module>
+        <module>athi-fx-gui</module>
+        <module>athi-fx-test</module>
+    </modules>
 
 
 </project>
