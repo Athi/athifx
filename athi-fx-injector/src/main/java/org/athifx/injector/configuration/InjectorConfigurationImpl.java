@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  */
 public class InjectorConfigurationImpl implements InjectorConfiguration {
 
-    private static final String PROPERTIES_SUFFIX = ".properties";
+    public static final String PROPERTIES_SUFFIX = ".properties";
 
     private Optional<List<String>> propertiesFilesNames;
 
