@@ -7,13 +7,6 @@
     <groupId>org.athi</groupId>
     <artifactId>athi-fx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <dependencies>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.10</version>
-        </dependency>
-    </dependencies>
     <packaging>pom</packaging>
 
     <properties>
@@ -28,7 +21,58 @@
         <mockito-all.version>2.0.2-beta</mockito-all.version>
 
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+        <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <encoding>${projec.build.sourceEncoding}</encoding>
+                    <source>${source-target.version}</source>
+                    <target>${source-target.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <configuration>
+                    <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
+                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.eluder.coveralls</groupId>
+                <artifactId>coveralls-maven-plugin</artifactId>
+                <version>${coveralls-maven-plugin.version}</version>
+                <configuration>
+                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                    <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito-all.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
     <modules>
         <module>athi-fx-injector</module>
