@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.matcher.Matchers;
 import com.google.inject.name.Names;
+import org.athifx.injector.configuration.InjectorConfiguration;
 import org.athifx.injector.log.Log;
 import org.reflections.Reflections;
 
@@ -22,26 +23,46 @@ public class AthiFXInjector {
     private static final Log LOGGER = Log.getLogger(AthiFXInjector.class);
 
     public static <T> void createInjector(T self) {
+        createInjector(self, null);
+    }
+
+    public static <T> void createInjector(T self, InjectorConfiguration configuration) {
+        Optional<InjectorConfiguration> optionalConfiguration = Optional.ofNullable(configuration);
         Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
-                Names.bindProperties(binder(), loadProperties());
+                optionalConfiguration.ifPresent(injectorConfiguration ->
+                        loadProperties(injectorConfiguration).ifPresent(properties ->
+                                Names.bindProperties(binder(), properties)));
+
                 bind((Class<Object>) self.getClass()).toInstance(self);
+
                 getClassAndInstanceToBind().entrySet().forEach(classObjectEntry -> bind(classObjectEntry.getKey()).toInstance(classObjectEntry.getValue()));
+
                 bindListener(Matchers.any(), new PostConstructInjectionListener());
             }
         });
     }
 
-    private static Properties loadProperties() {
-        Properties result = new Properties();
-        URL resource = AthiFXInjector.class.getClassLoader().getResource("application.properties");
-        try (InputStream resourceStream = resource.openStream()) {
-            result.load(resourceStream);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    private static Optional<Properties> loadProperties(InjectorConfiguration injectorConfiguration) {
+        if (injectorConfiguration.getPropertiesFilesNames().isPresent()) {
+            Properties properties = new Properties();
+            injectorConfiguration.getPropertiesFilesNames().get().forEach(propertiesFileName -> addProperties(properties, propertiesFileName));
+            return Optional.of(properties);
+        } else {
+            return Optional.empty();
         }
-        return result;
+    }
+
+    private static void addProperties(Properties properties, String propertiesFileName) {
+        URL resource = AthiFXInjector.class.getClassLoader().getResource(propertiesFileName);
+        if (Objects.nonNull(resource)) {
+            try (InputStream resourceStream = resource.openStream()) {
+                properties.load(resourceStream);
+            } catch (IOException e) {
+                throw new RuntimeException();
+            }
+        }
     }
 
     private static Map<Class<Object>, Object> getClassAndInstanceToBind() {

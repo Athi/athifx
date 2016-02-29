@@ -13,5 +13,11 @@
     <artifactId>athi-fx-test</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    
+    <dependencies>
+        <dependency>
+            <groupId>org.athi</groupId>
+            <artifactId>athi-fx-gui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
