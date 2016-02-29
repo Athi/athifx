@@ -8,10 +8,10 @@ import java.util.logging.*;
  */
 public class Log {
 
-    public final static String DEFAULT_LOGGER_NAME = "APPLICATION_LOGGER";
-    public final static String DEFAULT_LOG_FILE_NAME = "application.log";
+    public static final String DEFAULT_LOGGER_NAME = "APPLICATION_LOGGER";
+    public static final String DEFAULT_LOG_FILE_NAME = "application.log";
 
-    private final static Logger LOGGER = Logger.getLogger(DEFAULT_LOGGER_NAME);
+    private static final Logger LOGGER = Logger.getLogger(DEFAULT_LOGGER_NAME);
     private Handler handler;
 
     private final Class<?> logClass;

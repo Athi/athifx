@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
  */
 public class LogTest {
 
-    private final static String ERROR_TYPE_PREFIX = "ERROR: ";
-    private final static String WARNING_TYPE_PREFIX = "WARNING: ";
-    private final static String INFO_TYPE_PREFIX = "INFO: ";
-    private final static String MESSAGE_1 = "MESSAGE_1";
-    private final static String MESSAGE_2 = "MESSAGE_2";
-    private final static String MESSAGE_3 = "MESSAGE_3";
-    private final static String IN_ERROR_1 = "MESSAGE_1";
-    private final static String IN_ERROR_2 = "MESSAGE_2";
+    private static final String ERROR_TYPE_PREFIX = "ERROR: ";
+    private static final String WARNING_TYPE_PREFIX = "WARNING: ";
+    private static final String INFO_TYPE_PREFIX = "INFO: ";
+    private static final String MESSAGE_1 = "MESSAGE_1";
+    private static final String MESSAGE_2 = "MESSAGE_2";
+    private static final String MESSAGE_3 = "MESSAGE_3";
+    private static final String IN_ERROR_1 = "MESSAGE_1";
+    private static final String IN_ERROR_2 = "MESSAGE_2";
 
     @Test
     public void logingTest() throws IOException {

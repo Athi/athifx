@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 class PostConstructInjectionListener implements TypeListener {
 
-    private final static Log LOGGER = Log.getLogger(PostConstructInjectionListener.class);
+    private static final Log LOGGER = Log.getLogger(PostConstructInjectionListener.class);
 
     @Override
     public <I> void hear(TypeLiteral<I> typeLiteral, TypeEncounter<I> typeEncounter) {
