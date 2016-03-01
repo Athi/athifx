@@ -4,6 +4,9 @@ import org.athifx.gui.AthiFXApplication;
 import org.athifx.gui.menu.group.Groups;
 import org.athifx.gui.menu.item.Items;
 
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,8 +15,17 @@ import java.util.List;
  */
 public class AthiFXTestApplication extends AthiFXApplication<AthiFXTestApplication.TestGroup, AthiFXTestApplication.TestItem> {
 
+    @Inject
+    @Any
+    private Instance<TestInterface> instance;
+
     public static void main(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void beforeLaunch() {
+        instance.iterator().forEachRemaining(TestInterface::test);
     }
 
     @Override

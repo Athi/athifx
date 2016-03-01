@@ -37,7 +37,9 @@ public class AthiFXInjector {
 
                 bind((Class<Object>) self.getClass()).toInstance(self);
 
-                getClassAndInstanceToBind().entrySet().forEach(classObjectEntry -> bind(classObjectEntry.getKey()).toInstance(classObjectEntry.getValue()));
+                InstancesBinding.bind(binder());
+
+                getSessionApplicationScopedClassesToBind().entrySet().forEach(classObjectEntry -> bind(classObjectEntry.getKey()).toInstance(classObjectEntry.getValue()));
 
                 bindListener(Matchers.any(), new PostConstructInjectionListener());
             }
@@ -65,7 +67,7 @@ public class AthiFXInjector {
         }
     }
 
-    private static Map<Class<Object>, Object> getClassAndInstanceToBind() {
+    private static Map<Class<Object>, Object> getSessionApplicationScopedClassesToBind() {
         Map<Class<Object>, Object> classObjectToBind = new HashMap<>();
 
         Reflections reflections = new Reflections();
