@@ -21,6 +21,10 @@ public class AthiFXTestApplication extends AthiFXApplication<AthiFXTestApplicati
     @Any
     private Instance<TestInterface> instance;
 
+    @Inject
+    @AnnotationOne
+    private TestInterface test;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -36,6 +40,9 @@ public class AthiFXTestApplication extends AthiFXApplication<AthiFXTestApplicati
         instance.select(TestInterfaceImplTwo.class, TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
         System.out.println("####--22222");
         instance.select(new TypeLiteral<TestInterfaceImplOne>() {}, TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
+
+        System.out.println("Qual");
+        System.out.println(test.getClass());
     }
 
     @Override

@@ -39,6 +39,8 @@ public class AthiFXInjector {
 
                 InstancesBinding.bind(binder());
 
+                QualifierBinding.bind(binder());
+
                 getSessionApplicationScopedClassesToBind().entrySet().forEach(classObjectEntry -> bind(classObjectEntry.getKey()).toInstance(classObjectEntry.getValue()));
 
                 bindListener(Matchers.any(), new PostConstructInjectionListener());
