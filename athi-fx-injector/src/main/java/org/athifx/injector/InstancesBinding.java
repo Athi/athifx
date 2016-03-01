@@ -20,11 +20,11 @@ class InstancesBinding {
     static void bind(Binder binder) {
         Reflections reflections = new Reflections("", new FieldAnnotationsScanner());
         Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Any.class);
-        for (Field field : fieldsAnnotatedWith) {
+        fieldsAnnotatedWith.stream().filter(field -> field.getType().equals(Instance.class)).forEach(field -> {
             ParameterizedType instanceType = (ParameterizedType) field.getGenericType();
             Type generic = instanceType.getActualTypeArguments()[0];
             binder.bind(TypeLiteral.get(instanceType)).annotatedWith(Any.class).toInstance(captureAthiFXInstance(generic));
-        }
+        });
     }
 
     private static <T extends Instance> T captureAthiFXInstance(Type generic) {
