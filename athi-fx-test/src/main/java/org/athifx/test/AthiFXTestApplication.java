@@ -3,9 +3,11 @@ package org.athifx.test;
 import org.athifx.gui.AthiFXApplication;
 import org.athifx.gui.menu.group.Groups;
 import org.athifx.gui.menu.item.Items;
+import org.athifx.test.test_annotations.AnnotationOne;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
+import javax.enterprise.util.TypeLiteral;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +28,14 @@ public class AthiFXTestApplication extends AthiFXApplication<AthiFXTestApplicati
     @Override
     public void beforeLaunch() {
         instance.iterator().forEachRemaining(TestInterface::test);
+        System.out.println("####");
+        instance.select(TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
+        System.out.println("####");
+        instance.select(TestInterfaceImplOne.class, TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
+        System.out.println("####--");
+        instance.select(TestInterfaceImplTwo.class, TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
+        System.out.println("####--22222");
+        instance.select(new TypeLiteral<TestInterfaceImplOne>() {}, TestInterfaceImplOne.class.getAnnotations()).iterator().forEachRemaining(TestInterface::test);
     }
 
     @Override

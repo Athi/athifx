@@ -5,9 +5,11 @@ import org.reflections.Reflections;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.util.TypeLiteral;
+import javax.ws.rs.NotSupportedException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -27,32 +29,60 @@ class AthiFXInstance<T> implements Instance<T> {
         fillInstancesCollection(subTypesOfGeneric);
     }
 
+    private AthiFXInstance(ArrayDeque<T> newInstancesDeque) {
+        this.instances = newInstancesDeque;
+    }
+
     private void fillInstancesCollection(Set<Class<T>> subTypeOfGeneric) {
         subTypeOfGeneric.forEach(genericClass -> {
             try {
-                instances.add(genericClass.newInstance());
+                instances.push(genericClass.newInstance());
             } catch (InstantiationException | IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }
         });
     }
 
+    private ArrayDeque<T> newInstacesDequeByAnnotations(Annotation... annotations) {
+        ArrayDeque<T> newInstancesDeque = new ArrayDeque<>();
+        instances.iterator().forEachRemaining(instance -> {
+            for (Annotation annotation : instance.getClass().getAnnotations()) {
+                if (Arrays.asList(annotations).contains(annotation)) {
+                    newInstancesDeque.push(instance);
+                }
+            }
+        });
+        return newInstancesDeque;
+    }
+
     @Override
     public Instance<T> select(Annotation... annotations) {
-        //TODO
-        return null;
+        ArrayDeque<T> newInstancesDeque = newInstacesDequeByAnnotations(annotations);
+        return new AthiFXInstance<>(newInstancesDeque);
     }
 
     @Override
     public <U extends T> Instance<U> select(Class<U> aClass, Annotation... annotations) {
-        //TODO
-        return null;
+        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstacesDequeByAnnotations(annotations);
+        Iterator<U> descendingIterator = newInstancesDeque.descendingIterator();
+        while (descendingIterator.hasNext()) {
+            if (!descendingIterator.next().getClass().isAssignableFrom(aClass)) {
+                descendingIterator.remove();
+            }
+        }
+        return new AthiFXInstance<>(newInstancesDeque);
     }
 
     @Override
     public <U extends T> Instance<U> select(TypeLiteral<U> typeLiteral, Annotation... annotations) {
-        //TODO
-        return null;
+        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstacesDequeByAnnotations(annotations);
+        Iterator<U> descendingIterator = newInstancesDeque.descendingIterator();
+        while (descendingIterator.hasNext()) {
+            if (!descendingIterator.next().getClass().equals(typeLiteral.getType())) {
+                descendingIterator.remove();
+            }
+        }
+        return new AthiFXInstance<>(newInstancesDeque);
     }
 
     @Override
@@ -67,7 +97,7 @@ class AthiFXInstance<T> implements Instance<T> {
 
     @Override
     public void destroy(T t) {
-        //TODO
+        throw new NotSupportedException();
     }
 
     @Override
