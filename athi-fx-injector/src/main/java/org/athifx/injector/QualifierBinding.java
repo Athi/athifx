@@ -2,9 +2,6 @@ package org.athifx.injector;
 
 import com.google.inject.Binder;
 import org.reflections.Reflections;
-import org.reflections.scanners.FieldAnnotationsScanner;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
 
 import javax.inject.Qualifier;
 import java.util.Arrays;
@@ -15,7 +12,7 @@ import java.util.Arrays;
 class QualifierBinding {
 
     static void bind(Binder binder) {
-        Reflections reflections = new Reflections("", new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
+        Reflections reflections = AthiFXInjector.getReflections();
         reflections.getTypesAnnotatedWith(Qualifier.class).stream()
                 .filter(qualifierAnnotated -> !qualifierAnnotated.isAnnotationPresent(Qualifier.class))
                 .forEach(c -> Arrays.asList(c.getGenericInterfaces()).forEach(type -> Arrays.asList(c.getAnnotations()).forEach(annotation -> {

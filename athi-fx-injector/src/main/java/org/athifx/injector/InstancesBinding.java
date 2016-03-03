@@ -3,7 +3,6 @@ package org.athifx.injector;
 import com.google.inject.Binder;
 import com.google.inject.TypeLiteral;
 import org.reflections.Reflections;
-import org.reflections.scanners.FieldAnnotationsScanner;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
@@ -18,7 +17,7 @@ import java.util.Set;
 class InstancesBinding {
 
     static void bind(Binder binder) {
-        Reflections reflections = new Reflections("", new FieldAnnotationsScanner());
+        Reflections reflections = AthiFXInjector.getReflections();
         Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Any.class);
         fieldsAnnotatedWith.stream().filter(field -> field.getType().equals(Instance.class)).forEach(field -> {
             ParameterizedType instanceType = (ParameterizedType) field.getGenericType();

@@ -7,6 +7,9 @@ import com.google.inject.name.Names;
 import org.athifx.injector.configuration.InjectorConfiguration;
 import org.athifx.injector.log.Log;
 import org.reflections.Reflections;
+import org.reflections.scanners.FieldAnnotationsScanner;
+import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.TypeAnnotationsScanner;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;
@@ -21,6 +24,8 @@ import java.util.*;
 public class AthiFXInjector {
 
     private static final Log LOGGER = Log.getLogger(AthiFXInjector.class);
+
+    private static Reflections reflections;
 
     public static <T> void createInjector(T self) {
         createInjector(self, null);
@@ -48,6 +53,13 @@ public class AthiFXInjector {
         });
     }
 
+    public static Reflections getReflections() {
+        if (Objects.isNull(reflections)) {
+            reflections = new Reflections("", new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());
+        }
+        return reflections;
+    }
+
     private static Optional<Properties> loadProperties(InjectorConfiguration injectorConfiguration) {
         if (injectorConfiguration.getPropertiesFilesNames().isPresent()) {
             Properties properties = new Properties();
@@ -72,7 +84,7 @@ public class AthiFXInjector {
     private static Map<Class<Object>, Object> getSessionApplicationScopedClassesToBind() {
         Map<Class<Object>, Object> classObjectToBind = new HashMap<>();
 
-        Reflections reflections = new Reflections();
+        Reflections reflections = getReflections();
         Set<Class<?>> typesAnnotatedWith = new HashSet<>();
         typesAnnotatedWith.addAll(reflections.getTypesAnnotatedWith(SessionScoped.class));
         typesAnnotatedWith.addAll(reflections.getTypesAnnotatedWith(ApplicationScoped.class));

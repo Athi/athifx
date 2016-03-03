@@ -18,7 +18,7 @@
         <reflections.version>0.9.10</reflections.version>
 
         <junit.version>4.12</junit.version>
-        <mockito-all.version>2.0.2-beta</mockito-all.version>
+        <powermock.version>1.6.4</powermock.version>
 
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
@@ -63,16 +63,6 @@
             </plugin>
         </plugins>
     </build>
-
-
-    <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito-all.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <modules>
         <module>athi-fx-injector</module>

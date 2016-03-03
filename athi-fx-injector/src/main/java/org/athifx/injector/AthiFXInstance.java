@@ -23,7 +23,7 @@ class AthiFXInstance<T> implements Instance<T> {
     private ArrayDeque<T> instances = new ArrayDeque<>();
 
     public AthiFXInstance(Type genericType) {
-        Reflections reflections = new Reflections();
+        Reflections reflections = AthiFXInjector.getReflections();
         Class genericClass = ((Class) genericType);
         Set<Class<T>> subTypesOfGeneric = reflections.getSubTypesOf(genericClass);
         fillInstancesCollection(subTypesOfGeneric);
