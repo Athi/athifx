@@ -1,4 +1,4 @@
-package org.athifx.injector;
+package org.athifx.injector.injection;
 
 import com.google.inject.Binder;
 import com.google.inject.TypeLiteral;
@@ -14,9 +14,10 @@ import java.util.Set;
 /**
  * Created by Athi
  */
-class InstancesBinding {
+class InstancesBinding implements Binding {
 
-    static void bind(Binder binder) {
+    @Override
+    public void bind(Binder binder) {
         Reflections reflections = AthiFXInjector.getReflections();
         Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Any.class);
         fieldsAnnotatedWith.stream().filter(field -> field.getType().equals(Instance.class)).forEach(field -> {

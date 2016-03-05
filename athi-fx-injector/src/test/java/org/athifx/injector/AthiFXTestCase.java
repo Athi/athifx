@@ -1,6 +1,6 @@
-package org.athifx.injector.test;
+package org.athifx.injector;
 
-import org.athifx.injector.AthiFXInjector;
+import org.athifx.injector.injection.AthiFXInjector;
 import org.athifx.injector.log.Log;
 import org.junit.After;
 import org.junit.Before;
@@ -21,7 +21,7 @@ import java.io.File;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)
-public class AthiFXTestCase {
+public abstract class AthiFXTestCase {
 
     @Before
     public void setUp() {

@@ -1,4 +1,4 @@
-package org.athifx.injector;
+package org.athifx.injector.injection;
 
 import org.athifx.injector.log.Log;
 import org.reflections.Reflections;

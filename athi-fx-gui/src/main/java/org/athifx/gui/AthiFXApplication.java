@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import org.athifx.gui.configuration.AthiFXApplicationConfiguration;
 import org.athifx.gui.menu.group.Groups;
 import org.athifx.gui.menu.item.Items;
-import org.athifx.injector.AthiFXInjector;
+import org.athifx.injector.injection.AthiFXInjector;
 
 import java.util.List;
 

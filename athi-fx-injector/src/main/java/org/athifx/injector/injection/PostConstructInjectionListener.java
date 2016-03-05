@@ -1,4 +1,4 @@
-package org.athifx.injector;
+package org.athifx.injector.injection;
 
 import com.google.inject.TypeLiteral;
 import com.google.inject.spi.InjectionListener;

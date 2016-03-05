@@ -3,7 +3,7 @@ package org.athifx.gui.configuration;
 import com.google.common.collect.Lists;
 import org.athifx.gui.menu.item.MenuItem;
 import org.athifx.gui.navigation.view.AView;
-import org.athifx.injector.AthiFXInjector;
+import org.athifx.injector.injection.AthiFXInjector;
 import org.reflections.Reflections;
 
 import javax.annotation.PostConstruct;

@@ -1,7 +1,6 @@
 package org.athifx.injector.scopes;
 
-import org.athifx.injector.test.AthiFXTestCase;
-import org.junit.Assert;
+import org.athifx.injector.AthiFXTestCase;
 import org.junit.Test;
 
 import javax.inject.Inject;

@@ -1,8 +1,8 @@
 package org.athifx.injector.configuration;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -12,23 +12,22 @@ public class InjectorConfigurationImpl implements InjectorConfiguration {
 
     public static final String PROPERTIES_SUFFIX = ".properties";
 
-    private Optional<List<String>> propertiesFilesNames;
+    private List<String> resourcesPropertiesFileNames;
 
-    public InjectorConfigurationImpl(String... propertiesFileNames) {
-        this.propertiesFilesNames = initPropertiesFilesList(propertiesFileNames);
+    public InjectorConfigurationImpl(String... resourcesPropertiesFileNames) {
+        this.resourcesPropertiesFileNames = initPropertiesFilesPathsList(resourcesPropertiesFileNames);
     }
 
     @Override
-    public Optional<List<String>> getPropertiesFilesNames() {
-        return propertiesFilesNames;
+    public List<String> resourcesPropertiesFileNames() {
+        return resourcesPropertiesFileNames;
     }
 
-    private Optional<List<String>> initPropertiesFilesList(String... propertiesFiles) {
-        if (propertiesFiles.length == 0) {
-            return Optional.empty();
+    private List<String> initPropertiesFilesPathsList(String... resourcesPropertiesFileNames) {
+        if (resourcesPropertiesFileNames.length == 0) {
+            return Collections.emptyList();
         } else {
-            List<String> propertiesFilesList = Arrays.asList(propertiesFiles).stream().map(this::endsWithPropertiesSuffix).collect(Collectors.toList());
-            return Optional.of(propertiesFilesList);
+            return Arrays.asList(resourcesPropertiesFileNames).stream().map(this::endsWithPropertiesSuffix).collect(Collectors.toList());
         }
     }
 

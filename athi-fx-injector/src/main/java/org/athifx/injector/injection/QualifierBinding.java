@@ -1,4 +1,4 @@
-package org.athifx.injector;
+package org.athifx.injector.injection;
 
 import com.google.inject.Binder;
 import org.reflections.Reflections;
@@ -9,9 +9,10 @@ import java.util.Arrays;
 /**
  * Created by Athi
  */
-class QualifierBinding {
+class QualifierBinding implements Binding {
 
-    static void bind(Binder binder) {
+    @Override
+    public void bind(Binder binder) {
         Reflections reflections = AthiFXInjector.getReflections();
         reflections.getTypesAnnotatedWith(Qualifier.class).stream()
                 .filter(qualifierAnnotated -> !qualifierAnnotated.isAnnotationPresent(Qualifier.class))
