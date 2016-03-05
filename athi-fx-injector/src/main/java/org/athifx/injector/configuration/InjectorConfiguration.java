@@ -1,5 +1,6 @@
 package org.athifx.injector.configuration;
 
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -7,6 +8,8 @@ import java.util.List;
  */
 public interface InjectorConfiguration {
 
-    List<String> resourcesPropertiesFileNames();
+    List<URL> getPropertiesURLs();
+
+    List<URL> getIniURLs();
 
 }

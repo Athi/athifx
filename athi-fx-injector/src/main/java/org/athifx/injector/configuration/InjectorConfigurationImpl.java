@@ -1,9 +1,10 @@
 package org.athifx.injector.configuration;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Athi
@@ -11,27 +12,41 @@ import java.util.stream.Collectors;
 public class InjectorConfigurationImpl implements InjectorConfiguration {
 
     public static final String PROPERTIES_SUFFIX = ".properties";
+    public static final String INI_SUFFIX = ".ini";
 
-    private List<String> resourcesPropertiesFileNames;
+    private List<URL> propertiesURLs = new ArrayList<>();
+    private List<URL> iniURLs = new ArrayList<>();
 
-    public InjectorConfigurationImpl(String... resourcesPropertiesFileNames) {
-        this.resourcesPropertiesFileNames = initPropertiesFilesPathsList(resourcesPropertiesFileNames);
+    public InjectorConfigurationImpl() {
+    }
+
+    public InjectorConfigurationImpl(List<File> configurationFiles) {
+        initConfigurationFiles(configurationFiles);
     }
 
     @Override
-    public List<String> resourcesPropertiesFileNames() {
-        return resourcesPropertiesFileNames;
+    public List<URL> getPropertiesURLs() {
+        return propertiesURLs;
     }
 
-    private List<String> initPropertiesFilesPathsList(String... resourcesPropertiesFileNames) {
-        if (resourcesPropertiesFileNames.length == 0) {
-            return Collections.emptyList();
-        } else {
-            return Arrays.asList(resourcesPropertiesFileNames).stream().map(this::endsWithPropertiesSuffix).collect(Collectors.toList());
+    @Override
+    public List<URL> getIniURLs() {
+        return iniURLs;
+    }
+
+    private void initConfigurationFiles(List<File> configurationFiles) {
+        for (File configurationFile : configurationFiles) {
+            String name = configurationFile.getName();
+            try {
+                URL url = configurationFile.toURI().toURL();
+                if (name.endsWith(PROPERTIES_SUFFIX)) {
+                    this.propertiesURLs.add(url);
+                } else if (name.endsWith(INI_SUFFIX)) {
+                    this.iniURLs.add(url);
+                }
+            } catch (MalformedURLException mue) {
+                throw new RuntimeException("Wrong file: " + name);
+            }
         }
-    }
-
-    private String endsWithPropertiesSuffix(String name) {
-        return name.endsWith(PROPERTIES_SUFFIX) ? name : name.concat(PROPERTIES_SUFFIX);
     }
 }

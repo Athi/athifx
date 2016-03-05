@@ -6,7 +6,7 @@ import org.athifx.injector.configuration.InjectorConfiguration;
 /**
  * Created by Athi
  */
-interface ConfigurationBinding {
+interface ConfigurationFileBinding {
 
     void bind(Binder binder, InjectorConfiguration injectorConfiguration);
 
