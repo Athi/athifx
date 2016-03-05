@@ -46,9 +46,7 @@ public class AthiFXInjector {
             protected void configure() {
                 bind((Class<Object>) self.getClass()).toInstance(self);
 
-                optionalConfiguration.ifPresent(injectorConfiguration -> {
-                    configurationBindings.forEach(binding -> binding.bind(binder(), injectorConfiguration));
-                });
+                optionalConfiguration.ifPresent(injectorConfiguration -> configurationBindings.forEach(binding -> binding.bind(binder(), injectorConfiguration)));
 
                 bindings.forEach(binding -> binding.bind(binder()));
 
