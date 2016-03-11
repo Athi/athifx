@@ -25,6 +25,7 @@ public class AthiFXInjector {
         bindings.add(new InstancesBinding());
         bindings.add(new QualifierBinding());
         bindings.add(new ScopesBinding());
+        bindings.add(new EventBusBinding());
     }
 
     private static final Set<ConfigurationFileBinding> configurationFileBindings = new HashSet<>();

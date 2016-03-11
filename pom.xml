@@ -14,11 +14,13 @@
         <source-target.version>1.8</source-target.version>
 
         <javaee-api.version>7.0</javaee-api.version>
+        <ini4j.version>0.5.4</ini4j.version>
         <guice.version>4.0</guice.version>
         <reflections.version>0.9.10</reflections.version>
 
         <junit.version>4.12</junit.version>
         <powermock.version>1.6.4</powermock.version>
+        <system-rules.version>1.16.0</system-rules.version>
 
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
