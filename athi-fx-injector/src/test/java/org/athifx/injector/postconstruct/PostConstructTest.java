@@ -26,7 +26,7 @@ public class PostConstructTest extends AthiFXTestCase {
     }
 
     @Test
-    public void provatePostConstructTest() {
+    public void privatePostConstructTest() {
         assertEquals(false, WithPrivatePostConstruct.PRIVATE_INIT_VALUE_BEFORE_CALL.equals(WithPrivatePostConstruct.PRIVATE_INIT_VALUE_AFTER_CALL));
 
         assertEquals(false, withPrivatePostConstruct.getValue().equals(WithPrivatePostConstruct.PRIVATE_INIT_VALUE_BEFORE_CALL));

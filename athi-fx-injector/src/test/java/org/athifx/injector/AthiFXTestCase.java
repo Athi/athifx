@@ -17,7 +17,7 @@ import org.reflections.scanners.TypeAnnotationsScanner;
 import java.io.File;
 
 /**
- * Created by Athi on 2016-02-27.
+ * Created by Athi
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)

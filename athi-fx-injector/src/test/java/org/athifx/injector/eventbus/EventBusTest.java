@@ -12,13 +12,13 @@ import javax.inject.Inject;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Athi on 2016-03-11.
+ * Created by Athi
  */
 public class EventBusTest extends AthiFXTestCase {
 
-    public static final String FIRST_MESSAGE = "FIRST_MESSAGE";
-    public static final String SECOND_MESSAGE = "SECOND_MESSAGE";
-    public static final String THIRD_MESSAGE = "THIRD_MESSAGE";
+    private static final String FIRST_MESSAGE = "FIRST_MESSAGE";
+    private static final String SECOND_MESSAGE = "SECOND_MESSAGE";
+    private static final String THIRD_MESSAGE = "THIRD_MESSAGE";
 
     @Inject
     private EventBus eventBus;

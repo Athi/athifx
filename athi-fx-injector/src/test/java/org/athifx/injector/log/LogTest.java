@@ -23,7 +23,7 @@ public class LogTest {
     private static final String IN_ERROR_2 = "MESSAGE_2";
 
     @Test
-    public void logingTest() throws IOException {
+    public void loggingTest() throws IOException {
         Log LOGGER_1 = Log.getLogger(LogTest.class);
         LOGGER_1.error(MESSAGE_1, new Error(IN_ERROR_1));
         LOGGER_1.warning(MESSAGE_2, new Error(IN_ERROR_2));
@@ -52,7 +52,7 @@ public class LogTest {
     }
 
     @Test
-    public void logingTestCustomFile() throws IOException {
+    public void loggingTestCustomFile() throws IOException {
         Log LOGGER_2 = Log.getLogger(LogTest.class, LogFileMock.TEST_LOG_FILE);
         LOGGER_2.error(MESSAGE_1, new Error(IN_ERROR_1));
         LOGGER_2.warning(MESSAGE_2, new Error(IN_ERROR_2));

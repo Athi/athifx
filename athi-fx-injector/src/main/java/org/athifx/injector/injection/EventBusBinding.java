@@ -9,7 +9,7 @@ import com.google.inject.spi.TypeEncounter;
 import com.google.inject.spi.TypeListener;
 
 /**
- * Created by Athi on 2016-03-11.
+ * Created by Athi
  */
 class EventBusBinding implements Binding {
 

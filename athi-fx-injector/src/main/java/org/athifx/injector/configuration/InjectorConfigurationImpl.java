@@ -14,8 +14,8 @@ public class InjectorConfigurationImpl implements InjectorConfiguration {
     public static final String PROPERTIES_SUFFIX = ".properties";
     public static final String INI_SUFFIX = ".ini";
 
-    private List<URL> propertiesURLs = new ArrayList<>();
-    private List<URL> iniURLs = new ArrayList<>();
+    private final List<URL> propertiesURLs = new ArrayList<>();
+    private final List<URL> iniURLs = new ArrayList<>();
 
     public InjectorConfigurationImpl() {
     }

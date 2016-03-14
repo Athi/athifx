@@ -3,7 +3,7 @@ package org.athifx.injector.eventbus;
 /**
  * Created by Athi
  */
-public class EventBusEvent {
+class EventBusEvent {
 
     private final String message;
 

@@ -4,7 +4,7 @@ import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 
 /**
- * Created by Athi on 2016-03-03.
+ * Created by Athi
  */
 @ApplicationScoped
 public class ApplicationTestOneClass implements Serializable {

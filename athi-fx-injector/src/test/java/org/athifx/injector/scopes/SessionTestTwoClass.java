@@ -4,8 +4,9 @@ import javax.inject.Inject;
 import java.io.Serializable;
 
 /**
- * Created by Athi on 2016-03-03.
+ * Created by Athi
  */
+@SuppressWarnings("CdiInjectionPointsInspection")
 public class SessionTestTwoClass implements Serializable {
 
     @Inject

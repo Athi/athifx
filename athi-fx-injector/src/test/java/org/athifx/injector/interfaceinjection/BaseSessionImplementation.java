@@ -6,6 +6,7 @@ import javax.inject.Inject;
 /**
  * Created by Athi
  */
+@SuppressWarnings("CdiInjectionPointsInspection")
 @SessionScoped
 public class BaseSessionImplementation implements BaseSessionImplementationInterface {
 

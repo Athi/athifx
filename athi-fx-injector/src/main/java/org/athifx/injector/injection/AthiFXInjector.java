@@ -33,7 +33,7 @@ public class AthiFXInjector {
 
     static {
         configurationFileBindings.add(new PropertiesFilesFileBinding());
-        configurationFileBindings.add(new IniFilesBinding());
+        configurationFileBindings.add(new IniFilesFileBinding());
     }
 
     private static Reflections reflections;
@@ -49,9 +49,12 @@ public class AthiFXInjector {
             protected void configure() {
                 bind((Class<Object>) self.getClass()).toInstance(self);
 
-                optionalConfiguration.ifPresent(injectorConfiguration -> configurationFileBindings.forEach(binding -> binding.bind(binder(), injectorConfiguration)));
+                optionalConfiguration.ifPresent(injectorConfiguration ->
+                        configurationFileBindings.forEach(binding ->
+                                binding.bind(binder(), injectorConfiguration)));
 
-                bindings.forEach(binding -> binding.bind(binder()));
+                bindings.forEach(binding ->
+                        binding.bind(binder()));
 
                 bindListener(Matchers.any(), new PostConstructInjectionListener());
             }

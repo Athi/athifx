@@ -29,6 +29,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by Athi
  */
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)
 public class InjectorConfigurationImplTest {
@@ -60,10 +61,11 @@ public class InjectorConfigurationImplTest {
     @Rule
     private ExpectedException expectedException = ExpectedException.none();
 
-    private List<File> files = new ArrayList<>();
+    private final List<File> files = new ArrayList<>();
 
+    @SuppressWarnings("ConstantConditions")
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         files.add(new File(Thread.currentThread().getContextClassLoader().getResource("properties1.properties").getPath()));
         files.add(new File(Thread.currentThread().getContextClassLoader().getResource("properties2.properties").getPath()));
         files.add(new File(Thread.currentThread().getContextClassLoader().getResource("ini1.ini").getPath()));

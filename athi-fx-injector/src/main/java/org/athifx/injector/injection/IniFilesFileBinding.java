@@ -16,9 +16,9 @@ import java.util.Optional;
 /**
  * Created by Athi
  */
-class IniFilesBinding implements ConfigurationFileBinding {
+class IniFilesFileBinding implements ConfigurationFileBinding {
 
-    private static final Log LOGGER = Log.getLogger(IniFilesBinding.class);
+    private static final Log LOGGER = Log.getLogger(IniFilesFileBinding.class);
 
     @Override
     public void bind(Binder binder, InjectorConfiguration injectorConfiguration) {

@@ -3,7 +3,7 @@ package org.athifx.injector.interfaceinjection;
 /**
  * Created by Athi
  */
-public interface BaseInterface {
+interface BaseInterface {
 
     void test();
 

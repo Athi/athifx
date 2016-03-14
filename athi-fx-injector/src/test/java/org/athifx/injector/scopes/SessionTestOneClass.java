@@ -4,7 +4,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
 /**
- * Created by Athi on 2016-03-03.
+ * Created by Athi
  */
 @SessionScoped
 public class SessionTestOneClass implements Serializable {

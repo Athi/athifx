@@ -8,8 +8,9 @@ import javax.inject.Inject;
 import static org.junit.Assert.*;
 
 /**
- * Created by Athi on 2016-03-03.
+ * Created by Athi
  */
+@SuppressWarnings("CdiInjectionPointsInspection")
 public class SessionApplicationScopedTest extends AthiFXTestCase {
 
     @Inject

@@ -19,7 +19,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by Athi on 2016-03-03.
+ * Created by Athi
  */
 public class AnyInstanceTest extends AthiFXTestCase {
 

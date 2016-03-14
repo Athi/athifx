@@ -43,7 +43,7 @@ class AthiFXInstance<T> implements Instance<T> {
         });
     }
 
-    private ArrayDeque<T> newInstacesDequeByAnnotations(Annotation... annotations) {
+    private ArrayDeque<T> newInstancesDequeByAnnotations(Annotation... annotations) {
         ArrayDeque<T> newInstancesDeque = new ArrayDeque<>();
         instances.iterator().forEachRemaining(instance -> {
             for (Annotation annotation : instance.getClass().getAnnotations()) {
@@ -57,13 +57,13 @@ class AthiFXInstance<T> implements Instance<T> {
 
     @Override
     public Instance<T> select(Annotation... annotations) {
-        ArrayDeque<T> newInstancesDeque = newInstacesDequeByAnnotations(annotations);
+        ArrayDeque<T> newInstancesDeque = newInstancesDequeByAnnotations(annotations);
         return new AthiFXInstance<>(newInstancesDeque);
     }
 
     @Override
     public <U extends T> Instance<U> select(Class<U> aClass, Annotation... annotations) {
-        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstacesDequeByAnnotations(annotations);
+        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstancesDequeByAnnotations(annotations);
         Iterator<U> descendingIterator = newInstancesDeque.descendingIterator();
         while (descendingIterator.hasNext()) {
             if (!descendingIterator.next().getClass().isAssignableFrom(aClass)) {
@@ -75,7 +75,7 @@ class AthiFXInstance<T> implements Instance<T> {
 
     @Override
     public <U extends T> Instance<U> select(TypeLiteral<U> typeLiteral, Annotation... annotations) {
-        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstacesDequeByAnnotations(annotations);
+        ArrayDeque<U> newInstancesDeque = (ArrayDeque<U>) newInstancesDequeByAnnotations(annotations);
         Iterator<U> descendingIterator = newInstancesDeque.descendingIterator();
         while (descendingIterator.hasNext()) {
             if (!descendingIterator.next().getClass().equals(typeLiteral.getType())) {
