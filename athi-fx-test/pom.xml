@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.athi</groupId>
+        <groupId>com.github.athi</groupId>
         <artifactId>athi-fx</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -16,7 +16,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.athi</groupId>
+            <groupId>com.github.athi</groupId>
             <artifactId>athi-fx-gui</artifactId>
             <version>${project.version}</version>
         </dependency>
