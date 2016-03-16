@@ -24,7 +24,7 @@ public class EventBusTest extends AthiFXTestCase {
     private EventBus eventBus;
 
     @Rule
-    private SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+    private final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
     @Test
     public void eventBUsEventTest() {

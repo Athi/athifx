@@ -1,8 +1,8 @@
 package org.athifx.injector.instance;
 
+import org.athifx.injector.AthiFXTestCase;
 import org.athifx.injector.instance.interfaces.TestOneImpl;
 import org.athifx.injector.instance.interfaces.TestTwoImpl;
-import org.athifx.injector.AthiFXTestCase;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -23,7 +23,7 @@ public class InterfaceInjectionTest extends AthiFXTestCase {
     private BaseSessionImplementationInterface baseSessionImplementation2;
 
     @Rule
-    private SystemOutRule systemOutRule = new SystemOutRule().enableLog();
+    private final SystemOutRule systemOutRule = new SystemOutRule().enableLog();
 
     @Test
     public void baseInterfaceInjectionTest() {

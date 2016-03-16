@@ -24,53 +24,101 @@
 
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
+
+        <skipTests>true</skipTests>
+        <maven.test.skip>true</maven.test.skip>
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <encoding>${projec.build.sourceEncoding}</encoding>
-                    <source>${source-target.version}</source>
-                    <target>${source-target.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>${jacoco-maven-plugin.version}</version>
-                <configuration>
-                    <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
-                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-                <version>${coveralls-maven-plugin.version}</version>
-                <configuration>
-                    <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
-                    <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
-                </configuration>
-            </plugin>
-        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <encoding>${projec.build.sourceEncoding}</encoding>
+                        <source>${source-target.version}</source>
+                        <target>${source-target.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+
+            <properties>
+                <skipTests>false</skipTests>
+                <maven.test.skip>false</maven.test.skip>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacoco-maven-plugin.version}</version>
+                        <configuration>
+                            <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
+                            <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.eluder.coveralls</groupId>
+                        <artifactId>coveralls-maven-plugin</artifactId>
+                        <version>${coveralls-maven-plugin.version}</version>
+                        <configuration>
+                            <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                            <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <dependencies>
+                <!-- TEST -->
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <version>${junit.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.powermock</groupId>
+                    <artifactId>powermock-module-junit4</artifactId>
+                    <version>${powermock.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.powermock</groupId>
+                    <artifactId>powermock-api-mockito</artifactId>
+                    <version>${powermock.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.github.stefanbirkner</groupId>
+                    <artifactId>system-rules</artifactId>
+                    <version>${system-rules.version}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <modules>
         <module>athi-fx-injector</module>
         <module>athi-fx-gui</module>
         <module>athi-fx-test</module>
     </modules>
-
 
 </project>
