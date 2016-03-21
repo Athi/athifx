@@ -22,26 +22,52 @@ public class Log {
         this.fileName = fileName;
     }
 
+    /**
+     * Creates LOGGER instance for given class
+     * @param logClass - class to log
+     * @return - LOGGER instance
+     */
     public static Log getLogger(Class<?> logClass) {
         return new Log(logClass, DEFAULT_LOG_FILE_NAME);
     }
 
+    /**
+     * Creates LOGGER instance for given class and custom file to log.
+     * @param logClass - class to log
+     * @param logFile - file definition in witch the log output will be written.
+     * @param <FILE> - Enum implementing the LogFile interface
+     * @return - LOGGER instance
+     */
     public static <FILE extends Enum & LogFile> Log getLogger(Class<?> logClass, FILE logFile) {
         return new Log(logClass, logFile.getFileName());
     }
 
+    /**
+     * Error logging
+     * @param message - message to be written
+     * @param throwable -  Throwable to get the stacktrace
+     */
     public void error(String message, Throwable throwable) {
         initHandler();
         LOGGER.logp(AthiLoggingLevel.ERROR, logClass.getName(), "", message, throwable);
         closeHandler();
     }
 
+    /**
+     * Warning logging
+     * @param message - message to be written
+     * @param throwable -  Throwable to get the stacktrace
+     */
     public void warning(String message, Throwable throwable) {
         initHandler();
         LOGGER.logp(AthiLoggingLevel.WARNING, logClass.getName(), "", message, throwable);
         closeHandler();
     }
 
+    /**
+     * Info loggin
+     * @param message - message to be written
+     */
     public void info(String message) {
         initHandler();
         LOGGER.logp(AthiLoggingLevel.INFO, logClass.getName(), "", message);
@@ -63,6 +89,9 @@ public class Log {
         handler.close();
     }
 
+    /**
+     * Interface for the enum implementations defining the file to log.
+     */
     public interface LogFile {
 
         String getName();

@@ -1,9 +1,9 @@
 package com.github.athi.athifx.injector.injection;
 
+import com.github.athi.athifx.injector.configuration.InjectorConfiguration;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.matcher.Matchers;
-import com.github.athi.athifx.injector.configuration.InjectorConfiguration;
 import org.reflections.Reflections;
 import org.reflections.scanners.FieldAnnotationsScanner;
 import org.reflections.scanners.SubTypesScanner;
@@ -38,10 +38,23 @@ public class AthiFXInjector {
 
     private static Reflections reflections;
 
+    /**
+     * Init default injector configuration.
+     *
+     * @param self
+     * @param <T>
+     */
     public static <T> void createInjector(T self) {
         createInjector(self, null);
     }
 
+    /**
+     * Init default injector configuration with properties files.
+     *
+     * @param self          - instance in witch the injection starts
+     * @param configuration - Configuration
+     * @param <T>
+     */
     public static <T> void createInjector(T self, InjectorConfiguration configuration) {
         Optional<InjectorConfiguration> optionalConfiguration = Optional.ofNullable(configuration);
         Guice.createInjector(new AbstractModule() {
@@ -61,6 +74,9 @@ public class AthiFXInjector {
         });
     }
 
+    /**
+     * @return - Reflections instance with FieldAnnotationsScanner, TypeAnnotationsScanner, SubTypesScanner and default package.
+     */
     public static Reflections getReflections() {
         if (Objects.isNull(reflections)) {
             reflections = new Reflections("", new FieldAnnotationsScanner(), new TypeAnnotationsScanner(), new SubTypesScanner());

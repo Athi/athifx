@@ -32,7 +32,7 @@ import static org.junit.Assert.assertEquals;
 @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)
-public class InjectorConfigurationImplTest {
+public class InjectorConfigurationTest {
 
     @Inject
     @Named("test1value")
@@ -74,14 +74,14 @@ public class InjectorConfigurationImplTest {
 
     @Test
     public void emptyCreationTest() {
-        InjectorConfiguration injectorConfiguration = new InjectorConfigurationImpl();
+        InjectorConfiguration injectorConfiguration = new InjectorConfiguration();
         assertEquals(0, injectorConfiguration.getIniURLs().size());
         assertEquals(0, injectorConfiguration.getPropertiesURLs().size());
     }
 
     @Test
     public void normalCreationTest() {
-        InjectorConfiguration injectorConfiguration = new InjectorConfigurationImpl(files);
+        InjectorConfiguration injectorConfiguration = new InjectorConfiguration(files);
 
         assertEquals(2, injectorConfiguration.getPropertiesURLs().size());
         assertEquals(2, injectorConfiguration.getIniURLs().size());
@@ -117,7 +117,7 @@ public class InjectorConfigurationImplTest {
     }
 
     private void setUpWithPropertiesFiles(List<File> files) {
-        InjectorConfigurationImpl configuration = new InjectorConfigurationImpl(files);
+        InjectorConfiguration configuration = new InjectorConfiguration(files);
         AthiFXInjector.createInjector(this, configuration);
         PowerMockito.mockStatic(AthiFXInjector.class);
         Mockito.when(AthiFXInjector.getReflections())

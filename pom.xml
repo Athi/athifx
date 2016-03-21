@@ -6,8 +6,12 @@
 
     <groupId>com.github.athi</groupId>
     <artifactId>athi-fx</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
+    <name>athi-fx</name>
+
+    <description>AthiFX project.</description>
+    <url>https://github.com/Athi/athifx</url>
 
     <properties>
         <projec.build.sourceEncoding>UTF8</projec.build.sourceEncoding>
@@ -17,6 +21,11 @@
         <ini4j.version>0.5.4</ini4j.version>
         <guice.version>4.0</guice.version>
         <reflections.version>0.9.10</reflections.version>
+
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
         <junit.version>4.12</junit.version>
         <powermock.version>1.6.4</powermock.version>
@@ -35,6 +44,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
                     <configuration>
                         <encoding>${projec.build.sourceEncoding}</encoding>
                         <source>${source-target.version}</source>
@@ -46,6 +56,97 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>source</id>
+
+            <activation>
+                <property>
+                    <name>mvnrepository-prepare</name>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>javadoc</id>
+
+            <activation>
+                <property>
+                    <name>mvnrepository-prepare</name>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>gpg</id>
+
+            <activation>
+                <property>
+                    <name>mvnrepository-prepare</name>
+                </property>
+            </activation>
+
+            <properties>
+                <gpg.executable>gpg2</gpg.executable>
+                <gpg2.keyname>03DB384F</gpg2.keyname>
+                <gpg2.passphrase>{qQx6vwJ+8xcH+zT8DcpFfv1IDvOyA44vZ7cXmDNSwOQPip5ru647Iau+taxe8f3l}</gpg2.passphrase>
+            </properties>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <profile>
             <id>test</id>
 
@@ -113,6 +214,7 @@
                 </dependency>
             </dependencies>
         </profile>
+
     </profiles>
 
     <modules>
@@ -121,4 +223,23 @@
         <module>athi-fx-test</module>
     </modules>
 
+    <scm>
+        <connection>scm:git:git@github.com/Athi/athifx.git</connection>
+        <developerConnection>scm:git:git@github.com/Athi/athifx.git</developerConnection>
+        <url>git@github.com/Athi/athifx.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Mateusz Piekarczyk</name>
+            <email>mateusz.piekarczyk.dev@gmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 </project>
