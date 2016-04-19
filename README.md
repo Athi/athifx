@@ -1,6 +1,6 @@
 # **AthiFX**
 
-[![Maven Central athi-fx (parent)](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx/badge.svg)](https://maven-badges.herokuapp.com/maven-central2/com.github.athi/athi-fx)
+[![Maven Central athi-fx (parent)](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx)
 [![Build Status](https://travis-ci.org/Athi/athifx.svg?branch=master)](https://travis-ci.org/Athi/athifx)
 [![Coverage Status](https://coveralls.io/repos/github/Athi/athifx/badge.svg?branch=master)](https://coveralls.io/github/Athi/athifx?branch=master)
 
