@@ -1,0 +1,6 @@
+{
+  "name": "Athifx",
+  "tagline": "javafx, guice, injection, javaee",
+  "body": "[![Build Status](https://travis-ci.org/Athi/athifx.svg?branch=master)](https://travis-ci.org/Athi/athifx)\r\n[![Coverage Status](https://coveralls.io/repos/github/Athi/athifx/badge.svg?branch=master)](https://coveralls.io/github/Athi/athifx?branch=master)\r\n\r\n### athifx\r\n\r\n### athi-fx-injector\r\n[![Maven Central athi-fx-injector](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx-injector/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx-injector)\r\n\r\n### athi-fx-gui\r\n[![Maven Central athi-fx-gui](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx-gui/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.athi/athi-fx-gui)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
