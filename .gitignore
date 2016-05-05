@@ -1,0 +1,9 @@
+*.class
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Maven
+target/
