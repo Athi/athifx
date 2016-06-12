@@ -10,7 +10,6 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.github.athi</groupId>
     <artifactId>athi-fx-injector</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>

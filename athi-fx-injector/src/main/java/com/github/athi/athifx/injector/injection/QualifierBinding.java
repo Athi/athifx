@@ -4,6 +4,7 @@ import com.google.inject.Binder;
 import org.reflections.Reflections;
 
 import javax.inject.Qualifier;
+import java.lang.annotation.Annotation;
 import java.util.Arrays;
 
 /**
@@ -16,12 +17,16 @@ class QualifierBinding implements Binding {
         Reflections reflections = AthiFXInjector.getReflections();
         reflections.getTypesAnnotatedWith(Qualifier.class).stream()
                 .filter(qualifierAnnotated -> !qualifierAnnotated.isAnnotationPresent(Qualifier.class))
-                .forEach(c -> Arrays.asList(c.getGenericInterfaces()).forEach(type -> Arrays.asList(c.getAnnotations()).forEach(annotation -> {
-                    try {
-                        binder.bind(((Class<Object>) type)).annotatedWith(annotation).toInstance(c.newInstance());
-                    } catch (InstantiationException | IllegalAccessException e) {
-                        e.printStackTrace();
+                .forEach(c -> Arrays.asList(c.getGenericInterfaces()).forEach(type -> {
+                    if (!type.equals(Annotation.class)) {
+                        Arrays.asList(c.getAnnotations()).forEach(annotation -> {
+                            try {
+                                binder.bind(((Class<Object>) type)).annotatedWith(annotation).toInstance(c.newInstance());
+                            } catch (InstantiationException | IllegalAccessException e) {
+                                e.printStackTrace();
+                            }
+                        });
                     }
-                })));
+                }));
     }
 }
