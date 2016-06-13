@@ -9,6 +9,12 @@ public class FontAwesome {
 
     }
 
+    public static String FONT_SIZE(int size) {
+        return "-fx-font-size: " + size + "px;";
+    }
+
+    public static final String STYLE_CLASS_ICONS = "icons";
+
     public static final String ICON_GLASS = "\uf000";
     public static final String ICON_MUSIC = "\uf001";
     public static final String ICON_SEARCH = "\uf002";
