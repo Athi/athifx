@@ -1,6 +1,8 @@
 package com.github.athi.athifx.injector.injection;
 
 import com.github.athi.athifx.injector.log.Log;
+import com.google.inject.Binder;
+import com.google.inject.Injector;
 import org.reflections.Reflections;
 
 import javax.enterprise.inject.Instance;
@@ -22,21 +24,23 @@ class AthiFXInstance<T> implements Instance<T> {
 
     private ArrayDeque<T> instances = new ArrayDeque<>();
 
-    public AthiFXInstance(Type genericType) {
+    public AthiFXInstance(Type genericType, Binder binder) {
         Reflections reflections = AthiFXInjector.getReflections();
         Class genericClass = ((Class) genericType);
         Set<Class<T>> subTypesOfGeneric = reflections.getSubTypesOf(genericClass);
-        fillInstancesCollection(subTypesOfGeneric);
+        fillInstancesCollection(subTypesOfGeneric, binder);
     }
 
     private AthiFXInstance(ArrayDeque<T> newInstancesDeque) {
         this.instances = newInstancesDeque;
     }
 
-    private void fillInstancesCollection(Set<Class<T>> subTypeOfGeneric) {
+    private void fillInstancesCollection(Set<Class<T>> subTypeOfGeneric, Binder binder) {
         subTypeOfGeneric.forEach(genericClass -> {
             try {
-                instances.push(genericClass.newInstance());
+                T instance = genericClass.newInstance();
+                binder.requestInjection(instance);
+                instances.push(instance);
             } catch (InstantiationException | IllegalAccessException e) {
                 LOGGER.error(e.getMessage(), e);
             }

@@ -23,12 +23,12 @@ class InstancesBinding implements Binding {
         fieldsAnnotatedWith.stream().filter(field -> field.getType().equals(Instance.class)).forEach(field -> {
             ParameterizedType instanceType = (ParameterizedType) field.getGenericType();
             Type generic = instanceType.getActualTypeArguments()[0];
-            binder.bind(TypeLiteral.get(instanceType)).annotatedWith(Any.class).toInstance(captureAthiFXInstance(generic));
+            binder.bind(TypeLiteral.get(instanceType)).annotatedWith(Any.class).toInstance(captureAthiFXInstance(generic, binder));
         });
     }
 
-    private static <T extends Instance> T captureAthiFXInstance(Type generic) {
-        return (T) new AthiFXInstance(generic);
+    private static <T extends Instance> T captureAthiFXInstance(Type generic, Binder binder) {
+        return (T) new AthiFXInstance(generic, binder);
     }
 
 }

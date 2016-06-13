@@ -4,9 +4,11 @@ import com.google.inject.Binder;
 import com.google.inject.Inject;
 import org.reflections.Reflections;
 
+import javax.enterprise.inject.Any;
 import java.lang.reflect.Field;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Created by Athi
@@ -18,7 +20,10 @@ class SimpleInterfaceBinding implements Binding {
     @Override
     public void bind(Binder binder) {
         Reflections reflections = AthiFXInjector.getReflections();
-        Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Inject.class);
+        Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Inject.class)
+                .stream()
+                .filter(f -> !f.isAnnotationPresent(Any.class))
+                .collect(Collectors.toSet());
 
         fieldsAnnotatedWith.stream()
                 .filter(field -> field.getType().isInterface())
