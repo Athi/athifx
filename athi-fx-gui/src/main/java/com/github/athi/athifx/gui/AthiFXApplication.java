@@ -42,7 +42,7 @@ public class AthiFXApplication extends Application {
     }
 
     private void createMainApplicationScreen(Stage primaryStage) {
-        Font.loadFont(Thread.currentThread().getContextClassLoader().getResource("fonts/fontawesome-webfont.ttf").toExternalForm(), 12);
+        Font.loadFont(Thread.currentThread().getContextClassLoader().getResource("fonts/fontawesome-webfont.ttf").toExternalForm(), 12); // FIXME -- write it safer
         primaryStage.setMaximized(true);
 
         AnchorPane applicationContent = new AnchorPane();
@@ -50,7 +50,7 @@ public class AthiFXApplication extends Application {
         applicationContent.setPrefHeight(600);
 
         Scene value = new Scene(applicationContent);
-        value.getStylesheets().add(Thread.currentThread().getContextClassLoader().getResource("css/fontawesome-webfont.css").toExternalForm());
+        value.getStylesheets().add(Thread.currentThread().getContextClassLoader().getResource("css/fontawesome-webfont.css").toExternalForm()); // FIXME -- write it safer
 
         primaryStage.setScene(value);
 
