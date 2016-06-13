@@ -1,17 +1,22 @@
 package com.github.athi.athifx.gui.menu.item;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import com.github.athi.athifx.gui.navigation.navigator.Navigator;
+import com.google.inject.Inject;
+import javafx.scene.control.Button;
 
 /**
  * Created by Athi
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface MenuItem {
+public class MenuItem extends Button {
 
-    long itemId();
+    @Inject
+    private Navigator navigator;
 
+    public MenuItem(Item item) {
+        //TODO icon??
+        setText(item.caption());
+
+
+        setOnAction(event -> navigator.navigateTo(item));
+    }
 }

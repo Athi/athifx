@@ -10,7 +10,6 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.github.athi</groupId>
     <artifactId>athi-fx-test</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -18,6 +17,59 @@
 
     <description>AthiFX tests and examples.</description>
     <url>https://github.com/Athi/athifx</url>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <id>unpack-dependencies</id>
+
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${java.home}/../bin/javafxpackager</executable>
+                            <arguments>
+                                <argument>-createjar</argument>
+                                <argument>-nocss2bin</argument>
+                                <argument>-appclass</argument>
+                                <argument>com.github.athi.athifx.gui.AthiFXApplication</argument>
+                                <argument>-srcdir</argument>
+                                <argument>${project.build.directory}/classes</argument>
+                                <argument>-outdir</argument>
+                                <argument>${project.build.directory}</argument>
+                                <argument>-outfile</argument>
+                                <argument>${project.build.finalName}.jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
 
     <dependencies>
         <dependency>

@@ -3,7 +3,7 @@ package com.github.athi.athifx.gui.menu.group;
 /**
  * Created by Athi
  */
-public interface Groups {
+public interface Group {
 
     long id();
 

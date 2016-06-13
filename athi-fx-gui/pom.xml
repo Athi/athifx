@@ -10,7 +10,6 @@
         <version>1.0.0</version>
     </parent>
 
-    <groupId>com.github.athi</groupId>
     <artifactId>athi-fx-gui</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
@@ -18,6 +17,27 @@
 
     <description>AthiFX project for creating JavaFX simple application GUI.</description>
     <url>https://github.com/Athi/athifx</url>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 
     <dependencies>
         <dependency>
