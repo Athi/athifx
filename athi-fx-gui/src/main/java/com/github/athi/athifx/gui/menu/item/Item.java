@@ -1,6 +1,7 @@
 package com.github.athi.athifx.gui.menu.item;
 
 
+import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import com.github.athi.athifx.gui.menu.group.Group;
 
 /**
@@ -11,6 +12,8 @@ public interface Item<GROUP extends Enum<?> & Group> {
     long id();
 
     String caption();
+
+    FontAwesome icon();
 
     /**
      * @return - returns the menu group in witch the item will be set - can be null

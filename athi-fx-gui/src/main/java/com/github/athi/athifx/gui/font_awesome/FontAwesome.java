@@ -1,267 +1,762 @@
 package com.github.athi.athifx.gui.font_awesome;
 
+import javafx.scene.control.Label;
+
 /**
  * Created by Athi
  */
-public class FontAwesome {
-
-    private FontAwesome() {
-
-    }
-
-    public static String FONT_SIZE(int size) {
-        return "-fx-font-size: " + size + "px;";
-    }
+public enum FontAwesome {
+    FA500PX("\uf26e"),
+    ADJUST("\uf042"),
+    ADN("\uf170"),
+    ALIGN_CENTER("\uf037"),
+    ALIGN_JUSTIFY("\uf039"),
+    ALIGN_LEFT("\uf036"),
+    ALIGN_RIGHT("\uf038"),
+    AMAZON("\uf270"),
+    AMBULANCE("\uf0f9"),
+    AMERICAN_SIGN_LANGUAGE_INTERPRETING("\uf2a3"),
+    ANCHOR("\uf13d"),
+    ANDROID("\uf17b"),
+    ANGELLIST("\uf209"),
+    ANGLE_DOUBLE_DOWN("\uf103"),
+    ANGLE_DOUBLE_LEFT("\uf100"),
+    ANGLE_DOUBLE_RIGHT("\uf101"),
+    ANGLE_DOUBLE_UP("\uf102"),
+    ANGLE_DOWN("\uf107"),
+    ANGLE_LEFT("\uf104"),
+    ANGLE_RIGHT("\uf105"),
+    ANGLE_UP("\uf106"),
+    APPLE("\uf179"),
+    ARCHIVE("\uf187"),
+    AREA_CHART("\uf1fe"),
+    ARROW_CIRCLE_DOWN("\uf0ab"),
+    ARROW_CIRCLE_LEFT("\uf0a8"),
+    ARROW_CIRCLE_O_DOWN("\uf01a"),
+    ARROW_CIRCLE_O_LEFT("\uf190"),
+    ARROW_CIRCLE_O_RIGHT("\uf18e"),
+    ARROW_CIRCLE_O_UP("\uf01b"),
+    ARROW_CIRCLE_RIGHT("\uf0a9"),
+    ARROW_CIRCLE_UP("\uf0aa"),
+    ARROW_DOWN("\uf063"),
+    ARROW_LEFT("\uf060"),
+    ARROW_RIGHT("\uf061"),
+    ARROW_UP("\uf062"),
+    ARROWS("\uf047"),
+    ARROWS_ALT("\uf0b2"),
+    ARROWS_H("\uf07e"),
+    ARROWS_V("\uf07d"),
+    ASL_INTERPRETING_ALIAS("\uf2a3"),
+    ASSISTIVE_LISTENING_SYSTEMS("\uf2a2"),
+    ASTERISK("\uf069"),
+    AT("\uF1FA"),
+    AUDIO_DESCRIPTION("\uf29e"),
+    AUTOMOBILE_ALIAS("\uf1b9"),
+    BACKWARD("\uf04a"),
+    BALANCE_SCALE("\uf24e"),
+    BAN("\uf05e"),
+    BANK_ALIAS("\uf19c"),
+    BAR_CHART("\uf080"),
+    BAR_CHART_O_ALIAS("\uf080"),
+    BARCODE("\uf02a"),
+    BARS("\uf0c9"),
+    BATTERY_0_ALIAS("\uf244"),
+    BATTERY_1_ALIAS("\uf243"),
+    BATTERY_2_ALIAS("\uf242"),
+    BATTERY_3_ALIAS("\uf241"),
+    BATTERY_4_ALIAS("\uf240"),
+    BATTERY_EMPTY("\uf244"),
+    BATTERY_FULL("\uf240"),
+    BATTERY_HALF("\uf242"),
+    BATTERY_QUARTER("\uf243"),
+    BATTERY_THREE_QUARTERS("\uf241"),
+    BED("\uf236"),
+    BEER("\uf0fc"),
+    BEHANCE("\uf1b4"),
+    BEHANCE_SQUARE("\uf1b5"),
+    BELL("\uf0f3"),
+    BELL_O("\uf0a2"),
+    BELL_SLASH("\uf1f6"),
+    BELL_SLASH_O("\uf1f7"),
+    BICYCLE("\uf206"),
+    BINOCULARS("\uf1e5"),
+    BIRTHDAY_CAKE("\uf1fd"),
+    BITBUCKET("\uf171"),
+    BITBUCKET_SQUARE("\uf172"),
+    BITCOIN_ALIAS("\uf15a"),
+    BLACK_TIE("\uf27e"),
+    BLIND("\uf29d"),
+    BLUETOOTH("\uf293"),
+    BLUETOOTH_B("\uf294"),
+    BOLD("\uf032"),
+    BOLT("\uf0e7"),
+    BOMB("\uf1e2"),
+    BOOK("\uf02d"),
+    BOOKMARK("\uf02e"),
+    BOOKMARK_O("\uf097"),
+    BRAILLE("\uf2a1"),
+    BRIEFCASE("\uf0b1"),
+    BTC("\uf15a"),
+    BUG("\uf188"),
+    BUILDING("\uf1ad"),
+    BUILDING_O("\uf0f7"),
+    BULLHORN("\uf0a1"),
+    BULLSEYE("\uf140"),
+    BUS("\uf207"),
+    BUYSELLADS("\uf20d"),
+    CAB_ALIAS("\uf1ba"),
+    CALCULATOR("\uf1ec"),
+    CALENDAR("\uf073"),
+    CALENDAR_CHECK_O("\uf274"),
+    CALENDAR_MINUS_O("\uf272"),
+    CALENDAR_O("\uf133"),
+    CALENDAR_PLUS_O("\uf271"),
+    CALENDAR_TIMES_O("\uf273"),
+    CAMERA("\uf030"),
+    CAMERA_RETRO("\uf083"),
+    CAR("\uf1b9"),
+    CARET_DOWN("\uf0d7"),
+    CARET_LEFT("\uf0d9"),
+    CARET_RIGHT("\uf0da"),
+    CARET_SQUARE_O_DOWN("\uf150"),
+    CARET_SQUARE_O_LEFT("\uf191"),
+    CARET_SQUARE_O_RIGHT("\uf152"),
+    CARET_SQUARE_O_UP("\uf151"),
+    CARET_UP("\uf0d8"),
+    CART_ARROW_DOWN("\uf218"),
+    CART_PLUS("\uf217"),
+    CC("\uf20a"),
+    CC_AMEX("\uf1f3"),
+    CC_DINERS_CLUB("\uf24c"),
+    CC_DISCOVER("\uf1f2"),
+    CC_JCB("\uf24b"),
+    CC_MASTERCARD("\uf1f1"),
+    CC_PAYPAL("\uf1f4"),
+    CC_STRIPE("\uf1f5"),
+    CC_VISA("\uf1f0"),
+    CERTIFICATE("\uf0a3"),
+    CHAIN_ALIAS("\uf0c1"),
+    CHAIN_BROKEN("\uf127"),
+    CHECK("\uf00c"),
+    CHECK_CIRCLE("\uf058"),
+    CHECK_CIRCLE_O("\uf05d"),
+    CHECK_SQUARE("\uf14a"),
+    CHECK_SQUARE_O("\uf046"),
+    CHEVRON_CIRCLE_DOWN("\uf13a"),
+    CHEVRON_CIRCLE_LEFT("\uf137"),
+    CHEVRON_CIRCLE_RIGHT("\uf138"),
+    CHEVRON_CIRCLE_UP("\uf139"),
+    CHEVRON_DOWN("\uf078"),
+    CHEVRON_LEFT("\uf053"),
+    CHEVRON_RIGHT("\uf054"),
+    CHEVRON_UP("\uf077"),
+    CHILD("\uf1ae"),
+    CHROME("\uf268"),
+    CIRCLE("\uf111"),
+    CIRCLE_O("\uf10c"),
+    CIRCLE_O_NOTCH("\uf1ce"),
+    CIRCLE_THIN("\uf1db"),
+    CLIPBOARD("\uf0ea"),
+    CLOCK_O("\uf017"),
+    CLONE("\uf24d"),
+    CLOSE_ALIAS("\uf00d"),
+    CLOUD("\uf0c2"),
+    CLOUD_DOWNLOAD("\uf0ed"),
+    CLOUD_UPLOAD("\uf0ee"),
+    CNY_ALIAS("\uf157"),
+    CODE("\uf121"),
+    CODE_FORK("\uf126"),
+    CODEPEN("\uf1cb"),
+    CODIEPIE("\uf284"),
+    COFFEE("\uf0f4"),
+    COG("\uf013"),
+    COGS("\uf085"),
+    COLUMNS("\uf0db"),
+    COMMENT("\uf075"),
+    COMMENT_O("\uf0e5"),
+    COMMENTING("\uf27a"),
+    COMMENTING_O("\uf27b"),
+    COMMENTS("\uf086"),
+    COMMENTS_O("\uf0e6"),
+    COMPASS("\uf14e"),
+    COMPRESS("\uf066"),
+    CONNECTDEVELOP("\uf20e"),
+    CONTAO("\uf26d"),
+    COPY_ALIAS("\uf0c5"),
+    COPYRIGHT("\uf1f9"),
+    CREATIVE_COMMONS("\uf25e"),
+    CREDIT_CARD("\uf09d"),
+    CREDIT_CARD_ALT("\uf283"),
+    CROP("\uf125"),
+    CROSSHAIRS("\uf05b"),
+    CSS3("\uf13c"),
+    CUBE("\uf1b2"),
+    CUBES("\uf1b3"),
+    CUT_ALIAS("\uf0c4"),
+    CUTLERY("\uf0f5"),
+    DASHBOARD_ALIAS("\uf0e4"),
+    DASHCUBE("\uf210"),
+    DATABASE("\uf1c0"),
+    DEAF("\uf2a4"),
+    DEAFNESS_ALIAS("\uf2a4"),
+    DEDENT_ALIAS("\uf03b"),
+    DELICIOUS("\uf1a5"),
+    DESKTOP("\uf108"),
+    DEVIANTART("\uf1bd"),
+    DIAMOND("\uf219"),
+    DIGG("\uf1a6"),
+    DOLLAR_ALIAS("\uf155"),
+    DOT_CIRCLE_O("\uf192"),
+    DOWNLOAD("\uf019"),
+    DRIBBBLE("\uf17d"),
+    DROPBOX("\uf16b"),
+    DRUPAL("\uf1a9"),
+    EDGE("\uf282"),
+    EDIT_ALIAS("\uf044"),
+    EJECT("\uf052"),
+    ELLIPSIS_H("\uf141"),
+    ELLIPSIS_V("\uf142"),
+    EMPIRE("\uf1d1"),
+    ENVELOPE("\uf0e0"),
+    ENVELOPE_O("\uf003"),
+    ENVELOPE_SQUARE("\uf199"),
+    ENVIRA("\uf299"),
+    ERASER("\uf12d"),
+    EUR("\uf153"),
+    EURO_ALIAS("\uf153"),
+    EXCHANGE("\uf0ec"),
+    EXCLAMATION("\uf12a"),
+    EXCLAMATION_CIRCLE("\uf06a"),
+    EXCLAMATION_TRIANGLE("\uf071"),
+    EXPAND("\uf065"),
+    EXPEDITEDSSL("\uf23e"),
+    EXTERNAL_LINK("\uf08e"),
+    EXTERNAL_LINK_SQUARE("\uf14c"),
+    EYE("\uf06e"),
+    EYE_SLASH("\uf070"),
+    EYEDROPPER("\uf1fb"),
+    ALIAS("\uf2b4"),
+    FACEBOOK("\uf09a"),
+    FACEBOOK_F_ALIAS("\uf09a"),
+    FACEBOOK_OFFICIAL("\uf230"),
+    FACEBOOK_SQUARE("\uf082"),
+    FAST_BACKWARD("\uf049"),
+    FAST_FORWARD("\uf050"),
+    FAX("\uf1ac"),
+    FEED_ALIAS("\uf09e"),
+    FEMALE("\uf182"),
+    FIGHTER_JET("\uf0fb"),
+    FILE("\uf15b"),
+    FILE_ARCHIVE_O("\uf1c6"),
+    FILE_AUDIO_O("\uf1c7"),
+    FILE_CODE_O("\uf1c9"),
+    FILE_EXCEL_O("\uf1c3"),
+    FILE_IMAGE_O("\uf1c5"),
+    FILE_MOVIE_O_ALIAS("\uf1c8"),
+    FILE_O("\uf016"),
+    FILE_PDF_O("\uf1c1"),
+    FILE_PHOTO_O_ALIAS("\uf1c5"),
+    FILE_PICTURE_O_ALIAS("\uf1c5"),
+    FILE_POWERPOINT_O("\uf1c4"),
+    FILE_SOUND_O_ALIAS("\uf1c7"),
+    FILE_TEXT("\uf15c"),
+    FILE_TEXT_O("\uf0f6"),
+    FILE_VIDEO_O("\uf1c8"),
+    FILE_WORD_O("\uf1c2"),
+    FILE_ZIP_O_ALIAS("\uf1c6"),
+    FILES_O("\uf0c5"),
+    FILM("\uf008"),
+    FILTER("\uf0b0"),
+    FIRE("\uf06d"),
+    FIRE_EXTINGUISHER("\uf134"),
+    FIREFOX("\uf269"),
+    FIRST_ORDER("\uf2b0"),
+    FLAG("\uf024"),
+    FLAG_CHECKERED("\uf11e"),
+    FLAG_O("\uf11d"),
+    FLASH_ALIAS("\uf0e7"),
+    FLASK("\uf0c3"),
+    FLICKR("\uf16e"),
+    FLOPPY_O("\uf0c7"),
+    FOLDER("\uf07b"),
+    FOLDER_O("\uf114"),
+    FOLDER_OPEN("\uf07c"),
+    FOLDER_OPEN_O("\uf115"),
+    FONT("\uf031"),
+    FONT_AWESOME("\uf2b4"),
+    FONTICONS("\uf280"),
+    FORT_AWESOME("\uf286"),
+    FORUMBEE("\uf211"),
+    FORWARD("\uf04e"),
+    FOURSQUARE("\uf180"),
+    FROWN_O("\uf119"),
+    FUTBOL_O("\uf1e3"),
+    GAMEPAD("\uf11b"),
+    GAVEL("\uf0e3"),
+    GBP("\uf154"),
+    GE_ALIAS("\uf1d1"),
+    GEAR_ALIAS("\uf013"),
+    GEARS_ALIAS("\uf085"),
+    GENDERLESS("\uf22d"),
+    GET_POCKET("\uf265"),
+    GG("\uf260"),
+    GG_CIRCLE("\uf261"),
+    GIFT("\uf06b"),
+    GIT("\uf1d3"),
+    GIT_SQUARE("\uf1d2"),
+    GITHUB("\uf09b"),
+    GITHUB_ALT("\uf113"),
+    GITHUB_SQUARE("\uf092"),
+    GITLAB("\uf296"),
+    GITTIP_ALIAS("\uf184"),
+    GLASS("\uf000"),
+    GLIDE("\uf2a5"),
+    GLIDE_G("\uf2a6"),
+    GLOBE("\uf0ac"),
+    GOOGLE("\uf1a0"),
+    GOOGLE_PLUS("\uf0d5"),
+    GOOGLE_PLUS_CIRCLE_ALIAS("\uf2b3"),
+    GOOGLE_PLUS_OFFICIAL("\uf2b3"),
+    GOOGLE_PLUS_SQUARE("\uf0d4"),
+    GOOGLE_WALLET("\uf1ee"),
+    GRADUATION_CAP("\uf19d"),
+    GRATIPAY("\uf184"),
+    GROUP_ALIAS("\uf0c0"),
+    H_SQUARE("\uf0fd"),
+    HACKER_NEWS("\uf1d4"),
+    HAND_GRAB_O_ALIAS("\uf255"),
+    HAND_LIZARD_O("\uf258"),
+    HAND_O_DOWN("\uf0a7"),
+    HAND_O_LEFT("\uf0a5"),
+    HAND_O_RIGHT("\uf0a4"),
+    HAND_O_UP("\uf0a6"),
+    HAND_PAPER_O("\uf256"),
+    HAND_PEACE_O("\uf25b"),
+    HAND_POINTER_O("\uf25a"),
+    HAND_ROCK_O("\uf255"),
+    HAND_SCISSORS_O("\uf257"),
+    HAND_SPOCK_O("\uf259"),
+    HAND_STOP_O_ALIAS("\uf256"),
+    HARD_OF_HEARING_ALIAS("\uf2a4"),
+    HASHTAG("\uf292"),
+    HDD_O("\uf0a0"),
+    HEADER("\uf1dc"),
+    HEADPHONES("\uf025"),
+    HEART("\uf004"),
+    HEART_O("\uf08a"),
+    HEARTBEAT("\uf21e"),
+    HISTORY("\uf1da"),
+    HOME("\uf015"),
+    HOSPITAL_O("\uf0f8"),
+    HOTEL_ALIAS("\uf236"),
+    HOURGLASS("\uf254"),
+    HOURGLASS_1_ALIAS("\uf251"),
+    HOURGLASS_2_ALIAS("\uf252"),
+    HOURGLASS_3_ALIAS("\uf253"),
+    HOURGLASS_END("\uf253"),
+    HOURGLASS_HALF("\uf252"),
+    HOURGLASS_O("\uf250"),
+    HOURGLASS_START("\uf251"),
+    HOUZZ("\uf27c"),
+    HTML5("\uf13b"),
+    I_CURSOR("\uf246"),
+    ILS("\uf20b"),
+    IMAGE_ALIAS("\uf03e"),
+    INBOX("\uf01c"),
+    INDENT("\uf03c"),
+    INDUSTRY("\uf275"),
+    INFO("\uf129"),
+    INFO_CIRCLE("\uf05a"),
+    INR("\uf156"),
+    INSTAGRAM("\uf16d"),
+    INSTITUTION_ALIAS("\uf19c"),
+    INTERNET_EXPLORER("\uf26b"),
+    INTERSEX_ALIAS("\uf224"),
+    IOXHOST("\uf208"),
+    ITALIC("\uf033"),
+    JOOMLA("\uf1aa"),
+    JPY("\uf157"),
+    JSFIDDLE("\uf1cc"),
+    KEY("\uf084"),
+    KEYBOARD_O("\uf11c"),
+    KRW("\uf159"),
+    LANGUAGE("\uf1ab"),
+    LAPTOP("\uf109"),
+    LASTFM("\uf202"),
+    LASTFM_SQUARE("\uf203"),
+    LEAF("\uf06c"),
+    LEANPUB("\uf212"),
+    LEGAL_ALIAS("\uf0e3"),
+    LEMON_O("\uf094"),
+    LEVEL_DOWN("\uf149"),
+    LEVEL_UP("\uf148"),
+    LIFE_BOUY_ALIAS("\uf1cd"),
+    LIFE_BUOY_ALIAS("\uf1cd"),
+    LIFE_RING("\uf1cd"),
+    LIFE_SAVER_ALIAS("\uf1cd"),
+    LIGHTBULB_O("\uf0eb"),
+    LINE_CHART("\uf201"),
+    LINK("\uf0c1"),
+    LINKEDIN("\uf0e1"),
+    LINKEDIN_SQUARE("\uf08c"),
+    LINUX("\uf17c"),
+    LIST("\uf03a"),
+    LIST_ALT("\uf022"),
+    LIST_OL("\uf0cb"),
+    LIST_UL("\uf0ca"),
+    LOCATION_ARROW("\uf124"),
+    LOCK("\uf023"),
+    LONG_ARROW_DOWN("\uf175"),
+    LONG_ARROW_LEFT("\uf177"),
+    LONG_ARROW_RIGHT("\uf178"),
+    LONG_ARROW_UP("\uf176"),
+    LOW_VISION("\uf2a8"),
+    MAGIC("\uf0d0"),
+    MAGNET("\uf076"),
+    MAIL_FORWARD_ALIAS("\uf064"),
+    MAIL_REPLY_ALIAS("\uf112"),
+    MAIL_REPLY_ALL_ALIAS("\uf122"),
+    MALE("\uf183"),
+    MAP("\uf279"),
+    MAP_MARKER("\uf041"),
+    MAP_O("\uf278"),
+    MAP_PIN("\uf276"),
+    MAP_SIGNS("\uf277"),
+    MARS("\uf222"),
+    MARS_DOUBLE("\uf227"),
+    MARS_STROKE("\uf229"),
+    MARS_STROKE_H("\uf22b"),
+    MARS_STROKE_V("\uf22a"),
+    MAXCDN("\uf136"),
+    MEANPATH("\uf20c"),
+    MEDIUM("\uf23a"),
+    MEDKIT("\uF0FA"),
+    MEH_O("\uf11a"),
+    MERCURY("\uf223"),
+    MICROPHONE("\uf130"),
+    MICROPHONE_SLASH("\uf131"),
+    MINUS("\uf068"),
+    MINUS_CIRCLE("\uf056"),
+    MINUS_SQUARE("\uf146"),
+    MINUS_SQUARE_O("\uf147"),
+    MIXCLOUD("\uf289"),
+    MOBILE("\uf10b"),
+    MOBILE_PHONE_ALIAS("\uf10b"),
+    MODX("\uf285"),
+    MONEY("\uf0d6"),
+    MOON_O("\uf186"),
+    MORTAR_BOARD_ALIAS("\uf19d"),
+    MOTORCYCLE("\uf21c"),
+    MOUSE_POINTER("\uf245"),
+    MUSIC("\uf001"),
+    NAVICON_ALIAS("\uf0c9"),
+    NEUTER("\uf22c"),
+    NEWSPAPER_O("\uf1ea"),
+    OBJECT_GROUP("\uf247"),
+    OBJECT_UNGROUP("\uf248"),
+    ODNOKLASSNIKI("\uf263"),
+    ODNOKLASSNIKI_SQUARE("\uf264"),
+    OPENCART("\uf23d"),
+    OPENID("\uf19b"),
+    OPERA("\uf26a"),
+    OPTIN_MONSTER("\uf23c"),
+    OUTDENT("\uf03b"),
+    PAGELINES("\uf18c"),
+    PAINT_BRUSH("\uf1fc"),
+    PAPER_PLANE("\uf1d8"),
+    PAPER_PLANE_O("\uf1d9"),
+    PAPERCLIP("\uf0c6"),
+    PARAGRAPH("\uf1dd"),
+    PASTE_ALIAS("\uf0ea"),
+    PAUSE("\uf04c"),
+    PAUSE_CIRCLE("\uf28b"),
+    PAUSE_CIRCLE_O("\uf28c"),
+    PAW("\uf1b0"),
+    PAYPAL("\uf1ed"),
+    PENCIL("\uf040"),
+    PENCIL_SQUARE("\uf14b"),
+    PENCIL_SQUARE_O("\uf044"),
+    PERCENT("\uf295"),
+    PHONE("\uf095"),
+    PHONE_SQUARE("\uf098"),
+    PHOTO_ALIAS("\uf03e"),
+    PICTURE_O("\uf03e"),
+    PIE_CHART("\uf200"),
+    PIED_PIPER("\uf2ae"),
+    PIED_PIPER_ALT("\uf1a8"),
+    PIED_PIPER_PP("\uf1a7"),
+    PINTEREST("\uf0d2"),
+    PINTEREST_P("\uf231"),
+    PINTEREST_SQUARE("\uf0d3"),
+    PLANE("\uf072"),
+    PLAY("\uf04b"),
+    PLAY_CIRCLE("\uf144"),
+    PLAY_CIRCLE_O("\uf01d"),
+    PLUG("\uf1e6"),
+    PLUS("\uf067"),
+    PLUS_CIRCLE("\uf055"),
+    PLUS_SQUARE("\uf0fe"),
+    PLUS_SQUARE_O("\uf196"),
+    POWER_OFF("\uf011"),
+    PRINT("\uf02f"),
+    PRODUCT_HUNT("\uf288"),
+    PUZZLE_PIECE("\uf12e"),
+    QQ("\uf1d6"),
+    QRCODE("\uf029"),
+    QUESTION("\uf128"),
+    QUESTION_CIRCLE("\uf059"),
+    QUESTION_CIRCLE_O("\uf29c"),
+    QUOTE_LEFT("\uf10d"),
+    QUOTE_RIGHT("\uf10e"),
+    RA_ALIAS("\uf1d0"),
+    RANDOM("\uf074"),
+    REBEL("\uf1d0"),
+    RECYCLE("\uf1b8"),
+    REDDIT("\uf1a1"),
+    REDDIT_ALIEN("\uf281"),
+    REDDIT_SQUARE("\uf1a2"),
+    REFRESH("\uf021"),
+    REGISTERED("\uf25d"),
+    REMOVE_ALIAS("\uf00d"),
+    RENREN("\uf18b"),
+    REORDER_ALIAS("\uf0c9"),
+    REPEAT("\uf01e"),
+    REPLY("\uf112"),
+    REPLY_ALL("\uf122"),
+    RESISTANCE_ALIAS("\uf1d0"),
+    RETWEET("\uf079"),
+    RMB_ALIAS("\uf157"),
+    ROAD("\uf018"),
+    ROCKET("\uf135"),
+    ROTATE_LEFT_ALIAS("\uf0e2"),
+    ROTATE_RIGHT_ALIAS("\uf01e"),
+    ROUBLE_ALIAS("\uf158"),
+    RSS("\uf09e"),
+    RSS_SQUARE("\uf143"),
+    RUB("\uf158"),
+    RUBLE_ALIAS("\uf158"),
+    RUPEE_ALIAS("\uf156"),
+    SAFARI("\uf267"),
+    SAVE_ALIAS("\uf0c7"),
+    SCISSORS("\uf0c4"),
+    SCRIBD("\uf28a"),
+    SEARCH("\uf002"),
+    SEARCH_MINUS("\uf010"),
+    SEARCH_PLUS("\uf00e"),
+    SELLSY("\uf213"),
+    SEND_ALIAS("\uf1d8"),
+    SEND_O_ALIAS("\uf1d9"),
+    SERVER("\uf233"),
+    SHARE("\uf064"),
+    SHARE_ALT("\uf1e0"),
+    SHARE_ALT_SQUARE("\uf1e1"),
+    SHARE_SQUARE("\uf14d"),
+    SHARE_SQUARE_O("\uf045"),
+    SHEKEL_ALIAS("\uf20b"),
+    SHEQEL_ALIAS("\uf20b"),
+    SHIELD("\uf132"),
+    SHIP("\uf21a"),
+    SHIRTSINBULK("\uf214"),
+    SHOPPING_BAG("\uf290"),
+    SHOPPING_BASKET("\uf291"),
+    SHOPPING_CART("\uf07a"),
+    SIGN_IN("\uf090"),
+    SIGN_LANGUAGE("\uf2a7"),
+    SIGN_OUT("\uf08b"),
+    SIGNAL("\uf012"),
+    SIGNING_ALIAS("\uf2a7"),
+    SIMPLYBUILT("\uf215"),
+    SITEMAP("\uf0e8"),
+    SKYATLAS("\uf216"),
+    SKYPE("\uf17e"),
+    SLACK("\uf198"),
+    SLIDERS("\uf1de"),
+    SLIDESHARE("\uf1e7"),
+    SMILE_O("\uf118"),
+    SNAPCHAT("\uf2ab"),
+    SNAPCHAT_GHOST("\uf2ac"),
+    SNAPCHAT_SQUARE("\uf2ad"),
+    SOCCER_BALL_O_ALIAS("\uf1e3"),
+    SORT("\uf0dc"),
+    SORT_ALPHA_ASC("\uf15d"),
+    SORT_ALPHA_DESC("\uf15e"),
+    SORT_AMOUNT_ASC("\uf160"),
+    SORT_AMOUNT_DESC("\uf161"),
+    SORT_ASC("\uf0de"),
+    SORT_DESC("\uf0dd"),
+    SORT_DOWN_ALIAS("\uf0dd"),
+    SORT_NUMERIC_ASC("\uf162"),
+    SORT_NUMERIC_DESC("\uf163"),
+    SORT_UP_ALIAS("\uf0de"),
+    SOUNDCLOUD("\uf1be"),
+    SPACE_SHUTTLE("\uf197"),
+    SPINNER("\uf110"),
+    SPOON("\uf1b1"),
+    SPOTIFY("\uf1bc"),
+    SQUARE("\uf0c8"),
+    SQUARE_O("\uf096"),
+    STACK_EXCHANGE("\uf18d"),
+    STACK_OVERFLOW("\uf16c"),
+    STAR("\uf005"),
+    STAR_HALF("\uf089"),
+    STAR_HALF_EMPTY_ALIAS("\uf123"),
+    STAR_HALF_FULL_ALIAS("\uf123"),
+    STAR_HALF_O("\uf123"),
+    STAR_O("\uf006"),
+    STEAM("\uf1b6"),
+    STEAM_SQUARE("\uf1b7"),
+    STEP_BACKWARD("\uf048"),
+    STEP_FORWARD("\uf051"),
+    STETHOSCOPE("\uf0f1"),
+    STICKY_NOTE("\uf249"),
+    STICKY_NOTE_O("\uf24a"),
+    STOP("\uf04d"),
+    STOP_CIRCLE("\uf28d"),
+    STOP_CIRCLE_O("\uf28e"),
+    STREET_VIEW("\uf21d"),
+    STRIKETHROUGH("\uf0cc"),
+    STUMBLEUPON("\uf1a4"),
+    STUMBLEUPON_CIRCLE("\uf1a3"),
+    SUBSCRIPT("\uf12c"),
+    SUBWAY("\uf239"),
+    SUITCASE("\uf0f2"),
+    SUN_O("\uf185"),
+    SUPERSCRIPT("\uf12b"),
+    SUPPORT_ALIAS("\uf1cd"),
+    TABLE("\uf0ce"),
+    TABLET("\uf10a"),
+    TACHOMETER("\uf0e4"),
+    TAG("\uf02b"),
+    TAGS("\uf02c"),
+    TASKS("\uf0ae"),
+    TAXI("\uf1ba"),
+    TELEVISION("\uf26c"),
+    TENCENT_WEIBO("\uf1d5"),
+    TERMINAL("\uf120"),
+    TEXT_HEIGHT("\uf034"),
+    TEXT_WIDTH("\uf035"),
+    TH("\uf00a"),
+    TH_LARGE("\uf009"),
+    TH_LIST("\uf00b"),
+    THEMEISLE("\uf2b2"),
+    THUMB_TACK("\uf08d"),
+    THUMBS_DOWN("\uf165"),
+    THUMBS_O_DOWN("\uf088"),
+    THUMBS_O_UP("\uf087"),
+    THUMBS_UP("\uf164"),
+    TICKET("\uf145"),
+    TIMES("\uf00d"),
+    TIMES_CIRCLE("\uf057"),
+    TIMES_CIRCLE_O("\uf05c"),
+    TINT("\uf043"),
+    TOGGLE_DOWN_ALIAS("\uf150"),
+    TOGGLE_LEFT_ALIAS("\uf191"),
+    TOGGLE_OFF("\uf204"),
+    TOGGLE_ON("\uf205"),
+    TOGGLE_RIGHT_ALIAS("\uf152"),
+    TOGGLE_UP_ALIAS("\uf151"),
+    TRADEMARK("\uf25c"),
+    TRAIN("\uf238"),
+    TRANSGENDER("\uf224"),
+    TRANSGENDER_ALT("\uf225"),
+    TRASH("\uf1f8"),
+    TRASH_O("\uf014"),
+    TREE("\uf1bb"),
+    TRELLO("\uf181"),
+    TRIPADVISOR("\uf262"),
+    TROPHY("\uf091"),
+    TRUCK("\uf0d1"),
+    TRY("\uf195"),
+    TTY("\uf1e4"),
+    TUMBLR("\uf173"),
+    TUMBLR_SQUARE("\uf174"),
+    TURKISH_LIRA_ALIAS("\uf195"),
+    TV_ALIAS("\uf26c"),
+    TWITCH("\uf1e8"),
+    TWITTER("\uf099"),
+    TWITTER_SQUARE("\uf081"),
+    UMBRELLA("\uf0e9"),
+    UNDERLINE("\uf0cd"),
+    UNDO("\uf0e2"),
+    UNIVERSAL_ACCESS("\uf29a"),
+    UNIVERSITY("\uf19c"),
+    UNLINK_ALIAS("\uf127"),
+    UNLOCK("\uf09c"),
+    UNLOCK_ALT("\uf13e"),
+    UNSORTED_ALIAS("\uf0dc"),
+    UPLOAD("\uf093"),
+    USB("\uf287"),
+    USD("\uf155"),
+    USER("\uf007"),
+    USER_MD("\uf0f0"),
+    USER_PLUS("\uf234"),
+    USER_SECRET("\uf21b"),
+    USER_TIMES("\uf235"),
+    USERS("\uf0c0"),
+    VENUS("\uf221"),
+    VENUS_DOUBLE("\uf226"),
+    VENUS_MARS("\uf228"),
+    VIACOIN("\uf237"),
+    VIADEO("\uf2a9"),
+    VIADEO_SQUARE("\uf2aa"),
+    VIDEO_CAMERA("\uf03d"),
+    VIMEO("\uf27d"),
+    VIMEO_SQUARE("\uf194"),
+    VINE("\uf1ca"),
+    VK("\uf189"),
+    VOLUME_CONTROL_PHONE("\uf2a0"),
+    VOLUME_DOWN("\uf027"),
+    VOLUME_OFF("\uf026"),
+    VOLUME_UP("\uf028"),
+    WARNING_ALIAS("\uf071"),
+    WECHAT_ALIAS("\uf1d7"),
+    WEIBO("\uf18a"),
+    WEIXIN("\uf1d7"),
+    WHATSAPP("\uf232"),
+    WHEELCHAIR("\uf193"),
+    WHEELCHAIR_ALT("\uf29b"),
+    WIFI("\uf1eb"),
+    WIKIPEDIA_W("\uf266"),
+    WINDOWS("\uf17a"),
+    WON_ALIAS("\uf159"),
+    WORDPRESS("\uf19a"),
+    WPBEGINNER("\uf297"),
+    WPFORMS("\uf298"),
+    WRENCH("\uf0ad"),
+    XING("\uf168"),
+    XING_SQUARE("\uf169"),
+    Y_COMBINATOR("\uf23b"),
+    Y_COMBINATOR_SQUARE_ALIAS("\uf1d4"),
+    YAHOO("\uf19e"),
+    YC_ALIAS("\uf23b"),
+    YC_SQUARE_ALIAS("\uf1d4"),
+    YELP("\uf1e9"),
+    YEN_ALIAS("\uf157"),
+    YOAST("\uf2b1"),
+    YOUTUBE("\uf167"),
+    YOUTUBE_PLAY("\uf16a"),
+    YOUTUBE_SQUARE("\uf166");
 
     public static final String STYLE_CLASS_ICONS = "icons";
 
-    public static final String ICON_GLASS = "\uf000";
-    public static final String ICON_MUSIC = "\uf001";
-    public static final String ICON_SEARCH = "\uf002";
-    public static final String ICON_ENVELOPE = "\uf003";
-    public static final String ICON_HEART = "\uf004";
-    public static final String ICON_STAR = "\uf005";
-    public static final String ICON_STAR_EMPTY = "\uf006";
-    public static final String ICON_USER = "\uf007";
-    public static final String ICON_FILM = "\uf008";
-    public static final String ICON_TH_LARGE = "\uf009";
-    public static final String ICON_TH = "\uf00a";
-    public static final String ICON_TH_LIST = "\uf00b";
-    public static final String ICON_OK = "\uf00c";
-    public static final String ICON_REMOVE = "\uf00d";
-    public static final String ICON_ZOOM_IN = "\uf00e";
-    public static final String ICON_ZOOM_OUT = "\uf010";
-    public static final String ICON_OFF = "\uf011";
-    public static final String ICON_SIGNAL = "\uf012";
-    public static final String ICON_COG = "\uf013";
-    public static final String ICON_TRASH = "\uf014";
-    public static final String ICON_HOME = "\uf015";
-    public static final String ICON_FILE = "\uf016";
-    public static final String ICON_TIME = "\uf017";
-    public static final String ICON_ROAD = "\uf018";
-    public static final String ICON_DOWNLOAD_ALT = "\uf019";
-    public static final String ICON_DOWNLOAD = "\uf01a";
-    public static final String ICON_UPLOAD = "\uf01b";
-    public static final String ICON_INBOX = "\uf01c";
-    public static final String ICON_PLAY_CIRCLE = "\uf01d";
-    public static final String ICON_REPEAT = "\uf01e";
-    public static final String ICON_REFRESH = "\uf021";
-    public static final String ICON_LIST_ALT = "\uf022";
-    public static final String ICON_LOCK = "\uf023";
-    public static final String ICON_FLAG = "\uf024";
-    public static final String ICON_HEADPHONES = "\uf025";
-    public static final String ICON_VOLUME_OFF = "\uf026";
-    public static final String ICON_VOLUME_DOWN = "\uf027";
-    public static final String ICON_VOLUME_UP = "\uf028";
-    public static final String ICON_QRCODE = "\uf029";
-    public static final String ICON_BARCODE = "\uf02a";
-    public static final String ICON_TAG = "\uf02b";
-    public static final String ICON_TAGS = "\uf02c";
-    public static final String ICON_BOOK = "\uf02d";
-    public static final String ICON_BOOKMARK = "\uf02e";
-    public static final String ICON_PRINT = "\uf02f";
-    public static final String ICON_CAMERA = "\uf030";
-    public static final String ICON_FONT = "\uf031";
-    public static final String ICON_BOLD = "\uf032";
-    public static final String ICON_ITALIC = "\uf033";
-    public static final String ICON_TEXT_HEIGHT = "\uf034";
-    public static final String ICON_TEXT_WIDTH = "\uf035";
-    public static final String ICON_ALIGN_LEFT = "\uf036";
-    public static final String ICON_ALIGN_CENTER = "\uf037";
-    public static final String ICON_ALIGN_RIGHT = "\uf038";
-    public static final String ICON_ALIGN_JUSTIFY = "\uf039";
-    public static final String ICON_LIST = "\uf03a";
-    public static final String ICON_INDENT_LEFT = "\uf03b";
-    public static final String ICON_INDENT_RIGHT = "\uf03c";
-    public static final String ICON_FACETIME_VIDEO = "\uf03d";
-    public static final String ICON_PICTURE = "\uf03e";
-    public static final String ICON_PENCIL = "\uf040";
-    public static final String ICON_MAP_MARKER = "\uf041";
-    public static final String ICON_ADJUST = "\uf042";
-    public static final String ICON_TINT = "\uf043";
-    public static final String ICON_EDIT = "\uf044";
-    public static final String ICON_SHARE = "\uf045";
-    public static final String ICON_CHECK = "\uf046";
-    public static final String ICON_MOVE = "\uf047";
-    public static final String ICON_STEP_BACKWARD = "\uf048";
-    public static final String ICON_FAST_BACKWARD = "\uf049";
-    public static final String ICON_BACKWARD = "\uf04a";
-    public static final String ICON_PLAY = "\uf04b";
-    public static final String ICON_PAUSE = "\uf04c";
-    public static final String ICON_STOP = "\uf04d";
-    public static final String ICON_FORWARD = "\uf04e";
-    public static final String ICON_FAST_FORWARD = "\uf050";
-    public static final String ICON_STEP_FORWARD = "\uf051";
-    public static final String ICON_EJECT = "\uf052";
-    public static final String ICON_CHEVRON_LEFT = "\uf053";
-    public static final String ICON_CHEVRON_RIGHT = "\uf054";
-    public static final String ICON_PLUS_SIGN = "\uf055";
-    public static final String ICON_MINUS_SIGN = "\uf056";
-    public static final String ICON_REMOVE_SIGN = "\uf057";
-    public static final String ICON_OK_SIGN = "\uf058";
-    public static final String ICON_QUESTION_SIGN = "\uf059";
-    public static final String ICON_INFO_SIGN = "\uf05a";
-    public static final String ICON_SCREENSHOT = "\uf05b";
-    public static final String ICON_REMOVE_CIRCLE = "\uf05c";
-    public static final String ICON_OK_CIRCLE = "\uf05d";
-    public static final String ICON_BAN_CIRCLE = "\uf05e";
-    public static final String ICON_ARROW_LEFT = "\uf060";
-    public static final String ICON_ARROW_RIGHT = "\uf061";
-    public static final String ICON_ARROW_UP = "\uf062";
-    public static final String ICON_ARROW_DOWN = "\uf063";
-    public static final String ICON_SHARE_ALT = "\uf064";
-    public static final String ICON_RESIZE_FULL = "\uf065";
-    public static final String ICON_RESIZE_SMALL = "\uf066";
-    public static final String ICON_PLUS = "\uf067";
-    public static final String ICON_MINUS = "\uf068";
-    public static final String ICON_ASTERISK = "\uf069";
-    public static final String ICON_EXCLAMATION_SIGN = "\uf06a";
-    public static final String ICON_GIFT = "\uf06b";
-    public static final String ICON_LEAF = "\uf06c";
-    public static final String ICON_FIRE = "\uf06d";
-    public static final String ICON_EYE_OPEN = "\uf06e";
-    public static final String ICON_EYE_CLOSE = "\uf070";
-    public static final String ICON_WARNING_SIGN = "\uf071";
-    public static final String ICON_PLANE = "\uf072";
-    public static final String ICON_CALENDAR = "\uf073";
-    public static final String ICON_RANDOM = "\uf074";
-    public static final String ICON_COMMENT = "\uf075";
-    public static final String ICON_MAGNET = "\uf076";
-    public static final String ICON_CHEVRON_UP = "\uf077";
-    public static final String ICON_CHEVRON_DOWN = "\uf078";
-    public static final String ICON_RETWEET = "\uf079";
-    public static final String ICON_SHOPPING_CART = "\uf07a";
-    public static final String ICON_FOLDER_CLOSE = "\uf07b";
-    public static final String ICON_FOLDER_OPEN = "\uf07c";
-    public static final String ICON_RESIZE_VERTICAL = "\uf07d";
-    public static final String ICON_RESIZE_HORIZONTAL = "\uf07e";
-    public static final String ICON_BAR_CHART = "\uf080";
-    public static final String ICON_TWITTER_SIGN = "\uf081";
-    public static final String ICON_FACEBOOK_SIGN = "\uf082";
-    public static final String ICON_CAMERA_RETRO = "\uf083";
-    public static final String ICON_KEY = "\uf084";
-    public static final String ICON_COGS = "\uf085";
-    public static final String ICON_COMMENTS = "\uf086";
-    public static final String ICON_THUMBS_UP = "\uf087";
-    public static final String ICON_THUMBS_DOWN = "\uf088";
-    public static final String ICON_STAR_HALF = "\uf089";
-    public static final String ICON_HEART_EMPTY = "\uf08a";
-    public static final String ICON_SIGNOUT = "\uf08b";
-    public static final String ICON_LINKEDIN_SIGN = "\uf08c";
-    public static final String ICON_PUSHPIN = "\uf08d";
-    public static final String ICON_EXTERNAL_LINK = "\uf08e";
-    public static final String ICON_SIGNIN = "\uf090";
-    public static final String ICON_TROPHY = "\uf091";
-    public static final String ICON_GITHUB_SIGN = "\uf092";
-    public static final String ICON_UPLOAD_ALT = "\uf093";
-    public static final String ICON_LEMON = "\uf094";
-    public static final String ICON_PHONE = "\uf095";
-    public static final String ICON_CHECK_EMPTY = "\uf096";
-    public static final String ICON_BOOKMARK_EMPTY = "\uf097";
-    public static final String ICON_PHONE_SIGN = "\uf098";
-    public static final String ICON_TWITTER = "\uf099";
-    public static final String ICON_FACEBOOK = "\uf09a";
-    public static final String ICON_GITHUB = "\uf09b";
-    public static final String ICON_UNLOCK = "\uf09c";
-    public static final String ICON_CREDIT_CARD = "\uf09d";
-    public static final String ICON_RSS = "\uf09e";
-    public static final String ICON_HDD = "\uf0a0";
-    public static final String ICON_BULLHORN = "\uf0a1";
-    public static final String ICON_BELL = "\uf0a2";
-    public static final String ICON_CERTIFICATE = "\uf0a3";
-    public static final String ICON_HAND_RIGHT = "\uf0a4";
-    public static final String ICON_HAND_LEFT = "\uf0a5";
-    public static final String ICON_HAND_UP = "\uf0a6";
-    public static final String ICON_HAND_DOWN = "\uf0a7";
-    public static final String ICON_CIRCLE_ARROW_LEFT = "\uf0a8";
-    public static final String ICON_CIRCLE_ARROW_RIGHT = "\uf0a9";
-    public static final String ICON_CIRCLE_ARROW_UP = "\uf0aa";
-    public static final String ICON_CIRCLE_ARROW_DOWN = "\uf0ab";
-    public static final String ICON_GLOBE = "\uf0ac";
-    public static final String ICON_WRENCH = "\uf0ad";
-    public static final String ICON_TASKS = "\uf0ae";
-    public static final String ICON_FILTER = "\uf0b0";
-    public static final String ICON_BRIEFCASE = "\uf0b1";
-    public static final String ICON_FULLSCREEN = "\uf0b2";
-    public static final String ICON_GROUP = "\uf0c0";
-    public static final String ICON_LINK = "\uf0c1";
-    public static final String ICON_CLOUD = "\uf0c2";
-    public static final String ICON_BEAKER = "\uf0c3";
-    public static final String ICON_CUT = "\uf0c4";
-    public static final String ICON_COPY = "\uf0c5";
-    public static final String ICON_PAPER_CLIP = "\uf0c6";
-    public static final String ICON_SAVE = "\uf0c7";
-    public static final String ICON_SIGN_BLANK = "\uf0c8";
-    public static final String ICON_REORDER = "\uf0c9";
-    public static final String ICON_LIST_UL = "\uf0ca";
-    public static final String ICON_LIST_OL = "\uf0cb";
-    public static final String ICON_STRIKETHROUGH = "\uf0cc";
-    public static final String ICON_UNDERLINE = "\uf0cd";
-    public static final String ICON_TABLE = "\uf0ce";
-    public static final String ICON_MAGIC = "\uf0d0";
-    public static final String ICON_TRUCK = "\uf0d1";
-    public static final String ICON_PINTEREST = "\uf0d2";
-    public static final String ICON_PINTEREST_SIGN = "\uf0d3";
-    public static final String ICON_GOOGLE_PLUS_SIGN = "\uf0d4";
-    public static final String ICON_GOOGLE_PLUS = "\uf0d5";
-    public static final String ICON_MONEY = "\uf0d6";
-    public static final String ICON_CARET_DOWN = "\uf0d7";
-    public static final String ICON_CARET_UP = "\uf0d8";
-    public static final String ICON_CARET_LEFT = "\uf0d9";
-    public static final String ICON_CARET_RIGHT = "\uf0da";
-    public static final String ICON_COLUMNS = "\uf0db";
-    public static final String ICON_SORT = "\uf0dc";
-    public static final String ICON_SORT_DOWN = "\uf0dd";
-    public static final String ICON_SORT_UP = "\uf0de";
-    public static final String ICON_ENVELOPE_ALT = "\uf0e0";
-    public static final String ICON_LINKEDIN = "\uf0e1";
-    public static final String ICON_UNDO = "\uf0e2";
-    public static final String ICON_LEGAL = "\uf0e3";
-    public static final String ICON_DASHBOARD = "\uf0e4";
-    public static final String ICON_COMMENT_ALT = "\uf0e5";
-    public static final String ICON_COMMENTS_ALT = "\uf0e6";
-    public static final String ICON_BOLT = "\uf0e7";
-    public static final String ICON_SITEMAP = "\uf0e8";
-    public static final String ICON_UMBRELLA = "\uf0e9";
-    public static final String ICON_PASTE = "\uf0ea";
-    public static final String ICON_LIGHTBULB = "\uf0eb";
-    public static final String ICON_EXCHANGE = "\uf0ec";
-    public static final String ICON_CLOUD_DOWNLOAD = "\uf0ed";
-    public static final String ICON_CLOUD_UPLOAD = "\uf0ee";
-    public static final String ICON_USER_MD = "\uf0f0";
-    public static final String ICON_STETHOSCOPE = "\uf0f1";
-    public static final String ICON_SUITCASE = "\uf0f2";
-    public static final String ICON_BELL_ALT = "\uf0f3";
-    public static final String ICON_COFFEE = "\uf0f4";
-    public static final String ICON_FOOD = "\uf0f5";
-    public static final String ICON_FILE_ALT = "\uf0f6";
-    public static final String ICON_BUILDING = "\uf0f7";
-    public static final String ICON_HOSPITAL = "\uf0f8";
-    public static final String ICON_AMBULANCE = "\uf0f9";
-    public static final String ICON_MEDKIT = "\uf0fa";
-    public static final String ICON_FIGHTER_JET = "\uf0fb";
-    public static final String ICON_BEER = "\uf0fc";
-    public static final String ICON_H_SIGN = "\uf0fd";
-    public static final String ICON_PLUS_SIGN_ALT = "\uf0fe";
-    public static final String ICON_DOUBLE_ANGLE_LEFT = "\uf100";
-    public static final String ICON_DOUBLE_ANGLE_RIGHT = "\uf101";
-    public static final String ICON_DOUBLE_ANGLE_UP = "\uf102";
-    public static final String ICON_DOUBLE_ANGLE_DOWN = "\uf103";
-    public static final String ICON_ANGLE_LEFT = "\uf104";
-    public static final String ICON_ANGLE_RIGHT = "\uf105";
-    public static final String ICON_ANGLE_UP = "\uf106";
-    public static final String ICON_ANGLE_DOWN = "\uf107";
-    public static final String ICON_DESKTOP = "\uf108";
-    public static final String ICON_LAPTOP = "\uf109";
-    public static final String ICON_TABLET = "\uf10a";
-    public static final String ICON_MOBILE_PHONE = "\uf10b";
-    public static final String ICON_CIRCLE_BLANK = "\uf10c";
-    public static final String ICON_QUOTE_LEFT = "\uf10d";
-    public static final String ICON_QUOTE_RIGHT = "\uf10e";
-    public static final String ICON_SPINNER = "\uf110";
-    public static final String ICON_CIRCLE = "\uf111";
-    public static final String ICON_REPLY = "\uf112";
-    public static final String ICON_GITHUB_ALT = "\uf113";
-    public static final String ICON_FOLDER_CLOSE_ALT = "\uf114";
-    public static final String ICON_FOLDER_OPEN_ALT = "\uf115";
+    private final String unicode;
+
+    FontAwesome(String unicode) {
+        this.unicode = unicode;
+    }
+
+    public String getUnicode() {
+        return unicode;
+    }
+
+    public static Label labelIcon(FontAwesome fontAwesome, int iconSize) {
+        Label label = new Label(fontAwesome.getUnicode());
+        label.getStyleClass().add(STYLE_CLASS_ICONS);
+        label.setStyle(FONT_SIZE_STYLE(iconSize));
+        return label;
+    }
+
+    public static String FONT_SIZE_STYLE(int size) {
+        return "_fx_font_size: " + size + "px;";
+    }
 }

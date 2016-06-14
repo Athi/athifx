@@ -7,7 +7,6 @@ import com.github.athi.athifx.gui.navigation.view.View;
 import com.github.athi.athifx.test.configuration.TestItems;
 import com.google.inject.Inject;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
@@ -32,7 +31,7 @@ public class ItemOneView extends AView {
         Button test3 = new Button("Navigate3 to ItemFour");
         test3.setOnAction(event -> navigator.navigateTo(TestItems.ITEM_FOUR));
 
-        Button test4 = createIconButton(FontAwesome.ICON_PLUS, "TEST3", 15);
+        Button test4 = createIconButton(FontAwesome.PLUS.getUnicode(), "TEST3", 15);
         this.getChildren().add(new FlowPane(test1, test2, test3, test4)); // IMPORTANT FlowPane is horizontal and wraps content
     }
 

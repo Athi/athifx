@@ -31,7 +31,7 @@ public class Navigator implements Serializable {
                 .stream()
                 .filter(entry -> Long.compare(entry.getKey(), item.id()) == 0)
                 .findAny()
-                .orElseThrow(RuntimeException::new) //TODO specific exception (Runtime?)
+                .orElseThrow(() -> new RuntimeException("View does not exist...")) //TODO specific exception (Runtime?)
                 .getValue();
     }
 }

@@ -2,21 +2,20 @@ package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
+import com.github.athi.athifx.gui.notification.Notification;
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
-import com.google.common.io.Resources;
+import com.github.athi.athifx.injector.log.Log;
 import com.google.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.image.Image;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
-import java.net.URL;
 
 /**
  * Created by Athi
  */
 public class AthiFXApplication extends Application {
+
+    private static final Log LOGGER = Log.getLogger(AthiFXApplication.class);
 
     @Inject
     private AthiFXApplicationProperties applicationConfiguration;
@@ -24,19 +23,27 @@ public class AthiFXApplication extends Application {
     @Inject
     private NavigationPane navigationPane;
 
+    @Inject
+    private MainScreen mainScreen;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
+            LOGGER.error(throwable.getMessage(), throwable);
+            Notification.error("An unexpected error occurred ...", throwable.getMessage());
+        });
+
         LoadingScreen.show();
 
         new Thread(() -> {
             AthiFXInjector.createInjector(this);
             Platform.runLater(() -> {
                 LoadingScreen.close();
-                MainScreen.show(primaryStage, navigationPane);
+                mainScreen.show(primaryStage, navigationPane);
                 navigationPane.setViewAsContent(applicationConfiguration.getViews().get(1L));
             });
         }).start();

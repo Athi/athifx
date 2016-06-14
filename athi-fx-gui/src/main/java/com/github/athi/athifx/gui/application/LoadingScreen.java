@@ -1,5 +1,6 @@
 package com.github.athi.athifx.gui.application;
 
+import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,12 +24,16 @@ class LoadingScreen extends AbstractScreen {
 
         ProgressBar progressBar = new ProgressBar();
         Label label = new Label("Loading application...");
-        Button button = new Button("X");
+
+        Button button = new Button();
+        button.setStyle("-fx-background-color: transparent;");
+        button.setGraphic(FontAwesome.labelIcon(FontAwesome.CLOSE_ALIAS, 26));
+
         button.setOnAction(event -> Platform.exit());
         root.getChildren().addAll(progressBar, label, button);
 
         setAnchors(progressBar, 2.0, 2.0, 2.0, 2.0);
-        setAnchors(label, 2.0, 2.0, 102.0, 2.0);
+        setAnchors(label, 8.0, 2.0, 102.0, 2.0);
         setAnchors(button, 196.0, 2.0, 2.0, 2.0);
 
         loadingStage.show();
@@ -39,4 +44,5 @@ class LoadingScreen extends AbstractScreen {
             loadingStage.close();
         }
     }
+
 }
