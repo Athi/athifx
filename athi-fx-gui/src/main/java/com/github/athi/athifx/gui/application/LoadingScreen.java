@@ -1,8 +1,12 @@
 package com.github.athi.athifx.gui.application;
 
+import javafx.application.Platform;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Created by Athi
