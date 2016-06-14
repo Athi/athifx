@@ -30,21 +30,15 @@ public class AthiFXApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LoadingScreen.show(primaryStage);
+        LoadingScreen.show();
 
         new Thread(() -> {
             AthiFXInjector.createInjector(this);
             Platform.runLater(() -> {
-                closeScreenIfShowing(primaryStage);
+                LoadingScreen.close();
                 MainScreen.show(primaryStage, navigationPane);
                 navigationPane.setViewAsContent(applicationConfiguration.getViews().get(1L));
             });
         }).start();
-    }
-
-    private void closeScreenIfShowing(Stage primaryStage) {
-        if (primaryStage.isShowing()) {
-            primaryStage.close();
-        }
     }
 }
