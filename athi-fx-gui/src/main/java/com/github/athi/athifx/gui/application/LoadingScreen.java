@@ -9,16 +9,30 @@ import javafx.stage.Stage;
  */
 class LoadingScreen extends AbstractScreen {
 
-    static void show(Stage primaryStage) {
-        AnchorPane root = prepareRoot(primaryStage);
-        root.setPrefWidth(400);
-        root.setPrefHeight(100);
+    private static final Stage loadingStage = new Stage();
 
-        Label label = new Label("Loading application ...."); // A PROGRESSBAR ETC ETC
-        root.getChildren().add(label);
+    static void show() {
+        loadingStage.initStyle(StageStyle.UNDECORATED);
+        AnchorPane root = prepareRoot(loadingStage);
+        root.setPrefWidth(200);
+        root.setPrefHeight(20);
 
-        setAnchors(label, 2.0);
-        primaryStage.show();
+        ProgressBar progressBar = new ProgressBar();
+        Label label = new Label("Loading application...");
+        Button button = new Button("X");
+        button.setOnAction(event -> Platform.exit());
+        root.getChildren().addAll(progressBar, label, button);
+
+        setAnchors(progressBar, 2.0, 2.0, 2.0, 2.0);
+        setAnchors(label, 2.0, 2.0, 102.0, 2.0);
+        setAnchors(button, 196.0, 2.0, 2.0, 2.0);
+
+        loadingStage.show();
     }
 
+    static void close() {
+        if (loadingStage.isShowing()) {
+            loadingStage.close();
+        }
+    }
 }
