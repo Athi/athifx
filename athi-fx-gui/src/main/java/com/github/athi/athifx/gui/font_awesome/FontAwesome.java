@@ -757,6 +757,6 @@ public enum FontAwesome {
     }
 
     public static String FONT_SIZE_STYLE(int size) {
-        return "_fx_font_size: " + size + "px;";
+        return "-fx-font-size: " + size + "px;";
     }
 }
