@@ -2,14 +2,12 @@ package com.github.athi.athifx.gui;
 
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
-import com.sun.glass.ui.Application;
-import javafx.application.Platform;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
+import org.loadui.testfx.GuiTest;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -18,7 +16,6 @@ import org.reflections.Reflections;
 import org.reflections.scanners.FieldAnnotationsScanner;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
-import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.File;
 
@@ -27,15 +24,11 @@ import java.io.File;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)
-public abstract class AthiFXTestCase extends ApplicationTest {
+public abstract class AthiFXTestCase extends GuiTest {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(new VBox(), 800, 600);
-        stage.setScene(scene);
-        stage.show();
-
-//        Platform.runLater(() -> Application.GetApplication().createRobot()); // HEADLESS
+    protected Parent getRootNode() {
+        return new VBox();
     }
 
     @Before

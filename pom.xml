@@ -220,6 +220,12 @@
                     <scope>test</scope>
                 </dependency>
                 <dependency>
+                    <groupId>org.testfx</groupId>
+                    <artifactId>testfx-legacy</artifactId>
+                    <version>${testfx.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
                     <groupId>com.github.stefanbirkner</groupId>
                     <artifactId>system-rules</artifactId>
                     <version>${system-rules.version}</version>
