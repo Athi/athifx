@@ -4,6 +4,8 @@ import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
 import com.sun.glass.ui.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +31,11 @@ public abstract class AthiFXTestCase extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Platform.runLater(() -> Application.GetApplication().createRobot());
+        Scene scene = new Scene(new VBox(), 800, 600);
+        stage.setScene(scene);
+        stage.show();
+
+//        Platform.runLater(() -> Application.GetApplication().createRobot()); // HEADLESS
     }
 
     @Before
