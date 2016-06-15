@@ -29,6 +29,7 @@
 
         <junit.version>4.12</junit.version>
         <powermock.version>1.6.4</powermock.version>
+        <testfx.version>4.0.4-alpha</testfx.version>
         <system-rules.version>1.16.0</system-rules.version>
 
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
@@ -204,6 +205,18 @@
                     <groupId>org.powermock</groupId>
                     <artifactId>powermock-api-mockito</artifactId>
                     <version>${powermock.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.testfx</groupId>
+                    <artifactId>testfx-core</artifactId>
+                    <version>${testfx.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.testfx</groupId>
+                    <artifactId>testfx-junit</artifactId>
+                    <version>${testfx.version}</version>
                     <scope>test</scope>
                 </dependency>
                 <dependency>
