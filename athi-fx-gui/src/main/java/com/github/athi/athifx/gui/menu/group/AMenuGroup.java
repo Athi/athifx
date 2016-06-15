@@ -16,6 +16,8 @@ public class AMenuGroup extends TitledPane {
 
     public AMenuGroup(Group group, List<AMenuItem> items) {
         setPadding(Insets.EMPTY);
+
+        setId(String.valueOf(group.id()));
         setText(group.caption());
         setGraphic(FontAwesome.labelIcon(group.icon(), 16));
 

@@ -31,14 +31,20 @@ public class Menu extends VBox {
         setPadding(Insets.EMPTY);
 
         List<Item> items = properties.getItems();
-        List<Group> groups = properties.getGroups();
+        List<Group> groups = properties.getGroups()
+                .stream()
+                .sorted((g1, g2) -> Long.compare(g1.id(), g2.id()))
+                .collect(Collectors.toList());
 
         for (Group group : groups) {
             List<AMenuItem> groupItems = items.stream()
                     .filter(item -> item.group() == group)
+                    .sorted((i1, i2) -> Long.compare(i1.id(), i2.id()))
                     .map(item -> new AMenuItem(item, navigator))
                     .collect(Collectors.toList());
-            getChildren().add(new AMenuGroup(group, groupItems)); //TODO order by id ??
+            if (!groupItems.isEmpty()) {
+                getChildren().add(new AMenuGroup(group, groupItems));
+            }
         }
     }
 }

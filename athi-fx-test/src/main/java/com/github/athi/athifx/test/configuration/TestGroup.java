@@ -8,7 +8,8 @@ import com.github.athi.athifx.gui.menu.group.Group;
  */
 enum TestGroup implements Group {
     GROUP_ONE(1, "GROUP_ONE", FontAwesome.ADJUST),
-    GROUP_TWO(2, "GROUP_TWO", FontAwesome.ANGLE_DOUBLE_DOWN);
+    GROUP_TWO(2, "GROUP_TWO", FontAwesome.ANGLE_DOUBLE_DOWN),
+    GROUP_THREE(3, "GROUP_THREE", FontAwesome.ANGLE_DOUBLE_DOWN);
 
     private final long id;
     private final String caption;

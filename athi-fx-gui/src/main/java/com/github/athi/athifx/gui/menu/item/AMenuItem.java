@@ -17,6 +17,7 @@ public class AMenuItem extends Button {
         setAlignment(Pos.CENTER_LEFT);
 
         setText(item.caption());
+        setId(String.valueOf(item.id()));
         setOnAction(event -> navigator.navigateTo(item));
         setGraphic(FontAwesome.labelIcon(item.icon(), 16));
     }
