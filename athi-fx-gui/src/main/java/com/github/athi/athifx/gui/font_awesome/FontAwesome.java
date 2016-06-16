@@ -756,7 +756,17 @@ public enum FontAwesome {
         return label;
     }
 
+    public static Label labelIcon(FontAwesome fontAwesome, int iconSize, String color) {
+        Label label = labelIcon(fontAwesome, iconSize);
+        label.setStyle(label.getStyle() + FONT_COLOR_STYLE(color));
+        return label;
+    }
+
     public static String FONT_SIZE_STYLE(int size) {
         return "-fx-font-size: " + size + "px;";
+    }
+
+    public static String FONT_COLOR_STYLE(String color) {
+        return " -icons-color: " + color + ";";
     }
 }

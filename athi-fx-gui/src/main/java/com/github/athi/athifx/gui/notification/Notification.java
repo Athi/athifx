@@ -1,5 +1,6 @@
 package com.github.athi.athifx.gui.notification;
 
+import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -9,10 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -24,10 +24,10 @@ import java.util.stream.IntStream;
  */
 public final class Notification {
 
-    private static final Image INFO_ICON = null;//new Image(Notification.class.getResourceAsStream("info.png")); // TODO
-    private static final Image WARNING_ICON = null;//new Image(Notification.class.getResourceAsStream("warning.png")); // TODO
-    private static final Image SUCCESS_ICON = null;//new Image(Notification.class.getResourceAsStream("success.png")); // TODO
-    private static final Image ERROR_ICON = null;//new Image(Notification.class.getResourceAsStream("error.png")); // TODO
+    private static final FontAwesome ERROR_ICON = FontAwesome.TIMES_CIRCLE;
+    private static final FontAwesome WARNING_ICON = FontAwesome.EXCLAMATION_TRIANGLE;
+    private static final FontAwesome INFO_ICON = FontAwesome.INFO_CIRCLE;
+    private static final FontAwesome SUCCESS_ICON = FontAwesome.CHECK_CIRCLE;
 
     private static double notificationWidth = 300;
     private static double notificationHeight = 80;
@@ -43,7 +43,7 @@ public final class Notification {
      * Show ERROR Notification
      */
     public static void error(String title, String message) {
-        notify(title, message, Notification.ERROR_ICON);
+        notify(title, message, Notification.ERROR_ICON, "red");
     }
 
 
@@ -51,30 +51,30 @@ public final class Notification {
      * Show WARNING Notification
      */
     public static void warning(String title, String message) {
-        notify(title, message, Notification.WARNING_ICON);
+        notify(title, message, Notification.WARNING_ICON, "yellow");
     }
 
     /**
      * Show INFO Notification
      */
     public static void info(String title, String message) {
-        notify(title, message, Notification.INFO_ICON);
+        notify(title, message, Notification.INFO_ICON, "blue");
     }
 
     /**
      * Show SUCCESS Notification
      */
     public static void success(String title, String message) {
-        notify(title, message, Notification.SUCCESS_ICON);
+        notify(title, message, Notification.SUCCESS_ICON, "green");
     }
 
     public static void setStage(Stage stage) {
         Notification.stage = stage;
     }
 
-    private static void notify(String title, String message, Image image) {
+    private static void notify(String title, String message, FontAwesome iconFont, String color) {
         orderNotifications();
-        showPopup(title, message, image);
+        showPopup(title, message, iconFont, color);
     }
 
     private static void orderNotifications() {
@@ -100,13 +100,12 @@ public final class Notification {
         );
     }
 
-    private static void showPopup(String title, String message, Image image) {
+    private static void showPopup(String title, String message, FontAwesome iconFont, String color) {
         Label titleLabel = new Label(title);
         titleLabel.getStyleClass().add("title");
 
-        ImageView icon = new ImageView(image);
-        icon.setFitWidth(24);
-        icon.setFitHeight(24);
+        Label icon = FontAwesome.labelIcon(iconFont, 24, color);
+        icon.setTextFill(Color.RED);
 
         Label messageLabel = new Label(message, icon);
         messageLabel.getStyleClass().add("message");

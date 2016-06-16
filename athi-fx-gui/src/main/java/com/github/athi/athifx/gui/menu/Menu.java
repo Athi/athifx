@@ -4,10 +4,14 @@ import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.menu.group.AMenuGroup;
 import com.github.athi.athifx.gui.menu.group.Group;
 import com.github.athi.athifx.gui.menu.item.AMenuItem;
+import com.github.athi.athifx.gui.menu.item.DisableEnableAMenuItemEvent;
 import com.github.athi.athifx.gui.menu.item.Item;
 import com.github.athi.athifx.gui.navigation.navigator.Navigator;
+import com.github.athi.athifx.gui.notification.Notification;
+import com.google.common.eventbus.Subscribe;
 import com.google.inject.Inject;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
 import javax.annotation.PostConstruct;
@@ -45,6 +49,17 @@ public class Menu extends VBox {
             if (!groupItems.isEmpty()) {
                 getChildren().add(new AMenuGroup(group, groupItems));
             }
+        }
+    }
+
+    @Subscribe
+    public void onDisableEnableAMenuItemEvent(DisableEnableAMenuItemEvent event) {
+        try {
+            String itemId = event.getItem().itemId();
+            Node lookupNode = this.lookup("#" + itemId);
+            lookupNode.setDisable(!lookupNode.isDisabled());
+        } catch (Exception e) {
+            Notification.error("Item does not exist!", "Cant find item with id: " + event.getItem().itemId());
         }
     }
 }

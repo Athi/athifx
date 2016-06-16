@@ -12,4 +12,8 @@ public interface Group {
     String caption();
 
     FontAwesome icon();
+
+    default String itemId() {
+        return id() + "_" + caption();
+    }
 }

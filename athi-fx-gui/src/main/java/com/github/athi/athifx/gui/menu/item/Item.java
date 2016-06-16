@@ -21,4 +21,7 @@ public interface Item<GROUP extends Enum<?> & Group> {
      */
     GROUP group();
 
+    default String itemId() {
+        return id() + "_" + caption();
+    }
 }

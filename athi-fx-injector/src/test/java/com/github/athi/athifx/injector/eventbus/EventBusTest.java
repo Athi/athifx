@@ -32,7 +32,7 @@ public class EventBusTest extends AthiFXTestCase {
         String trimmedLog = systemOutRule.getLog().trim();
         assertEquals(true, trimmedLog.contains(FIRST_MESSAGE));
         assertEquals(true, trimmedLog.contains(SECOND_MESSAGE));
-//        assertEquals(true, trimmedLog.contains(THIRD_MESSAGE)); //FIXME not working
+        assertEquals(true, trimmedLog.contains(THIRD_MESSAGE));
     }
 
     @Subscribe
@@ -43,5 +43,10 @@ public class EventBusTest extends AthiFXTestCase {
     @Subscribe
     public void secondSubscribe(EventBusEvent eventBusEvent) {
         System.out.println(SECOND_MESSAGE);
+    }
+
+    @Subscribe
+    public void thirdMessage(EventBusEvent eventBusEvent) {
+        System.out.println(eventBusEvent.getMessage());
     }
 }
