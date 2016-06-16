@@ -14,6 +14,8 @@ import java.io.Serializable;
 @SessionScoped
 public class Navigator implements Serializable {
 
+    public static final String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist...";
+
     @Inject
     private AthiFXApplicationProperties properties;
 
@@ -31,7 +33,7 @@ public class Navigator implements Serializable {
                 .stream()
                 .filter(entry -> Long.compare(entry.getKey(), item.id()) == 0)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException("View does not exist...")) //TODO specific exception (Runtime?)
+                .orElseThrow(() -> new RuntimeException(VIEW_DOES_NOT_EXIST_MESSAGE))
                 .getValue();
     }
 }

@@ -31,4 +31,13 @@ public class FontAwesomeTest extends AthiFXTestCase {
         assertTrue(label.getStyleClass().contains(FontAwesome.STYLE_CLASS_ICONS));
         assertTrue(label.getStyle().contains(FontAwesome.FONT_SIZE_STYLE(16)));
     }
+
+    @Test
+    public void labelIconWithColorTest() {
+        Label label = FontAwesome.labelIcon(FontAwesome.ADJUST, 16, "red");
+        assertEquals(label.getText(), FontAwesome.ADJUST.getUnicode());
+        assertTrue(label.getStyleClass().contains(FontAwesome.STYLE_CLASS_ICONS));
+        assertTrue(label.getStyle().contains(FontAwesome.FONT_SIZE_STYLE(16)));
+        assertTrue(label.getStyle().contains(FontAwesome.FONT_COLOR_STYLE("red")));
+    }
 }
