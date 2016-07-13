@@ -2,6 +2,7 @@ package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.menu.Menu;
 import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
+import com.github.athi.athifx.gui.resources.AthiFXResourcesProvider;
 import com.google.common.io.Resources;
 import com.google.inject.Inject;
 import javafx.scene.image.Image;
@@ -23,7 +24,10 @@ class MainScreen extends AbstractScreen {
     void show(Stage primaryStage, NavigationPane navigationPane) {
         this.navigationPane = navigationPane;
 
+        Image applicationIcon = new Image(Resources.getResource(AthiFXResourcesProvider.getIconPath()).toExternalForm());
+        primaryStage.getIcons().add(applicationIcon);
         primaryStage.setMaximized(true);
+
         root = prepareRoot(primaryStage);
         root.setPrefWidth(800);
         root.setPrefHeight(600);
@@ -40,7 +44,8 @@ class MainScreen extends AbstractScreen {
     private void showWithMenu() {
         AnchorPane leftAnchorPane = new AnchorPane();
 
-        ImageView imageView = new ImageView(new Image(Resources.getResource("application_title.jpg").toExternalForm())); // TODO title image
+        Image applicationLogo = new Image(Resources.getResource(AthiFXResourcesProvider.getLogoPath()).toExternalForm());
+        ImageView imageView = new ImageView(applicationLogo);
         imageView.setFitHeight(68);
 
         leftAnchorPane.getChildren().addAll(imageView, menu);
