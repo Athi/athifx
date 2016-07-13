@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -29,6 +30,8 @@ public class Menu extends VBox {
     @Inject
     private Navigator navigator;
 
+    private boolean hasItems = false;
+
     @PostConstruct
     private void initMenu() {
         setPrefWidth(200);
@@ -40,14 +43,18 @@ public class Menu extends VBox {
                 .sorted((g1, g2) -> Long.compare(g1.id(), g2.id()))
                 .collect(Collectors.toList());
 
-        for (Group group : groups) {
-            List<AMenuItem> groupItems = items.stream()
-                    .filter(item -> item.group() == group)
-                    .sorted((i1, i2) -> Long.compare(i1.id(), i2.id()))
-                    .map(item -> new AMenuItem(item, navigator))
-                    .collect(Collectors.toList());
-            if (!groupItems.isEmpty()) {
-                getChildren().add(new AMenuGroup(group, groupItems));
+        hasItems = items.stream().anyMatch(item -> Objects.nonNull(item.group()));
+
+        if (hasItems) {
+            for (Group group : groups) {
+                List<AMenuItem> groupItems = items.stream()
+                        .filter(item -> item.group() == group)
+                        .sorted((i1, i2) -> Long.compare(i1.id(), i2.id()))
+                        .map(item -> new AMenuItem(item, navigator))
+                        .collect(Collectors.toList());
+                if (!groupItems.isEmpty()) {
+                    getChildren().add(new AMenuGroup(group, groupItems));
+                }
             }
         }
     }
@@ -61,5 +68,9 @@ public class Menu extends VBox {
         } catch (Exception e) {
             Notification.error("Item does not exist!", "Cant find item with id: " + event.getItem().itemId());
         }
+    }
+
+    public boolean hasItems() {
+        return hasItems;
     }
 }

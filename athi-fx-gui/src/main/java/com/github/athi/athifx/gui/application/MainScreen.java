@@ -17,28 +17,43 @@ class MainScreen extends AbstractScreen {
     @Inject
     private Menu menu;
 
+    private NavigationPane navigationPane;
+    private AnchorPane root;
+
     void show(Stage primaryStage, NavigationPane navigationPane) {
+        this.navigationPane = navigationPane;
+
         primaryStage.setMaximized(true);
-        AnchorPane root = prepareRoot(primaryStage);
+        root = prepareRoot(primaryStage);
         root.setPrefWidth(800);
         root.setPrefHeight(600);
 
+        if (menu.hasItems()) {
+            showWithMenu();
+        } else {
+            showWithoutMenu();
+        }
 
+        primaryStage.show();
+    }
+
+    private void showWithMenu() {
         AnchorPane leftAnchorPane = new AnchorPane();
 
         ImageView imageView = new ImageView(new Image(Resources.getResource("application_title.jpg").toExternalForm())); // TODO title image
         imageView.setFitHeight(68);
 
         leftAnchorPane.getChildren().addAll(imageView, menu);
-
         root.getChildren().addAll(leftAnchorPane, navigationPane);
-
         setAnchors(imageView, 2.0, 2.0, 2.0, null);
         setAnchors(menu, 2.0, 72.0, 2.0, 2.0);
 
         setAnchors(leftAnchorPane, 2.0, 2.0, null, 2.0);
         setAnchors(navigationPane, 210.0, 2.0, 2.0, 2.0);
+    }
 
-        primaryStage.show();
+    private void showWithoutMenu() {
+        root.getChildren().add(navigationPane);
+        setAnchors(navigationPane, 2.0);
     }
 }
