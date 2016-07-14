@@ -1,5 +1,7 @@
 package com.github.athi.athifx.gui.application;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
+import com.github.athi.athifx.gui.configuration.ApplicationConfigurationException;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
 import com.github.athi.athifx.gui.notification.Notification;
@@ -9,6 +11,9 @@ import com.google.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
+import org.reflections.Reflections;
+
+import java.util.Set;
 
 /**
  * Created by Athi
@@ -18,7 +23,7 @@ public class AthiFXApplication extends Application {
     private static final Log LOGGER = Log.getLogger(AthiFXApplication.class);
 
     @Inject
-    private AthiFXApplicationProperties applicationConfiguration;
+    private AthiFXApplicationProperties applicationProperties;
 
     @Inject
     private NavigationPane navigationPane;
@@ -32,20 +37,38 @@ public class AthiFXApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        initDefaultApplicationConfiguration();
+
         Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
             LOGGER.error(throwable.getMessage(), throwable);
-            Notification.error("An unexpected error occurred ...", throwable.getMessage());
+            Notification.error(ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
         });
 
         LoadingScreen.show();
 
         new Thread(() -> {
-            AthiFXInjector.createInjector(this);
+            AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
             Platform.runLater(() -> {
                 LoadingScreen.close();
                 mainScreen.show(primaryStage, navigationPane);
-                navigationPane.setViewAsContent(applicationConfiguration.getViews().get(1L));
+                navigationPane.setViewAsContent(applicationProperties.getViews().get(1L));
             });
         }).start();
+    }
+
+    private void initDefaultApplicationConfiguration() {
+        try {
+            Reflections reflections = AthiFXInjector.getReflections();
+            Set<Class<? extends ApplicationConfiguration>> configuration = reflections.getSubTypesOf(ApplicationConfiguration.class);
+            if (configuration.size() == 1) {
+                configuration.iterator().next().newInstance().init();
+            } else if (configuration.isEmpty()) {
+                throw new ApplicationConfigurationException("To many application configuration implementations!!");
+            } else {
+                throw new ApplicationConfigurationException("No application configuration implementations!!");
+            }
+        } catch (Exception e) {
+            throw new ApplicationConfigurationException("Application configuration exception: " + e.getMessage(), e);
+        }
     }
 }

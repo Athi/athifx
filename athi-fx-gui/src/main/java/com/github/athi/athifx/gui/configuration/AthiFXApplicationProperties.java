@@ -34,7 +34,7 @@ public class AthiFXApplicationProperties implements Serializable {
     private List<Item> items;
 
     @PostConstruct
-    private void initApplicationConfiguration() throws Exception {
+    private void initApplicationConfiguration() {
         Reflections reflections = AthiFXInjector.getReflections();
 
         Set<Class<? extends Group>> groupsClasses = reflections.getSubTypesOf(Group.class);

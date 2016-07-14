@@ -3,7 +3,6 @@ package com.github.athi.athifx.gui.menu.group;
 import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import com.github.athi.athifx.gui.menu.item.AMenuItem;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.VBox;
 
@@ -23,7 +22,7 @@ public class AMenuGroup extends TitledPane {
 
         VBox groupContent = new VBox();
         groupContent.setPadding(Insets.EMPTY);
-        items.forEach(item -> groupContent.getChildren().add(((Node) item))); //TODO order by id??
+        items.forEach(item -> groupContent.getChildren().add(item));
         setContent(groupContent);
     }
 }

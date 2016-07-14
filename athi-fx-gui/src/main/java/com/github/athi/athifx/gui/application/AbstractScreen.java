@@ -1,14 +1,17 @@
 package com.github.athi.athifx.gui.application;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.notification.Notification;
 import com.google.common.io.Resources;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Objects;
 
 /**
  * Created by Athi
@@ -23,13 +26,14 @@ abstract class AbstractScreen {
         Font.loadFont(fontAwesomeFonts.toExternalForm(), 16);
         Notification.setStage(primaryStage);
 
+        primaryStage.setTitle(ApplicationConfiguration.APPLICATION_TITLE);
+        setApplicationIcon(primaryStage);
+
         AnchorPane root = new AnchorPane();
         Scene scene = new Scene(root);
         scene.getStylesheets().add(fontAwesomeCSS.toExternalForm());
         scene.getStylesheets().add(notificationCSS.toExternalForm());
 
-        primaryStage.setTitle("Application title");
-//        primaryStage.getIcons().add(new Image("")); //TODO
         primaryStage.setScene(scene);
         return root;
     }
@@ -51,5 +55,13 @@ abstract class AbstractScreen {
     static void setHAnchors(Node child, Double left, Double right) {
         AnchorPane.setLeftAnchor(child, left);
         AnchorPane.setRightAnchor(child, right);
+    }
+
+    private static void setApplicationIcon(Stage primaryStage) {
+        String iconResourcePath = ApplicationConfiguration.ICON_RESOURCE_PATH;
+        if (Objects.nonNull(iconResourcePath)) {
+            Image applicationIcon = new Image(iconResourcePath);
+            primaryStage.getIcons().add(applicationIcon);
+        }
     }
 }

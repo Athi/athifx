@@ -1,14 +1,16 @@
 package com.github.athi.athifx.gui.application;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.menu.Menu;
 import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
-import com.github.athi.athifx.gui.resources.AthiFXResourcesProvider;
 import com.google.common.io.Resources;
 import com.google.inject.Inject;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Created by Athi
@@ -24,8 +26,6 @@ class MainScreen extends AbstractScreen {
     void show(Stage primaryStage, NavigationPane navigationPane) {
         this.navigationPane = navigationPane;
 
-        Image applicationIcon = new Image(Resources.getResource(AthiFXResourcesProvider.getIconPath()).toExternalForm());
-        primaryStage.getIcons().add(applicationIcon);
         primaryStage.setMaximized(true);
 
         root = prepareRoot(primaryStage);
@@ -44,21 +44,34 @@ class MainScreen extends AbstractScreen {
     private void showWithMenu() {
         AnchorPane leftAnchorPane = new AnchorPane();
 
-        Image applicationLogo = new Image(Resources.getResource(AthiFXResourcesProvider.getLogoPath()).toExternalForm());
-        ImageView imageView = new ImageView(applicationLogo);
-        imageView.setFitHeight(68);
+        String logoResourcePath = ApplicationConfiguration.LOGO_RESOURCE_PATH;
+        if (Objects.nonNull(logoResourcePath)) {
+            ImageView logo = initLogo(logoResourcePath);
+            leftAnchorPane.getChildren().addAll(logo, menu);
+            setAnchors(logo, 2.0, 2.0, 2.0, null);
+            setAnchors(menu, 2.0, 72.0, 2.0, 2.0);
+        } else {
+            leftAnchorPane.getChildren().add(menu);
+            setAnchors(menu, 2.0, 2.0, 2.0, 2.0);
+        }
 
-        leftAnchorPane.getChildren().addAll(imageView, menu);
         root.getChildren().addAll(leftAnchorPane, navigationPane);
-        setAnchors(imageView, 2.0, 2.0, 2.0, null);
-        setAnchors(menu, 2.0, 72.0, 2.0, 2.0);
 
         setAnchors(leftAnchorPane, 2.0, 2.0, null, 2.0);
         setAnchors(navigationPane, 210.0, 2.0, 2.0, 2.0);
+    }
+
+    private ImageView initLogo(String logoResourcePath) {
+        Image applicationLogo = new Image(Resources.getResource(logoResourcePath).toExternalForm());
+        ImageView imageView = new ImageView(applicationLogo);
+        imageView.setFitHeight(68);
+        return imageView;
     }
 
     private void showWithoutMenu() {
         root.getChildren().add(navigationPane);
         setAnchors(navigationPane, 2.0);
     }
+
+
 }

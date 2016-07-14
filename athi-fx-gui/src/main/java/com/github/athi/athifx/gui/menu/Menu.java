@@ -1,5 +1,6 @@
 package com.github.athi.athifx.gui.menu;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.menu.group.AMenuGroup;
 import com.github.athi.athifx.gui.menu.group.Group;
@@ -66,7 +67,8 @@ public class Menu extends VBox {
             Node lookupNode = this.lookup("#" + itemId);
             lookupNode.setDisable(!lookupNode.isDisabled());
         } catch (Exception e) {
-            Notification.error("Item does not exist!", "Cant find item with id: " + event.getItem().itemId());
+            Notification.error(ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE,
+                    ApplicationConfiguration.CANT_FIND_VIEW_MESSAGE + event.getItem().caption());
         }
     }
 

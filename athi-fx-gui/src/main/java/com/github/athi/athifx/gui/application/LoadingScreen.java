@@ -1,5 +1,6 @@
 package com.github.athi.athifx.gui.application;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ class LoadingScreen extends AbstractScreen {
         root.setPrefHeight(20);
 
         ProgressBar progressBar = new ProgressBar();
-        Label label = new Label("Loading application...");
+        Label label = new Label(ApplicationConfiguration.LOADING_APPLICATION_MESSAGE);
 
         Button button = new Button();
         button.setStyle("-fx-background-color: transparent;");

@@ -1,5 +1,6 @@
 package com.github.athi.athifx.gui.navigation.navigator;
 
+import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.menu.item.Item;
 import com.github.athi.athifx.gui.navigation.view.AView;
@@ -13,8 +14,6 @@ import java.io.Serializable;
  */
 @SessionScoped
 public class Navigator implements Serializable {
-
-    public static final String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist...";
 
     @Inject
     private AthiFXApplicationProperties properties;
@@ -33,7 +32,7 @@ public class Navigator implements Serializable {
                 .stream()
                 .filter(entry -> Long.compare(entry.getKey(), item.id()) == 0)
                 .findAny()
-                .orElseThrow(() -> new RuntimeException(VIEW_DOES_NOT_EXIST_MESSAGE))
+                .orElseThrow(() -> new RuntimeException(ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE))
                 .getValue();
     }
 }
