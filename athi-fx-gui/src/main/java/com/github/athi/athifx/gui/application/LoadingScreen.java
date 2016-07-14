@@ -20,7 +20,7 @@ class LoadingScreen extends AbstractScreen {
     static void show() {
         loadingStage.initStyle(StageStyle.UNDECORATED);
         AnchorPane root = prepareRoot(loadingStage);
-        root.setPrefWidth(200);
+        root.setPrefWidth(300);
         root.setPrefHeight(20);
 
         ProgressBar progressBar = new ProgressBar();
@@ -35,7 +35,7 @@ class LoadingScreen extends AbstractScreen {
 
         setAnchors(progressBar, 2.0, 2.0, 2.0, 2.0);
         setAnchors(label, 8.0, 2.0, 102.0, 2.0);
-        setAnchors(button, 196.0, 2.0, 2.0, 2.0);
+        setAnchors(button, 296.0, 2.0, 2.0, 2.0);
 
         loadingStage.show();
     }
