@@ -1,1 +1,1 @@
-mvn clean install && java -jar athi-fx-test\target\athi-fx-test-1.0.0.jar
+mvn clean install && cd athi-fx-test\target && java -jar athi-fx-test-1.0.0.jar && cd ..\..

@@ -7,8 +7,11 @@ import com.github.athi.athifx.gui.navigation.view.View;
 import com.github.athi.athifx.test.configuration.TestItems;
 import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import javax.annotation.PostConstruct;
 
 /**
  * Created by Athi
@@ -22,7 +25,20 @@ public class ItemFourView extends AView {
     @Inject
     private EventBus eventBus;
 
-    public ItemFourView() {
+    @Inject
+    @Named("test")
+    private String test;
+
+    @Inject
+    @Named("ini:test")
+    private String testFromIni;
+
+    @PostConstruct
+    public void initItemFourView() {
+
+        getChildren().add(new Label("FROM PROPERTIES: " + test));
+        getChildren().add(new Label("FROM INI: " + testFromIni));
+
         getChildren().add(new Label("ITEM FOUR VIEW"));
         Button test = new Button("Navigate to ItemOne");
         test.setOnAction(event -> navigator.navigateTo(TestItems.ITEM_ONE));
@@ -36,6 +52,8 @@ public class ItemFourView extends AView {
     @Override
     public void enter() {
         System.out.println("TEST ITEM FOUR ENTER");
+        System.out.println(test);
+        System.out.println(testFromIni);
     }
 
 }

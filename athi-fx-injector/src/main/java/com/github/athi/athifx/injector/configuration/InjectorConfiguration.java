@@ -49,7 +49,7 @@ public class InjectorConfiguration {
                     this.iniURLs.add(url);
                 }
             } catch (MalformedURLException mue) {
-                throw new RuntimeException("Wrong file: " + name);
+                throw new RuntimeException("Wrong file extension, valid configuration files extensions are (.properties, .ini), wrong file: " + name);
             }
         }
     }
