@@ -16,7 +16,7 @@ class QualifierBinding implements Binding {
     public void bind(Binder binder) {
         Reflections reflections = AthiFXInjector.getReflections();
         reflections.getTypesAnnotatedWith(Qualifier.class).stream()
-                .filter(qualifierAnnotated -> !qualifierAnnotated.isAnnotationPresent(Qualifier.class))
+                .filter(qualifierAnnotated -> qualifierAnnotated.isAnnotationPresent(Qualifier.class))
                 .forEach(c -> Arrays.asList(c.getGenericInterfaces()).forEach(type -> {
                     if (!type.equals(Annotation.class)) {
                         Arrays.asList(c.getAnnotations()).forEach(annotation -> {
