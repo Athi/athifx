@@ -30,7 +30,7 @@ public class ItemFourView extends AView {
     private String test;
 
     @Inject
-    @Named("ini:test")
+    @Named("ini:test_header:test")
     private String testFromIni;
 
     @PostConstruct
