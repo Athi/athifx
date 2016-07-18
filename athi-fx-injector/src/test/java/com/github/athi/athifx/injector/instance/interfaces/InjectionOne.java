@@ -3,9 +3,8 @@ package com.github.athi.athifx.injector.instance.interfaces;
 /**
  * Created by Athi
  */
-public interface Test {
+public interface InjectionOne {
 
-    String test();
+    String call();
 
-    String returnFromInjection();
 }

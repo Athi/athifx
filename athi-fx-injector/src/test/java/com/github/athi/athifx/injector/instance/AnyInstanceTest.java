@@ -1,8 +1,7 @@
 package com.github.athi.athifx.injector.instance;
 
 import com.github.athi.athifx.injector.AthiFXTestCase;
-import com.github.athi.athifx.injector.instance.interfaces.TestOneImpl;
-import com.github.athi.athifx.injector.instance.interfaces.TestTwoImpl;
+import com.github.athi.athifx.injector.instance.interfaces.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -74,6 +73,12 @@ public class AnyInstanceTest extends AthiFXTestCase {
         }, TestOneImpl.class.getAnnotations()).get().test());
         assertEquals(new TestTwoImpl().test(), testInstance.select(new TypeLiteral<TestTwoImpl>() {
         }, TestTwoImpl.class.getAnnotations()).get().test());
+    }
+
+    @Test
+    public void testAnyInstanceInjectedInterfaces() {
+        assertEquals(InjectionOneImpl.VALUE, testInstance.select(TestOneImpl.class.getAnnotations()).get().returnFromInjection());
+        assertEquals(InjectionTwoImpl.VALUE, testInstance.select(TestTwoImpl.class.getAnnotations()).get().returnFromInjection());
     }
 
 }
