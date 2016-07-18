@@ -2,7 +2,7 @@ package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.notification.Notification;
-import com.google.common.io.Resources;
+import com.github.athi.athifx.gui.util.DefaultResources;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -19,9 +19,9 @@ import java.util.Objects;
 abstract class AbstractScreen {
 
     static AnchorPane prepareRoot(Stage primaryStage) {
-        URL fontAwesomeFonts = Resources.getResource("fonts/fontawesome-webfont.ttf");
-        URL fontAwesomeCSS = Resources.getResource("css/fontawesome-webfont.css");
-        URL notificationCSS = Resources.getResource("css/notification.css");
+        URL fontAwesomeFonts = DefaultResources.FONT_AWESOME_FONTS;
+        URL fontAwesomeCSS = DefaultResources.FONT_AWESOME_CSS;
+        URL notificationCSS = DefaultResources.NOTIFICATION_CSS;
 
         Font.loadFont(fontAwesomeFonts.toExternalForm(), 16);
         Notification.setStage(primaryStage);
