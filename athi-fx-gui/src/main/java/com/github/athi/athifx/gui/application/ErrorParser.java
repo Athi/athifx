@@ -6,7 +6,11 @@ import com.google.inject.CreationException;
 /**
  * Created by Athi
  */
-public class ErrorParser {
+class ErrorParser {
+
+    private static final String NAMED_STRING = "@com.google.inject.name.Named(value=";
+
+    private static final String INI_NAME = "ini";
 
     // TODO
     static String parse(Exception e) {
@@ -14,17 +18,30 @@ public class ErrorParser {
 
         if (CreationException.class.isAssignableFrom(e.getClass())) {
             String message = e.getMessage();
-            if (message.contains("Named(value=ini")) {
-                String valueIniSubstring = message.substring(message.indexOf("value=ini"));
-                String iniDefinition = valueIniSubstring.substring(0, valueIniSubstring.indexOf(')'));
-                String[] defs = iniDefinition.split(":");
-                error = "Ini with header: " + defs[1] + " and value: " + defs[2] + " not found";
+            if (message.contains(NAMED_STRING)) {
+                error = namedExceptionMessage(message);
             }
         } else {
             error = e.getMessage();
         }
 
         return ApplicationConfiguration.ERROR_CAPTION + error;
+    }
+
+    private static String namedExceptionMessage(String message) {
+        String beginNamedMessageSubstring = message.substring(message.indexOf(NAMED_STRING));
+        String fullNamedMessageSubstring = beginNamedMessageSubstring.substring(NAMED_STRING.length(), beginNamedMessageSubstring.indexOf(")"));
+
+        if (fullNamedMessageSubstring.contains(INI_NAME)) {
+            if (fullNamedMessageSubstring.endsWith(INI_NAME)) {
+                return "Ini file: \"" + fullNamedMessageSubstring + "\" not found";
+            } else {
+                String[] iniParamValues = fullNamedMessageSubstring.split(":");
+                return "Ini parameter: \"" + iniParamValues[2] + "\" in section \"" + iniParamValues[1] + "\" not found.";
+            }
+        } else {
+            return "Property: \"" + fullNamedMessageSubstring + "\" not found.";
+        }
     }
 
 }
