@@ -5,6 +5,7 @@ import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import com.github.athi.athifx.gui.navigation.view.AView;
 import com.github.athi.athifx.gui.navigation.view.View;
 import com.github.athi.athifx.test.configuration.TestItems;
+import com.github.athi.athifx.test.views.window.ItemOneTestWindow;
 import com.google.inject.Inject;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,7 +33,11 @@ public class ItemOneView extends AView {
         test3.setOnAction(event -> navigator.navigateTo(TestItems.ITEM_FOUR));
 
         Button test4 = createIconButton(FontAwesome.PLUS.getUnicode(), "TEST3", 15);
-        this.getChildren().add(new FlowPane(test1, test2, test3, test4)); // IMPORTANT FlowPane is horizontal and wraps content
+
+
+        Button test5 = createIconButton(FontAwesome.TELEVISION.getUnicode(), "TEST_WINDOW", 15);
+        test5.setOnAction(event -> new ItemOneTestWindow(200, 200).show());
+        this.getChildren().add(new FlowPane(test1, test2, test3, test4, test5)); // IMPORTANT FlowPane is horizontal and wraps content
     }
 
     public static Label createIconLabel(String iconName, int iconSize) {
