@@ -51,11 +51,11 @@ public class InjectorConfigurationTest {
     private Ini ini2;
 
     @Inject
-    @Named("ini:ini1value")
+    @Named("ini:ini1header:ini1value")
     private String ini1value;
 
     @Inject
-    @Named("ini:ini2value")
+    @Named("ini:ini2header:ini2value")
     private String ini2value;
 
     @Rule

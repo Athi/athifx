@@ -31,5 +31,7 @@ public class TestConfig extends ApplicationConfiguration {
 
         VIEW_DOES_NOT_EXIST_MESSAGE = "Widok nie istnieje!";
         CANT_FIND_VIEW_MESSAGE = "Nie można znaleść widoku: ";
+
+        ERROR_CAPTION = "Błąd: ";
     }
 }

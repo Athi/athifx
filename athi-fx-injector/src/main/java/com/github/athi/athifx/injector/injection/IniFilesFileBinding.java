@@ -42,7 +42,7 @@ class IniFilesFileBinding implements ConfigurationFileBinding {
         for (String sectionName : ini.keySet()) {
             Profile.Section section = ini.get(sectionName);
             for (String optionKey : section.keySet()) {
-                binder.bindConstant().annotatedWith(Names.named("ini:" + optionKey)).to(section.get(optionKey));
+                binder.bindConstant().annotatedWith(Names.named("ini:" + sectionName + ":" + optionKey)).to(section.get(optionKey));
             }
         }
     }

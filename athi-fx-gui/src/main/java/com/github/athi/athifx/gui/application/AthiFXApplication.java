@@ -30,7 +30,7 @@ public class AthiFXApplication extends Application {
 
     @Inject
     private MainScreen mainScreen;
-    
+
     private static Stage primaryStage;
 
     public static void main(String[] args) {
@@ -48,17 +48,23 @@ public class AthiFXApplication extends Application {
         });
 
         LoadingScreen.show();
-
         new Thread(() -> {
-            AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
-            Platform.runLater(() -> {
-                LoadingScreen.close();
-                mainScreen.show(primaryStage, navigationPane);
-                navigationPane.setViewAsContent(applicationProperties.getViews().get(1L));
-            });
+            try {
+                AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
+                Platform.runLater(() -> {
+                    LoadingScreen.close();
+                    mainScreen.show(primaryStage, navigationPane);
+                    navigationPane.setViewAsContent(applicationProperties.getViews().get(1L));
+                });
+            } catch (Exception e) {
+                Platform.runLater(() -> {
+                    LOGGER.error(e.getMessage(), e);
+                    LoadingScreen.setError(ErrorParser.parse(e));
+                });
+            }
         }).start();
     }
-    
+
     public static Stage getPrimaryStage() {
         return primaryStage;
     }

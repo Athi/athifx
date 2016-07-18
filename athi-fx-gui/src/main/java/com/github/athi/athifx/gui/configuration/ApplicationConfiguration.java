@@ -21,4 +21,6 @@ public abstract class ApplicationConfiguration {
     public static String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist!";
     public static String CANT_FIND_VIEW_MESSAGE = "Cant find view: ";
 
+    public static String ERROR_CAPTION = "Error: ";
+
 }
