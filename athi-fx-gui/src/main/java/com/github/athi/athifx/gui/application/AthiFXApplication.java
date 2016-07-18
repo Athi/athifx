@@ -30,6 +30,8 @@ public class AthiFXApplication extends Application {
 
     @Inject
     private MainScreen mainScreen;
+    
+    private static Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -37,6 +39,7 @@ public class AthiFXApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.primaryStage = primaryStage;
         initDefaultApplicationConfiguration();
 
         Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
@@ -54,6 +57,10 @@ public class AthiFXApplication extends Application {
                 navigationPane.setViewAsContent(applicationProperties.getViews().get(1L));
             });
         }).start();
+    }
+    
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
     private void initDefaultApplicationConfiguration() {
