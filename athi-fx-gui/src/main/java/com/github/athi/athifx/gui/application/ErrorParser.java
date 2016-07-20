@@ -37,7 +37,11 @@ class ErrorParser {
                 return "Ini file: \"" + fullNamedMessageSubstring + "\" not found";
             } else {
                 String[] iniParamValues = fullNamedMessageSubstring.split(":");
-                return "Ini parameter: \"" + iniParamValues[2] + "\" in section \"" + iniParamValues[1] + "\" not found.";
+                if (iniParamValues.length == 3) {
+                    return "Ini parameter: \"" + iniParamValues[2] + "\" in section \"" + iniParamValues[1] + "\" not found.";
+                } else {
+                    return "Wrong ini parameter injection definition, should be (ini:SECTION:NAME)";
+                }
             }
         } else {
             return "Property: \"" + fullNamedMessageSubstring + "\" not found.";
