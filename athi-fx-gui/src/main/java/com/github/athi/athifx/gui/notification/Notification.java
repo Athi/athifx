@@ -90,7 +90,6 @@ public final class Notification {
         Label messageLabel = new Label(message, icon);
         messageLabel.setPrefWidth(WIDTH);
         messageLabel.setWrapText(true);
-        messageLabel.setTextAlignment(TextAlignment.JUSTIFY);
         messageLabel.getStyleClass().add(MESSAGE_STYLE);
 
         VBox popupLayout = new VBox();
