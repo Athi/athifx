@@ -21,7 +21,7 @@ import javafx.util.Duration;
 public final class Notification {
 
     private static final double WIDTH = 300;
-    private static final double HEIGHT = 80;
+    private static double HEIGHT = 80;
 
     private static final Duration ANIMATION_TIME = Duration.millis(500);
     private static final Duration DURATION = Duration.millis(5000);
@@ -75,13 +75,22 @@ public final class Notification {
     }
 
     private static void showPopup(String title, String message, FontAwesome iconFont, String color) {
+        int textWraps = Math.round(message.length() / 50);
+        if (textWraps > 0) {
+            HEIGHT = (HEIGHT + (textWraps * 10));
+        }
+        
         Label titleLabel = new Label(title);
+        titleLabel.setPrefWidth(WIDTH);
         titleLabel.getStyleClass().add(TITLE_STYLE);
 
         Label icon = FontAwesome.labelIcon(iconFont, 24, color);
         icon.setTextFill(Color.RED);
 
         Label messageLabel = new Label(message, icon);
+        messageLabel.setPrefWidth(WIDTH);
+        messageLabel.setWrapText(true);
+        messageLabel.setTextAlignment(TextAlignment.JUSTIFY);
         messageLabel.getStyleClass().add(MESSAGE_STYLE);
 
         VBox popupLayout = new VBox();
