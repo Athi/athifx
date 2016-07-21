@@ -20,8 +20,9 @@ import javafx.util.Duration;
  */
 public final class Notification {
 
-    private static final double WIDTH = 300;
-    private static double HEIGHT = 80;
+    private static final double WIDTH = 500;
+    private static final double DEFAULT_HEIGHT = 80;
+    private static double HEIGHT = DEFAULT_HEIGHT;
 
     private static final Duration ANIMATION_TIME = Duration.millis(500);
     private static final Duration DURATION = Duration.millis(5000);
@@ -75,10 +76,8 @@ public final class Notification {
     }
 
     private static void showPopup(String title, String message, FontAwesome iconFont, String color) {
-        int textWraps = Math.round(message.length() / 50);
-        if (textWraps > 0) {
-            HEIGHT = (HEIGHT + (textWraps * 10));
-        }
+        HEIGHT = DEFAULT_HEIGHT;
+        changeHeightBasedOnMessage(message);
         
         Label titleLabel = new Label(title);
         titleLabel.setPrefWidth(WIDTH);
@@ -122,4 +121,17 @@ public final class Notification {
         timeline.play();
     }
 
+    private static void changeHeightBasedOnMessage(String message) {
+        String[] split = message.split("\n");
+        int wraps = split.length == 0 ? 0 : split.length;
+
+        for (String str : split) {
+            int strWraps = (int) Math.ceil(str.length() / 100);
+            wraps += strWraps;
+        }
+
+        if (wraps > 0) {
+            HEIGHT = (HEIGHT + (wraps * 12));
+        }
+    }
 }
