@@ -756,6 +756,10 @@ public enum FontAwesome {
         return label;
     }
 
+    public static Label labelIcon(FontAwesome fontAwesome) {
+        return labelIcon(fontAwesome, 16); // TODO size from properites
+    }
+
     public static Label labelIcon(FontAwesome fontAwesome, int iconSize, String color) {
         Label label = labelIcon(fontAwesome, iconSize);
         label.setStyle(label.getStyle() + FONT_COLOR_STYLE(color));

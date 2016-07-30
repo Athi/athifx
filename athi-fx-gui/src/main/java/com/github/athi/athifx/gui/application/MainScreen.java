@@ -20,12 +20,12 @@ class MainScreen extends AbstractScreen {
     @Inject
     private Menu menu;
 
+    @Inject
     private NavigationPane navigationPane;
+
     private AnchorPane root;
 
-    void show(Stage primaryStage, NavigationPane navigationPane) {
-        this.navigationPane = navigationPane;
-
+    void show(Stage primaryStage) {
         primaryStage.setMaximized(true);
 
         root = prepareRoot(primaryStage);

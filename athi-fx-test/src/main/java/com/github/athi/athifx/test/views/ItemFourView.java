@@ -27,7 +27,7 @@ public class ItemFourView extends AView {
         getChildren().add(new Label(VIEW_NAME));
 
         Button disableButton = new Button("Disable/Enable item3");
-        disableButton.setOnAction(event -> eventBus.post(new DisableEnableAMenuItemEvent(TestItems.ITEM_FIVE)));
+        disableButton.setOnAction(event -> eventBus.post(new DisableEnableAMenuItemEvent(TestItems.ITEM_THREE)));
 
         this.getChildren().addAll(disableButton);
     }

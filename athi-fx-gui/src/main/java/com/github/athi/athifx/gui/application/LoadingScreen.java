@@ -15,11 +15,12 @@ import javafx.stage.StageStyle;
  */
 class LoadingScreen extends AbstractScreen {
 
-    private static final Stage loadingStage = new Stage();
+    private Stage loadingStage;
 
-    private static Label errorLabel;
+    private Label errorLabel;
 
-    static void show() {
+    void show() {
+        loadingStage = new Stage();
         loadingStage.initStyle(StageStyle.UNDECORATED);
         AnchorPane root = prepareRoot(loadingStage);
         root.setPrefWidth(400);
@@ -44,13 +45,13 @@ class LoadingScreen extends AbstractScreen {
         loadingStage.show();
     }
 
-    static void close() {
+    void close() {
         if (loadingStage.isShowing()) {
             loadingStage.close();
         }
     }
 
-    static void setError(String error) {
+    void setError(String error) {
         errorLabel.setText(error);
     }
 

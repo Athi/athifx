@@ -3,8 +3,9 @@ package com.github.athi.athifx.gui.application;
 import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.configuration.ApplicationConfigurationException;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
-import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
+import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import com.github.athi.athifx.gui.notification.Notification;
+import com.github.athi.athifx.gui.security.Security;
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
 import com.google.inject.Inject;
@@ -26,7 +27,12 @@ public class AthiFXApplication extends Application {
     private AthiFXApplicationProperties applicationProperties;
 
     @Inject
-    private NavigationPane navigationPane;
+    private Navigator navigator;
+
+    private LoadingScreen loadingScreen;
+
+    @Inject
+    private LoginScreen loginScreen;
 
     @Inject
     private MainScreen mainScreen;
@@ -40,26 +46,21 @@ public class AthiFXApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+
         initDefaultApplicationConfiguration();
+        initUncaughtExceptionHandler();
 
-        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
-            LOGGER.error(throwable.getMessage(), throwable);
-            Notification.error(ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
-        });
+        loadingScreen = new LoadingScreen();
+        loadingScreen.show();
 
-        LoadingScreen.show();
         new Thread(() -> {
             try {
                 AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
-                Platform.runLater(() -> {
-                    LoadingScreen.close();
-                    mainScreen.show(primaryStage, navigationPane);
-                    navigationPane.setViewAsContent(applicationProperties.getViews().get(1L));
-                });
+                showApplication();
             } catch (Exception e) {
                 Platform.runLater(() -> {
                     LOGGER.error(e.getMessage(), e);
-                    LoadingScreen.setError(ErrorParser.parse(e));
+                    loadingScreen.setError(ErrorParser.parse(e));
                 });
             }
         }).start();
@@ -67,6 +68,42 @@ public class AthiFXApplication extends Application {
 
     public static Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    private void showApplication() {
+        Set<Class<? extends Security>> subTypesOf = AthiFXInjector.getReflections().getSubTypesOf(Security.class);
+
+        if (subTypesOf.isEmpty()) {
+            withoutSecurity();
+        } else {
+            withSecurity();
+        }
+    }
+
+    private void withoutSecurity() {
+        Platform.runLater(() -> {
+            loadingScreen.close();
+            showMainScreen();
+        });
+    }
+
+    private void withSecurity() {
+        Platform.runLater(() -> {
+            loadingScreen.close();
+            loginScreen.show(this::showMainScreen);
+        });
+    }
+
+    private void showMainScreen() {
+        mainScreen.show(primaryStage);
+        navigator.navigateTo(applicationProperties.getItems().get(0));
+    }
+
+    private void initUncaughtExceptionHandler() {
+        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
+            LOGGER.error(throwable.getMessage(), throwable);
+            Notification.error(ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
+        });
     }
 
     private void initDefaultApplicationConfiguration() {
