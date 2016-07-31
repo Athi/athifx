@@ -14,6 +14,8 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.reflections.Reflections;
 
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
 import java.util.Set;
 
 /**
@@ -28,6 +30,10 @@ public class AthiFXApplication extends Application {
 
     @Inject
     private Navigator navigator;
+
+    @Inject
+    @Any
+    private Instance<Security> securityInstance;
 
     private LoadingScreen loadingScreen;
 
@@ -56,6 +62,9 @@ public class AthiFXApplication extends Application {
         new Thread(() -> {
             try {
                 AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
+                //TODO check if Security has only one implementation
+                //TODO check if no views duplicates etc etc ?????
+                //TODO if above are wrong then throw exception if will be auto handled
                 showApplication();
             } catch (Exception e) {
                 Platform.runLater(() -> {
@@ -71,12 +80,10 @@ public class AthiFXApplication extends Application {
     }
 
     private void showApplication() {
-        Set<Class<? extends Security>> subTypesOf = AthiFXInjector.getReflections().getSubTypesOf(Security.class);
-
-        if (subTypesOf.isEmpty()) {
-            withoutSecurity();
-        } else {
+        if (securityInstance.iterator().hasNext()) {
             withSecurity();
+        } else {
+            withoutSecurity();
         }
     }
 

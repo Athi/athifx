@@ -1,6 +1,10 @@
 package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.font_awesome.FontAwesome;
+import com.github.athi.athifx.gui.security.Security;
+import com.github.athi.athifx.gui.security.SecurityException;
+import com.github.athi.athifx.injector.log.Log;
+import com.google.inject.Inject;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -11,10 +15,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Instance;
+
 /**
  * Created by Athi
  */
 class LoginScreen extends AbstractScreen {
+
+    private static final Log LOGGER = Log.getLogger(LoginScreen.class);
+
+    @Inject
+    @Any
+    private Instance<Security> securityInstance;
 
     private Stage loginStage;
 
@@ -76,7 +89,7 @@ class LoginScreen extends AbstractScreen {
         return passwordBox;
     }
 
-    private Label initErrorLabel() {
+    private Label initErrorLabel() { // TODO make improvements (what if to long error message ?? wrap and bigger window or scrollable label?)
         Label label = new Label("Login to continue", FontAwesome.labelIcon(FontAwesome.INFO_CIRCLE));
         label.setStyle("-fx-text-fill: red;");
         return label;
@@ -85,10 +98,27 @@ class LoginScreen extends AbstractScreen {
     private Button createLoginButton(Runnable afterLogin) {
         Button loginButton = new Button("Login", FontAwesome.labelIcon(FontAwesome.CHECK_CIRCLE_O)); //TODO text from configuration
         loginButton.setOnAction(event -> {
-            loginStage.close();
-            Platform.runLater(afterLogin);
+            Security next = securityInstance.iterator().next();
+            try {
+                validateLoginAndPasswordFields();
+                next.login(loginTextField.getText(), passwordField.getText());
+                loginStage.close();
+                Platform.runLater(afterLogin);
+            } catch (SecurityException e) {
+                LOGGER.info(e.getMessage());
+                Platform.runLater(() -> errorLabel.setText(e.getMessage()));
+            }
+
         });
         return loginButton;
+    }
+
+    private void validateLoginAndPasswordFields() throws SecurityException { //TODO make it better ??
+        if (this.loginTextField.getText().trim().isEmpty()) {
+            throw new SecurityException("Login field cant be empty."); //TODO text from configuration
+        } else if (this.passwordField.getText().trim().isEmpty()) {
+            throw new SecurityException("Password field cant be empty."); //TODO text from configuration
+        }
     }
 
     private Button createCloseButton() {
