@@ -17,10 +17,11 @@ import java.util.Set;
  */
 class InstancesBinding implements Binding {
 
-    private HashSet<Type> uniqueTypeList = new HashSet<>();
+    private HashSet<Type> uniqueTypeList;
 
     @Override
     public void bind(Binder binder) {
+        uniqueTypeList = new HashSet<>();
         Reflections reflections = AthiFXInjector.getReflections();
         Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Any.class);
         fieldsAnnotatedWith.stream()
