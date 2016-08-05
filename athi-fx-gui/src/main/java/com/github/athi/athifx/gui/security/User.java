@@ -23,11 +23,11 @@ public class User {
     }
 
     public boolean isAllPermitted(String... permissions) {
-        return Arrays.asList(permissions).stream().allMatch(this::isPermitted);
+        return Arrays.stream(permissions).allMatch(this::isPermitted);
     }
 
     public boolean isAnyPermitted(String... permissions) {
-        return Arrays.asList(permissions).stream().anyMatch(this::isPermitted);
+        return Arrays.stream(permissions).anyMatch(this::isPermitted);
     }
 
     public String getLogin() {
