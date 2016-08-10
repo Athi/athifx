@@ -2,6 +2,8 @@ package com.github.athi.athifx.gui.font_awesome;
 
 import javafx.scene.control.Label;
 
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.FONT_SIZE;
+
 /**
  * Created by Athi
  */
@@ -739,6 +741,12 @@ public enum FontAwesome {
 
     public static final String STYLE_CLASS_ICONS = "icons";
 
+    private static final String FONT_SIZE_PREFIX = " -fx-font-size: ";
+    private static final String ICONS_COLOR_PREFIX = " -icons-color: ";
+
+    private static final String PIXEL_SUFFIX = "px;";
+    private static final String SEMICOLON_SUFFIX = ";";
+
     private final String unicode;
 
     FontAwesome(String unicode) {
@@ -757,7 +765,7 @@ public enum FontAwesome {
     }
 
     public static Label labelIcon(FontAwesome fontAwesome) {
-        return labelIcon(fontAwesome, 16); // TODO size from properites
+        return labelIcon(fontAwesome, FONT_SIZE);
     }
 
     public static Label labelIcon(FontAwesome fontAwesome, int iconSize, String color) {
@@ -767,10 +775,10 @@ public enum FontAwesome {
     }
 
     public static String FONT_SIZE_STYLE(int size) {
-        return "-fx-font-size: " + size + "px;";
+        return FONT_SIZE_PREFIX + size + PIXEL_SUFFIX;
     }
 
     public static String FONT_COLOR_STYLE(String color) {
-        return " -icons-color: " + color + ";";
+        return ICONS_COLOR_PREFIX + color + SEMICOLON_SUFFIX;
     }
 }

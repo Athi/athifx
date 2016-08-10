@@ -20,7 +20,7 @@ public class FontAwesomeTest extends AthiFXTestCase {
 
     @Test
     public void fontSizeStyleTest() {
-        String expected = "-fx-font-size: 16px;";
+        String expected = " -fx-font-size: 16px;";
         assertEquals(expected, FontAwesome.FONT_SIZE_STYLE(16));
     }
 

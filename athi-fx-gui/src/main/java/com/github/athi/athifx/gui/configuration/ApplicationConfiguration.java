@@ -9,10 +9,15 @@ public abstract class ApplicationConfiguration {
 
     public abstract void init();
 
+    /**
+     * GLOBAL PROPERTIES
+     */
     public static String ICON_RESOURCE_PATH;
     public static String LOGO_RESOURCE_PATH;
 
     public static InjectorConfiguration INJECTOR_CONFIGURATION = new InjectorConfiguration();
+
+    public static int FONT_SIZE = 16;
 
     /**
      * LOGIN SECURED WINDOW PROPERTIES
