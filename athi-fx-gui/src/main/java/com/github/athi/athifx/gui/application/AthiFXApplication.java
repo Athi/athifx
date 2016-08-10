@@ -18,6 +18,9 @@ import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 import java.util.Set;
 
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.INJECTOR_CONFIGURATION;
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE;
+
 /**
  * Created by Athi
  */
@@ -51,7 +54,7 @@ public class AthiFXApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
+        AthiFXApplication.primaryStage = primaryStage;
 
         initDefaultApplicationConfiguration();
         initUncaughtExceptionHandler();
@@ -61,7 +64,7 @@ public class AthiFXApplication extends Application {
 
         new Thread(() -> {
             try {
-                AthiFXInjector.createInjector(this, ApplicationConfiguration.INJECTOR_CONFIGURATION);
+                AthiFXInjector.createInjector(this, INJECTOR_CONFIGURATION);
                 //TODO check if Security has only one implementation
                 //TODO check if no views duplicates etc etc ?????
                 //TODO if above are wrong then throw exception if will be auto handled
@@ -109,7 +112,7 @@ public class AthiFXApplication extends Application {
     private void initUncaughtExceptionHandler() {
         Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
             LOGGER.error(throwable.getMessage(), throwable);
-            Notification.error(ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
+            Notification.error(UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
         });
     }
 

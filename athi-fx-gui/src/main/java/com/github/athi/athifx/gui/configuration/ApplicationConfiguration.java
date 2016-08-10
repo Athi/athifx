@@ -14,6 +14,24 @@ public abstract class ApplicationConfiguration {
 
     public static InjectorConfiguration INJECTOR_CONFIGURATION = new InjectorConfiguration();
 
+    /**
+     * LOGIN SECURED WINDOW PROPERTIES
+     **/
+    public static String LOGIN_TITLE = "Login";
+    public static String LOGIN_FIELD_CAPTION = "Login";
+    public static String PASSWORD_FIELD_CAPTION = "Password";
+
+    public static String DEFAULT_LOGIN_WINDOW_MESSAGE = "Login to continue";
+
+    public static String LOGIN_BUTTON_CAPTION = "Login";
+    public static String CLOSE_BUTTON_CAPTION = "Close";
+
+    public static String EMPTY_LOGIN_MESSAGE = "Login field can't be empty.";
+    public static String EMPTY_PASSWORD_MESSAGE = "Password field can't be empty.";
+
+    /**
+     * MAIN APPLICATION WINDOW PROPERTIES
+     **/
     public static String APPLICATION_TITLE = "Application";
     public static String UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE = "An unexpected error occurred ...";
     public static String LOADING_APPLICATION_MESSAGE = "Loading application...";

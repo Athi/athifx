@@ -1,6 +1,5 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.menu.Menu;
 import com.github.athi.athifx.gui.navigation.navigator.NavigationPane;
 import com.google.common.io.Resources;
@@ -11,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.LOGO_RESOURCE_PATH;
 
 /**
  * Created by Athi
@@ -44,7 +45,7 @@ class MainScreen extends AbstractScreen {
     private void showWithMenu() {
         AnchorPane leftAnchorPane = new AnchorPane();
 
-        String logoResourcePath = ApplicationConfiguration.LOGO_RESOURCE_PATH;
+        String logoResourcePath = LOGO_RESOURCE_PATH;
         if (Objects.nonNull(logoResourcePath)) {
             ImageView logo = initLogo(logoResourcePath);
             leftAnchorPane.getChildren().addAll(logo, menu);

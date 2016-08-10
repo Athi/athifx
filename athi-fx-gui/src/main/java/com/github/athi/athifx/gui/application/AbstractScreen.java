@@ -1,6 +1,5 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.notification.Notification;
 import com.github.athi.athifx.gui.util.DefaultResources;
 import javafx.scene.Node;
@@ -12,6 +11,9 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.Objects;
+
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.APPLICATION_TITLE;
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.ICON_RESOURCE_PATH;
 
 /**
  * Created by Athi
@@ -26,7 +28,7 @@ abstract class AbstractScreen {
         Font.loadFont(fontAwesomeFonts.toExternalForm(), 16);
         Notification.setStage(primaryStage);
 
-        primaryStage.setTitle(ApplicationConfiguration.APPLICATION_TITLE);
+        primaryStage.setTitle(APPLICATION_TITLE);
         setApplicationIcon(primaryStage);
 
         AnchorPane root = new AnchorPane();
@@ -58,7 +60,7 @@ abstract class AbstractScreen {
     }
 
     private static void setApplicationIcon(Stage primaryStage) {
-        String iconResourcePath = ApplicationConfiguration.ICON_RESOURCE_PATH;
+        String iconResourcePath = ICON_RESOURCE_PATH;
         if (Objects.nonNull(iconResourcePath)) {
             Image applicationIcon = new Image(iconResourcePath);
             primaryStage.getIcons().add(applicationIcon);

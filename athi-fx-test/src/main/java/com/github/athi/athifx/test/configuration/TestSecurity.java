@@ -19,9 +19,9 @@ public class TestSecurity implements Security {
 //        permissions.add("test");
 
         User user = new User(userLogin, permissions);
-        if (!user.isPermitted("test")) {
-            throw new SecurityException("No \"test\" permission FOR USER: " + userLogin + " with password: " + userPassword);
-        }
+//        if (!user.isPermitted("test")) {
+//            throw new SecurityException("No \"test\" permission FOR USER: " + userLogin + " with password: " + userPassword);
+//        }
         return user;
     }
 }

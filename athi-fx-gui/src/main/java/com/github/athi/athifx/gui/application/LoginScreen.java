@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
 
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.*;
+
 /**
  * Created by Athi
  */
@@ -67,14 +69,14 @@ class LoginScreen extends AbstractScreen {
         loginStage.setResizable(false);
         loginStage.setMaxWidth(300);
         loginStage.setMaxHeight(195);
-        loginStage.setTitle("Login"); //TODO text from configuration
+        loginStage.setTitle(LOGIN_TITLE);
         return root;
     }
 
     private VBox createLoginBox() {
         VBox loginBox = new VBox();
         Node userIcon = FontAwesome.labelIcon(FontAwesome.USER);
-        Label caption = new Label("Login", userIcon); //TODO text from configuration
+        Label caption = new Label(LOGIN_FIELD_CAPTION, userIcon);
         loginTextField = new TextField();
         loginBox.getChildren().addAll(caption, loginTextField);
         return loginBox;
@@ -83,20 +85,20 @@ class LoginScreen extends AbstractScreen {
     private VBox createPasswordBox() {
         VBox passwordBox = new VBox();
         Node keyIcon = FontAwesome.labelIcon(FontAwesome.KEY);
-        Label caption = new Label("Password", keyIcon); //TODO text from configuration
+        Label caption = new Label(PASSWORD_FIELD_CAPTION, keyIcon);
         passwordField = new PasswordField();
         passwordBox.getChildren().addAll(caption, passwordField);
         return passwordBox;
     }
 
     private Label initErrorLabel() { // TODO make improvements (what if to long error message ?? wrap and bigger window or scrollable label?)
-        Label label = new Label("Login to continue", FontAwesome.labelIcon(FontAwesome.INFO_CIRCLE));
+        Label label = new Label(DEFAULT_LOGIN_WINDOW_MESSAGE, FontAwesome.labelIcon(FontAwesome.INFO_CIRCLE));
         label.setStyle("-fx-text-fill: red;");
         return label;
     }
 
     private Button createLoginButton(Runnable afterLogin) {
-        Button loginButton = new Button("Login", FontAwesome.labelIcon(FontAwesome.CHECK_CIRCLE_O)); //TODO text from configuration
+        Button loginButton = new Button(LOGIN_BUTTON_CAPTION, FontAwesome.labelIcon(FontAwesome.CHECK_CIRCLE_O));
         loginButton.setOnAction(event -> {
             Security next = securityInstance.iterator().next();
             try {
@@ -115,14 +117,14 @@ class LoginScreen extends AbstractScreen {
 
     private void validateLoginAndPasswordFields() throws SecurityException { //TODO make it better ??
         if (this.loginTextField.getText().trim().isEmpty()) {
-            throw new SecurityException("Login field cant be empty."); //TODO text from configuration
+            throw new SecurityException(EMPTY_LOGIN_MESSAGE);
         } else if (this.passwordField.getText().trim().isEmpty()) {
-            throw new SecurityException("Password field cant be empty."); //TODO text from configuration
+            throw new SecurityException(EMPTY_PASSWORD_MESSAGE);
         }
     }
 
     private Button createCloseButton() {
-        Button closeButton = new Button("Close", FontAwesome.labelIcon(FontAwesome.TIMES)); //TODO text from configuration
+        Button closeButton = new Button(CLOSE_BUTTON_CAPTION, FontAwesome.labelIcon(FontAwesome.TIMES));
         closeButton.setOnAction(event -> loginStage.close());
         return closeButton;
     }

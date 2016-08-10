@@ -1,7 +1,8 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.google.inject.CreationException;
+
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.ERROR_CAPTION;
 
 /**
  * Created by Athi
@@ -25,7 +26,7 @@ class ErrorParser {
             error = e.getMessage();
         }
 
-        return ApplicationConfiguration.ERROR_CAPTION + error;
+        return ERROR_CAPTION + error;
     }
 
     private static String namedExceptionMessage(String message) {

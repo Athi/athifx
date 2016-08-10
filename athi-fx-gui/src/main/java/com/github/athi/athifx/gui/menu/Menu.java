@@ -1,6 +1,5 @@
 package com.github.athi.athifx.gui.menu;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.menu.group.AMenuGroup;
 import com.github.athi.athifx.gui.menu.group.Group;
@@ -19,6 +18,9 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.CANT_FIND_VIEW_MESSAGE;
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE;
 
 /**
  * Created by Athi
@@ -67,8 +69,7 @@ public class Menu extends VBox {
             Node lookupNode = this.lookup("#" + itemId);
             lookupNode.setDisable(!lookupNode.isDisabled());
         } catch (Exception e) {
-            Notification.error(ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE,
-                    ApplicationConfiguration.CANT_FIND_VIEW_MESSAGE + event.getItem().caption());
+            Notification.error(VIEW_DOES_NOT_EXIST_MESSAGE, CANT_FIND_VIEW_MESSAGE + event.getItem().caption());
         }
     }
 

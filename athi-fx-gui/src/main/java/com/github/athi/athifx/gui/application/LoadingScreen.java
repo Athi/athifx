@@ -1,6 +1,5 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
 import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
@@ -9,6 +8,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.LOADING_APPLICATION_MESSAGE;
 
 /**
  * Created by Athi
@@ -27,7 +28,7 @@ class LoadingScreen extends AbstractScreen {
         root.setPrefHeight(40);
 
         ProgressBar progressBar = new ProgressBar();
-        Label infoLabel = new Label(ApplicationConfiguration.LOADING_APPLICATION_MESSAGE);
+        Label infoLabel = new Label(LOADING_APPLICATION_MESSAGE);
         errorLabel = new Label();
 
         Button button = new Button();
