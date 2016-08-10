@@ -7,11 +7,10 @@
     <parent>
         <groupId>com.github.athi</groupId>
         <artifactId>athi-fx</artifactId>
-        <version>1.0.0</version>
+        <version>LATEST</version>
     </parent>
 
     <artifactId>athi-fx-injector</artifactId>
-    <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>athi-fx-injector</name>
 
