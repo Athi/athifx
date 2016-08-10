@@ -15,4 +15,6 @@ import java.lang.annotation.Target;
 public @interface Secured {
 
     String[] permissions() default "";
+
+    boolean any() default false; //TODO after implementation test if You can add 2x annotation ( @Secured({ONE, TWO, THREE}, false) @Secured({FOUR, FIVE}, true) )
 }
