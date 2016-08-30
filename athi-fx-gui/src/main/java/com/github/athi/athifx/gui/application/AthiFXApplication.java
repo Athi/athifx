@@ -1,25 +1,20 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.configuration.ApplicationConfiguration;
-import com.github.athi.athifx.gui.configuration.ApplicationConfigurationException;
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.navigation.navigator.Navigator;
-import com.github.athi.athifx.gui.notification.Notification;
 import com.github.athi.athifx.gui.security.Security;
-import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
 import com.google.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import org.reflections.Reflections;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
-import java.util.Set;
 
+import static com.github.athi.athifx.gui.application.ApplicationConfigurationUtils.*;
 import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.INJECTOR_CONFIGURATION;
-import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE;
+import static com.github.athi.athifx.injector.injection.AthiFXInjector.createInjector;
 
 /**
  * Created by Athi
@@ -64,10 +59,9 @@ public class AthiFXApplication extends Application {
 
         new Thread(() -> {
             try {
-                AthiFXInjector.createInjector(this, INJECTOR_CONFIGURATION);
-                //TODO check if Security has only one implementation
-                //TODO check if no views duplicates etc etc ?????
-                //TODO if above are wrong then throw exception if will be auto handled
+                createInjector(this, INJECTOR_CONFIGURATION);
+                validateSecurityDefinition(securityInstance);
+                validateViewDefinitions();
                 showApplication();
             } catch (Exception e) {
                 Platform.runLater(() -> {
@@ -107,28 +101,5 @@ public class AthiFXApplication extends Application {
     private void showMainScreen() {
         mainScreen.show(primaryStage);
         navigator.navigateTo(applicationProperties.getItems().get(0));
-    }
-
-    private void initUncaughtExceptionHandler() {
-        Thread.currentThread().setUncaughtExceptionHandler((thread, throwable) -> {
-            LOGGER.error(throwable.getMessage(), throwable);
-            Notification.error(UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE, throwable.getMessage());
-        });
-    }
-
-    private void initDefaultApplicationConfiguration() {
-        try {
-            Reflections reflections = AthiFXInjector.getReflections();
-            Set<Class<? extends ApplicationConfiguration>> configuration = reflections.getSubTypesOf(ApplicationConfiguration.class);
-            if (configuration.size() == 1) {
-                configuration.iterator().next().newInstance().init();
-            } else if (configuration.isEmpty()) {
-                throw new ApplicationConfigurationException("To many application configuration implementations!!");
-            } else {
-                throw new ApplicationConfigurationException("No application configuration implementations!!");
-            }
-        } catch (Exception e) {
-            throw new ApplicationConfigurationException("Application configuration exception: " + e.getMessage(), e);
-        }
     }
 }
