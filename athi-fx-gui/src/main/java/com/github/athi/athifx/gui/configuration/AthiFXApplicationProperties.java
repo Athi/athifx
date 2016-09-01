@@ -1,9 +1,12 @@
 package com.github.athi.athifx.gui.configuration;
 
+import com.github.athi.athifx.gui.application.AthiFXSession;
 import com.github.athi.athifx.gui.menu.group.Group;
 import com.github.athi.athifx.gui.menu.item.Item;
 import com.github.athi.athifx.gui.navigation.view.AView;
 import com.github.athi.athifx.gui.navigation.view.View;
+import com.github.athi.athifx.gui.security.Secured;
+import com.github.athi.athifx.gui.security.User;
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
@@ -25,6 +28,9 @@ import java.util.stream.Collectors;
  */
 @SessionScoped
 public class AthiFXApplicationProperties implements Serializable {
+
+    @Inject
+    private AthiFXSession session;
 
     @Any
     @Inject
@@ -57,5 +63,26 @@ public class AthiFXApplicationProperties implements Serializable {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public boolean isNotSecured(Item item) {
+        AView itemView = getViews().get(item.id());
+        return isNotSecured(itemView);
+    }
+
+    public boolean isNotSecured(AView view) {
+        Class<? extends AView> viewClass = view.getClass();
+        if (viewClass.isAnnotationPresent(Secured.class)) {
+            Secured securedAnnotation = viewClass.getAnnotation(Secured.class);
+            return isAnyOrAllPermitted(securedAnnotation);
+        } else {
+            return true;
+        }
+    }
+
+    private boolean isAnyOrAllPermitted(Secured securedAnnotation) {
+        User user = session.getUser();
+        String[] permissions = securedAnnotation.permissions();
+        return securedAnnotation.any() ? user.isAnyPermitted(permissions) : user.isAllPermitted(permissions);
     }
 }

@@ -42,6 +42,7 @@ public abstract class ApplicationConfiguration {
     public static String LOADING_APPLICATION_MESSAGE = "Loading application...";
 
     public static String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist!";
+    public static String NO_PERMISSION_FOR_VIEW_WITH_ID = "No permission for view with id: ";
     public static String CANT_FIND_VIEW_MESSAGE = "Cant find view: ";
 
     public static String ERROR_CAPTION = "Error: ";

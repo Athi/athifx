@@ -16,7 +16,7 @@ public class TestSecurity implements Security {
     public User login(String userLogin, String userPassword) throws SecurityException {
 
         List<String> permissions = new ArrayList<>();
-//        permissions.add("test");
+//        permissions.add("dsadas");
 
         User user = new User(userLogin, permissions);
 //        if (!user.isPermitted("test")) {

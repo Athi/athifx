@@ -3,12 +3,14 @@ package com.github.athi.athifx.test.views;
 import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import com.github.athi.athifx.gui.navigation.view.AView;
 import com.github.athi.athifx.gui.navigation.view.View;
+import com.github.athi.athifx.gui.security.Secured;
 import com.google.inject.Inject;
 import javafx.scene.control.Label;
 
 /**
  * Created by Athi
  */
+@Secured(permissions = "dsadas")
 @View(itemId = 1)
 public class ItemOneView extends AView {
 

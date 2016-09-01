@@ -3,6 +3,7 @@ package com.github.athi.athifx.gui.application;
 import com.github.athi.athifx.gui.font_awesome.FontAwesome;
 import com.github.athi.athifx.gui.security.Security;
 import com.github.athi.athifx.gui.security.SecurityException;
+import com.github.athi.athifx.gui.security.User;
 import com.github.athi.athifx.injector.log.Log;
 import com.google.inject.Inject;
 import javafx.application.Platform;
@@ -28,6 +29,9 @@ class LoginScreen extends AbstractScreen {
     @Inject
     @Any
     private Instance<Security> securityInstance;
+
+    @Inject
+    private AthiFXSession session;
 
     private Stage loginStage;
 
@@ -118,7 +122,8 @@ class LoginScreen extends AbstractScreen {
             Security next = securityInstance.iterator().next();
             try {
                 validateLoginAndPasswordFields();
-                next.login(loginTextField.getText(), passwordField.getText());
+                User user = next.login(loginTextField.getText(), passwordField.getText());
+                session.setUser(user);
                 loginStage.close();
                 Platform.runLater(afterLogin);
             } catch (SecurityException e) {

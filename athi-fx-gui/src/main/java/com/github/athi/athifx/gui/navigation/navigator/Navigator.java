@@ -7,7 +7,10 @@ import com.google.inject.Inject;
 
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Map;
+import java.util.Optional;
 
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.NO_PERMISSION_FOR_VIEW_WITH_ID;
 import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE;
 
 /**
@@ -28,12 +31,18 @@ public class Navigator implements Serializable {
     }
 
     private AView getItemNode(Item item) {
-        return properties.getViews()
+        Optional<Map.Entry<Long, AView>> anyView = properties.getViews()
                 .entrySet()
                 .stream()
                 .filter(entry -> Long.compare(entry.getKey(), item.id()) == 0)
-                .findAny()
-                .orElseThrow(() -> new RuntimeException(VIEW_DOES_NOT_EXIST_MESSAGE))
-                .getValue();
+                .findAny();
+
+        Map.Entry<Long, AView> viewEntry = anyView.orElseThrow(() -> new RuntimeException(VIEW_DOES_NOT_EXIST_MESSAGE));
+
+        if (properties.isNotSecured(viewEntry.getValue())) {
+            return viewEntry.getValue();
+        } else {
+            throw new RuntimeException(NO_PERMISSION_FOR_VIEW_WITH_ID + viewEntry.getKey());
+        }
     }
 }

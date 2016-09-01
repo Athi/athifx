@@ -35,13 +35,13 @@ class ErrorParser {
 
         if (fullNamedMessageSubstring.contains(INI_NAME)) {
             if (fullNamedMessageSubstring.endsWith(INI_NAME)) {
-                return "Ini file: \"" + fullNamedMessageSubstring + "\" not found";
+                return "Ini file: \"" + fullNamedMessageSubstring + "\" not found.";
             } else {
                 String[] iniParamValues = fullNamedMessageSubstring.split(":");
                 if (iniParamValues.length == 3) {
                     return "Ini parameter: \"" + iniParamValues[2] + "\" in section \"" + iniParamValues[1] + "\" not found.";
                 } else {
-                    return "Wrong ini parameter injection definition, should be (ini:SECTION:NAME)";
+                    return "Wrong ini parameter injection definition, should be (ini:SECTION:NAME).";
                 }
             }
         } else {
