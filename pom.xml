@@ -19,16 +19,16 @@
 
         <javaee-api.version>7.0</javaee-api.version>
         <ini4j.version>0.5.4</ini4j.version>
-        <guice.version>4.0</guice.version>
+        <guice.version>4.1.0</guice.version>
         <reflections.version>0.9.10</reflections.version>
 
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-        <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
         <junit.version>4.12</junit.version>
-        <powermock.version>1.6.4</powermock.version>
+        <powermock.version>1.6.5</powermock.version>
         <testfx.version>4.0.4-alpha</testfx.version>
         <system-rules.version>1.16.0</system-rules.version>
 
