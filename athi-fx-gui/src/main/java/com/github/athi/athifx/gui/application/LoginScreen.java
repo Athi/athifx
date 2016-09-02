@@ -9,6 +9,8 @@ import com.google.inject.Inject;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -58,6 +60,11 @@ class LoginScreen extends AbstractScreen {
         setAnchors(errorLabel, 4.0, 106.0, 4.0, 44.0);
         setAnchors(loginButton, 4.0, 138.0, 200.0, 2.0);
         setAnchors(closeButton, 200.0, 138.0, 4.0, 2.0);
+
+        Platform.runLater(() -> {
+            loginTextField.requestFocus();
+            loginButton.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.ENTER), loginButton::fire);
+        });
 
         loginStage.show();
     }
