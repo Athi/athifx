@@ -40,6 +40,7 @@ public abstract class ApplicationConfiguration {
     public static String APPLICATION_TITLE = "Application";
     public static String UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE = "An unexpected error occurred ...";
     public static String LOADING_APPLICATION_MESSAGE = "Loading application...";
+    public static String WAITING_FOR_COMPLETION_MESSAGE = "Please wait action in progress...";
 
     public static String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist!";
     public static String NO_PERMISSION_FOR_VIEW_WITH_ID = "No permission for view with id: ";
