@@ -23,9 +23,12 @@ class QualifierBinding implements Binding {
                     Set<Class<?>> typesAnnotatedWith = reflections.getTypesAnnotatedWith(annotationClass);
                     Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith((annotationClass));
                     for (Field field : fieldsAnnotatedWith) {
-                        for (Class<?> typeAnnotatedWith : typesAnnotatedWith) {
-                            binder.bind(((Class<Object>) field.getGenericType())).annotatedWith(annotationClass).to(typeAnnotatedWith);
-                        }
+                        typesAnnotatedWith.stream()
+                                .filter(typeAnnotatedWith -> field.getType().isAssignableFrom(typeAnnotatedWith))
+                                .forEach(typeAnnotatedWith ->
+                                        binder.bind(((Class<Object>) field.getGenericType()))
+                                                .annotatedWith(annotationClass)
+                                                .to(typeAnnotatedWith));
                     }
                 });
     }
