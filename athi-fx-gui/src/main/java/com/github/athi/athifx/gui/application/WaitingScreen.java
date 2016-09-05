@@ -1,9 +1,6 @@
 package com.github.athi.athifx.gui.application;
 
-import com.github.athi.athifx.gui.font_awesome.FontAwesome;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
