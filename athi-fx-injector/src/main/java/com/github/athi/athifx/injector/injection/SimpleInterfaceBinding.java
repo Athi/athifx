@@ -5,7 +5,10 @@ import com.google.inject.Inject;
 import org.reflections.Reflections;
 
 import javax.enterprise.inject.Any;
+import javax.inject.Qualifier;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,6 +26,7 @@ class SimpleInterfaceBinding implements Binding {
         Set<Field> fieldsAnnotatedWith = reflections.getFieldsAnnotatedWith(Inject.class)
                 .stream()
                 .filter(f -> !f.isAnnotationPresent(Any.class))
+                .filter(f -> Arrays.stream(f.getAnnotations()).noneMatch(ann -> ann.annotationType().isAnnotationPresent(Qualifier.class)))
                 .collect(Collectors.toSet());
 
         fieldsAnnotatedWith.stream()
