@@ -64,6 +64,7 @@ class LoginScreen extends AbstractScreen {
         Platform.runLater(() -> {
             loginTextField.requestFocus();
             loginButton.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.ENTER), loginButton::fire);
+            closeButton.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.ESCAPE), closeButton::fire);
         });
 
         loginStage.show();

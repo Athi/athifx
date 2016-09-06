@@ -13,11 +13,11 @@ import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.
 /**
  * Created by Athi
  */
-class WaitingScreen extends AbstractScreen {
+public class WaitingScreen extends AbstractScreen {
 
     private Stage waitingScreen;
 
-    void show(Task<?> task) {
+    public void show(Task<?> task) {
         waitingScreen = new Stage();
 
         waitingScreen.initStyle(StageStyle.UNDECORATED);
@@ -41,7 +41,7 @@ class WaitingScreen extends AbstractScreen {
         waitingScreen.show();
     }
 
-    void close() {
+    public void close() {
         if (waitingScreen.isShowing()) {
             waitingScreen.close();
         }
