@@ -124,8 +124,7 @@
 
             <properties>
                 <gpg.executable>gpg2</gpg.executable>
-                <gpg2.keyname>03DB384F</gpg2.keyname>
-                <gpg2.passphrase>{qQx6vwJ+8xcH+zT8DcpFfv1IDvOyA44vZ7cXmDNSwOQPip5ru647Iau+taxe8f3l}</gpg2.passphrase>
+                <gpg2.keyname>1FCCFEFF</gpg2.keyname>
             </properties>
 
             <build>
