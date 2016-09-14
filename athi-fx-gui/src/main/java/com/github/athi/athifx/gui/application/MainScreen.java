@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.Objects;
 
-import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.LOGO_RESOURCE_PATH;
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.*;
 
 /**
  * Created by Athi
@@ -24,12 +24,17 @@ class MainScreen extends AbstractScreen {
     @Inject
     private NavigationPane navigationPane;
 
+    @Inject
+    private AthiFXSession athiFXSession;
+
     private AnchorPane root;
 
     void show(Stage primaryStage) {
         primaryStage.setMaximized(true);
 
         root = prepareRoot(primaryStage);
+        updateApplicationTitleIfSecured(primaryStage);
+
         root.setPrefWidth(800);
         root.setPrefHeight(600);
 
@@ -72,6 +77,12 @@ class MainScreen extends AbstractScreen {
     private void showWithoutMenu() {
         root.getChildren().add(navigationPane);
         setAnchors(navigationPane, 2.0);
+    }
+
+    private void updateApplicationTitleIfSecured(Stage primaryStage) {
+        if (Objects.nonNull(athiFXSession.getUser())) {
+            primaryStage.setTitle(APPLICATION_TITLE + APPLICATION_TITLE_USER_PREFIX + athiFXSession.getUser().getLogin());
+        }
     }
 
 

@@ -38,6 +38,7 @@ public abstract class ApplicationConfiguration {
      * MAIN APPLICATION WINDOW PROPERTIES
      **/
     public static String APPLICATION_TITLE = "Application";
+    public static String APPLICATION_TITLE_USER_PREFIX = " Logged in user: ";
     public static String UNCAUGHT_EXCEPTION_HANDLER_NOTIFICATION_MESSAGE = "An unexpected error occurred ...";
     public static String LOADING_APPLICATION_MESSAGE = "Loading application...";
     public static String WAITING_FOR_COMPLETION_MESSAGE = "Please wait action in progress...";
