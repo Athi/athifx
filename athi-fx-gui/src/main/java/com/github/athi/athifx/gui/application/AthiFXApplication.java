@@ -1,9 +1,11 @@
 package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
+import com.github.athi.athifx.gui.menu.item.DisableEnableAMenuItemEvent;
 import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import com.github.athi.athifx.gui.security.Security;
 import com.github.athi.athifx.injector.log.Log;
+import com.google.common.eventbus.EventBus;
 import com.google.inject.Inject;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -40,6 +42,9 @@ public class AthiFXApplication extends Application {
 
     @Inject
     private MainScreen mainScreen;
+
+    @Inject
+    private EventBus eventBus;
 
     private static Stage primaryStage;
 
@@ -88,18 +93,32 @@ public class AthiFXApplication extends Application {
         Platform.runLater(() -> {
             loadingScreen.close();
             showMainScreen();
+            navigateToFirstItem();
         });
     }
 
     private void withSecurity() {
         Platform.runLater(() -> {
             loadingScreen.close();
-            loginScreen.show(this::showMainScreen);
+            loginScreen.show(() -> {
+                showMainScreen();
+                disableAMenuItemsWithoutPermission();
+                navigateToFirstItem();
+            });
         });
     }
 
     private void showMainScreen() {
         mainScreen.show(primaryStage);
+    }
+
+    private void navigateToFirstItem() {
         navigator.navigateTo(applicationProperties.getItems().get(0));
+    }
+
+    private void disableAMenuItemsWithoutPermission() {
+        applicationProperties.getItems().stream()
+                .filter(item -> !applicationProperties.isNotSecured(item))
+                .forEach(item -> eventBus.post(new DisableEnableAMenuItemEvent(item)));
     }
 }
