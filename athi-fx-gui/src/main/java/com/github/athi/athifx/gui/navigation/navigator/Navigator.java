@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.NO_PERMISSION_FOR_VIEW_WITH_ID;
+import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.NO_PERMISSION_FOR_VIEW;
 import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.VIEW_DOES_NOT_EXIST_MESSAGE;
 
 /**
@@ -42,7 +42,7 @@ public class Navigator implements Serializable {
         if (properties.isNotSecured(viewEntry.getValue())) {
             return viewEntry.getValue();
         } else {
-            throw new RuntimeException(NO_PERMISSION_FOR_VIEW_WITH_ID + viewEntry.getKey());
+            throw new RuntimeException(NO_PERMISSION_FOR_VIEW + item.caption());
         }
     }
 }

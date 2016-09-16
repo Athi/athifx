@@ -44,7 +44,7 @@ public abstract class ApplicationConfiguration {
     public static String WAITING_FOR_COMPLETION_MESSAGE = "Please wait action in progress...";
 
     public static String VIEW_DOES_NOT_EXIST_MESSAGE = "View does not exist!";
-    public static String NO_PERMISSION_FOR_VIEW_WITH_ID = "No permission for view with id: ";
+    public static String NO_PERMISSION_FOR_VIEW = "No permission for view: ";
     public static String CANT_FIND_VIEW_MESSAGE = "Cant find view: ";
 
     public static String ERROR_CAPTION = "Error: ";
