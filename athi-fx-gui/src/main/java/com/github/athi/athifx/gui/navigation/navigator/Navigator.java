@@ -27,7 +27,7 @@ public class Navigator implements Serializable {
 
     public void navigateTo(Item item) {
         AView itemNode = getItemNode(item);
-        navigationPane.setViewAsContent(itemNode);
+        navigationPane.setViewAsContent(item, itemNode);
     }
 
     private AView getItemNode(Item item) {
