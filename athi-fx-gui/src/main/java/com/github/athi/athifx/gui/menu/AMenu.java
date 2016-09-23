@@ -1,14 +1,14 @@
 package com.github.athi.athifx.gui.menu;
 
 import com.github.athi.athifx.gui.menu.exception.AMenuConfigurationException;
-import com.github.athi.athifx.gui.menu.group.AGroup;
+import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Created by mp2
@@ -18,22 +18,25 @@ public class AMenu extends VBox {
     public static final double DEFAULT_LARGE_WIDTH = 200;
     public static final double DEFAULT_SMALL_WIDTH = 20;
 
-    private List<AGroup> groups = new LinkedList<>();
+    private Stream<AGroup> groups = Stream.empty();
 
-    public AMenu() {
+    private Navigator navigator;
+
+    public AMenu(Navigator navigator) {
+        this.navigator = navigator;
+
         setPrefWidth(DEFAULT_LARGE_WIDTH);
         setPadding(Insets.EMPTY);
     }
 
     public AGroup addGroup(AGroup newGroup) {
-        return groups.stream()
-                .filter(aGroup -> aGroup.getGroupId() == newGroup.getGroupId())
+        newGroup.setNavigator(navigator);
+        return groups.filter(aGroup -> aGroup.getGroupId() == newGroup.getGroupId())
                 .collect(Collectors.collectingAndThen(Collectors.toList(), addAGroupFunction(newGroup)));
     }
 
     public AGroup getGroup(long id) {
-        return groups.stream()
-                .filter(aGroup -> aGroup.getGroupId() == id)
+        return groups.filter(aGroup -> aGroup.getGroupId() == id)
                 .collect(Collectors.collectingAndThen(Collectors.toList(), singleAGroupFunction(id)));
     }
 
