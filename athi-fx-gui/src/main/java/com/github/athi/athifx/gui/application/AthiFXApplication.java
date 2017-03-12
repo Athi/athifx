@@ -2,6 +2,7 @@ package com.github.athi.athifx.gui.application;
 
 import com.github.athi.athifx.gui.configuration.AthiFXApplicationProperties;
 import com.github.athi.athifx.gui.menu.item.DisableEnableAMenuItemEvent;
+import com.github.athi.athifx.gui.menu.item.Item;
 import com.github.athi.athifx.gui.navigation.navigator.Navigator;
 import com.github.athi.athifx.gui.security.Security;
 import com.github.athi.athifx.injector.log.Log;
@@ -13,6 +14,8 @@ import javafx.stage.Stage;
 
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
+
+import java.util.Optional;
 
 import static com.github.athi.athifx.gui.application.ApplicationConfigurationUtils.*;
 import static com.github.athi.athifx.gui.configuration.ApplicationConfiguration.INJECTOR_CONFIGURATION;
@@ -93,7 +96,7 @@ public class AthiFXApplication extends Application {
         Platform.runLater(() -> {
             loadingScreen.close();
             showMainScreen();
-            navigateToFirstItem();
+            navigateToFirstPermittedItem();
         });
     }
 
@@ -103,7 +106,7 @@ public class AthiFXApplication extends Application {
             loginScreen.show(() -> {
                 showMainScreen();
                 disableAMenuItemsWithoutPermission();
-                navigateToFirstItem();
+                navigateToFirstPermittedItem();
             });
         });
     }
@@ -112,8 +115,12 @@ public class AthiFXApplication extends Application {
         mainScreen.show(primaryStage);
     }
 
-    private void navigateToFirstItem() {
-        navigator.navigateTo(applicationProperties.getItems().get(0));
+    private void navigateToFirstPermittedItem() {
+        final Optional<Item> first = applicationProperties.getItems()
+                .stream()
+                .filter(item -> !applicationProperties.isNotSecured(item))
+                .findFirst();
+        first.ifPresent(navigator::navigateTo);
     }
 
     private void disableAMenuItemsWithoutPermission() {
