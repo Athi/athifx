@@ -118,7 +118,7 @@ public class AthiFXApplication extends Application {
     private void navigateToFirstPermittedItem() {
         final Optional<Item> first = applicationProperties.getItems()
                 .stream()
-                .filter(item -> !applicationProperties.isNotSecured(item))
+                .filter(applicationProperties::isNotSecured)
                 .findFirst();
         first.ifPresent(navigator::navigateTo);
     }
