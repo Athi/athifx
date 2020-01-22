@@ -39,9 +39,9 @@ class ApplicationConfigurationUtils {
             if (configuration.size() == 1) {
                 configuration.iterator().next().newInstance().init();
             } else if (configuration.isEmpty()) {
-                throw new ApplicationConfigurationException("To many application configuration implementations!!");
-            } else {
                 throw new ApplicationConfigurationException("No application configuration implementations!!");
+            } else {
+                throw new ApplicationConfigurationException("Too many application configuration implementations!!");
             }
         } catch (Exception e) {
             throw new ApplicationConfigurationException("Application configuration exception: " + e.getMessage(), e);
@@ -53,7 +53,7 @@ class ApplicationConfigurationUtils {
         if (iterator.hasNext()) {
             iterator.next();
             if (iterator.hasNext()) {
-                throw new ApplicationConfigurationException("To many Security implementations!!");
+                throw new ApplicationConfigurationException("Too many Security implementations!!");
             }
         }
     }
