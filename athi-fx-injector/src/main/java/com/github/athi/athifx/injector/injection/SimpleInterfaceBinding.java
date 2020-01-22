@@ -6,7 +6,6 @@ import org.reflections.Reflections;
 
 import javax.enterprise.inject.Any;
 import javax.inject.Qualifier;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
  */
 class SimpleInterfaceBinding implements Binding {
 
-    private static final String HAS_TO_MANY_IMPLEMENTATIONS = " has to many implementations...";
+    private static final String HAS_TOO_MANY_IMPLEMENTATIONS = " has too many implementations...";
 
     @Override
     public void bind(Binder binder) {
@@ -36,7 +35,7 @@ class SimpleInterfaceBinding implements Binding {
                     Iterator iterator = reflections.getSubTypesOf(interfaceType).iterator();
                     Class<?> interfaceImpl = (Class<?>) iterator.next();
                     if (iterator.hasNext()) {
-                        throw new RuntimeException(interfaceType + HAS_TO_MANY_IMPLEMENTATIONS);
+                        throw new RuntimeException(interfaceType + HAS_TOO_MANY_IMPLEMENTATIONS);
                     } else {
                         binder.bind(interfaceType).to(interfaceImpl);
                     }
