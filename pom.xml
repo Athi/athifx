@@ -27,13 +27,14 @@
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
-        <junit.version>4.12</junit.version>
-        <powermock.version>1.6.5</powermock.version>
-        <testfx.version>4.0.4-alpha</testfx.version>
-        <system-rules.version>1.16.0</system-rules.version>
+        <junit.version>5.6.0</junit.version>
+        <junit-platform.version>1.6.0</junit-platform.version>
+        <powermock.version>2.0.5</powermock.version>
+        <testfx.version>4.0.15-alpha</testfx.version>
+        <system-rules.version>1.19.0</system-rules.version>
 
-        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
-        <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.5</jacoco-maven-plugin.version>
+        <coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 
         <skipTests>true</skipTests>
         <maven.test.skip>true</maven.test.skip>
@@ -189,11 +190,26 @@
             <dependencies>
                 <!-- TEST -->
                 <dependency>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
                     <version>${junit.version}</version>
-                    <scope>test</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                    <version>${junit.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-launcher</artifactId>
+                    <version>${junit-platform.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-runner</artifactId>
+                    <version>${junit-platform.version}</version>
+                </dependency>
+
                 <dependency>
                     <groupId>org.powermock</groupId>
                     <artifactId>powermock-module-junit4</artifactId>
@@ -202,7 +218,7 @@
                 </dependency>
                 <dependency>
                     <groupId>org.powermock</groupId>
-                    <artifactId>powermock-api-mockito</artifactId>
+                    <artifactId>powermock-api-mockito2</artifactId>
                     <version>${powermock.version}</version>
                     <scope>test</scope>
                 </dependency>
@@ -215,12 +231,6 @@
                 <dependency>
                     <groupId>org.testfx</groupId>
                     <artifactId>testfx-junit</artifactId>
-                    <version>${testfx.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.testfx</groupId>
-                    <artifactId>testfx-legacy</artifactId>
                     <version>${testfx.version}</version>
                     <scope>test</scope>
                 </dependency>
