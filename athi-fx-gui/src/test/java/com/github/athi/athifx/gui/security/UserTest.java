@@ -1,14 +1,12 @@
 package com.github.athi.athifx.gui.security;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by Athi
@@ -24,7 +22,7 @@ public class UserTest {
     private User user1;
     private User user2;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         user1 = new User(LOGIN_1, PERMISSIONS_1);
         user2 = new User(LOGIN_2, PERMISSIONS_2);

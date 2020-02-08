@@ -2,7 +2,7 @@ package com.github.athi.athifx.injector.injection;
 
 import com.google.inject.Binder;
 import com.github.athi.athifx.injector.log.Log;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.SessionScoped;

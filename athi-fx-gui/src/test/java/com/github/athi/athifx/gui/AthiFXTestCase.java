@@ -2,20 +2,18 @@ package com.github.athi.athifx.gui;
 
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
-import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.loadui.testfx.GuiTest;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.reflections.Reflections;
-import org.reflections.scanners.FieldAnnotationsScanner;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections8.Reflections;
+import org.reflections8.scanners.FieldAnnotationsScanner;
+import org.reflections8.scanners.SubTypesScanner;
+import org.reflections8.scanners.TypeAnnotationsScanner;
+import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.File;
 
@@ -24,12 +22,7 @@ import java.io.File;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(AthiFXInjector.class)
-public abstract class AthiFXTestCase extends GuiTest {
-
-    @Override
-    protected Parent getRootNode() {
-        return new VBox();
-    }
+public abstract class AthiFXTestCase extends ApplicationTest {
 
     @Before
     public void setUp() {

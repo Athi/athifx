@@ -3,7 +3,7 @@ package com.github.athi.athifx.injector.injection;
 import com.github.athi.athifx.injector.log.Log;
 import com.google.inject.Binder;
 import com.google.inject.Injector;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.util.TypeLiteral;

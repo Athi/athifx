@@ -4,10 +4,10 @@ import com.github.athi.athifx.injector.configuration.InjectorConfiguration;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.matcher.Matchers;
-import org.reflections.Reflections;
-import org.reflections.scanners.FieldAnnotationsScanner;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections8.Reflections;
+import org.reflections8.scanners.FieldAnnotationsScanner;
+import org.reflections8.scanners.SubTypesScanner;
+import org.reflections8.scanners.TypeAnnotationsScanner;
 
 import java.util.HashSet;
 import java.util.Objects;

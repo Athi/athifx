@@ -4,10 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <javafx-controls.version>11</javafx-controls.version>
+    </properties>
+
     <parent>
         <groupId>com.github.athi</groupId>
         <artifactId>athi-fx</artifactId>
-        <version>2.1.0</version>
+        <version>3.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>athi-fx-injector</artifactId>
@@ -49,14 +53,19 @@
             <version>${guice.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>${reflections.version}</version>
+            <groupId>net.oneandone.reflections8</groupId>
+            <artifactId>reflections8</artifactId>
+            <version>${reflections8.version}</version>
         </dependency>
         <dependency>
             <groupId>org.ini4j</groupId>
             <artifactId>ini4j</artifactId>
             <version>${ini4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx-controls.version}</version>
         </dependency>
     </dependencies>
 

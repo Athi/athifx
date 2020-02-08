@@ -1,7 +1,7 @@
 package com.github.athi.athifx.injector.injection;
 
 import com.google.inject.Binder;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
