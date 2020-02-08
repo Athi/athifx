@@ -8,7 +8,7 @@ import com.github.athi.athifx.gui.security.Security;
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.github.athi.athifx.injector.log.Log;
 import com.google.common.collect.LinkedHashMultiset;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import javax.enterprise.inject.Instance;
 import java.util.Iterator;

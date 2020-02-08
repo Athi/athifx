@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.athi</groupId>
     <artifactId>athi-fx</artifactId>
-    <version>2.1.0</version>
+    <version>3.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>athi-fx</name>
 
@@ -14,16 +14,16 @@
     <url>https://github.com/Athi/athifx</url>
 
     <properties>
-        <projec.build.sourceEncoding>UTF8</projec.build.sourceEncoding>
-        <source-target.version>1.8</source-target.version>
+        <project.build.sourceEncoding>UTF8</project.build.sourceEncoding>
+        <source-target.version>11</source-target.version>
 
         <javaee-api.version>7.0</javaee-api.version>
         <ini4j.version>0.5.4</ini4j.version>
-        <guice.version>4.1.0</guice.version>
-        <reflections.version>0.9.10</reflections.version>
+        <guice.version>4.0</guice.version>
+        <reflections8.version>0.11.6</reflections8.version>
 
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
@@ -47,7 +47,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <encoding>${projec.build.sourceEncoding}</encoding>
+                        <encoding>${project.build.sourceEncoding}</encoding>
                         <source>${source-target.version}</source>
                         <target>${source-target.version}</target>
                     </configuration>
@@ -162,8 +162,8 @@
                         <artifactId>jacoco-maven-plugin</artifactId>
                         <version>${jacoco-maven-plugin.version}</version>
                         <configuration>
-                            <outputEncoding>${projec.build.sourceEncoding}</outputEncoding>
-                            <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                            <outputEncoding>${project.build.sourceEncoding}</outputEncoding>
+                            <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                         </configuration>
                         <executions>
                             <execution>
@@ -179,7 +179,7 @@
                         <artifactId>coveralls-maven-plugin</artifactId>
                         <version>${coveralls-maven-plugin.version}</version>
                         <configuration>
-                            <sourceEncoding>${projec.build.sourceEncoding}</sourceEncoding>
+                            <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
                             <repoToken>Gl6spTyjFaxl7BMPpizhAS8wdfJwdy0GE</repoToken>
                         </configuration>
                     </plugin>

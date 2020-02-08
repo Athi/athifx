@@ -10,7 +10,7 @@ import com.github.athi.athifx.gui.security.User;
 import com.github.athi.athifx.injector.injection.AthiFXInjector;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
-import org.reflections.Reflections;
+import org.reflections8.Reflections;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;

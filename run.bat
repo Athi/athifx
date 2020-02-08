@@ -1,1 +1,1 @@
-mvn clean install && cd athi-fx-test\target && java -jar AthiFXTest.jar && cd ..\..
+mvn clean package && cd athi-fx-test\target && java --module-path %PATH_TO_FX% --add-modules=javafx.controls -jar AthiFXTest.jar && cd ..\..
