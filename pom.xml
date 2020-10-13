@@ -27,7 +27,7 @@
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <powermock.version>1.6.5</powermock.version>
         <testfx.version>4.0.4-alpha</testfx.version>
         <system-rules.version>1.16.0</system-rules.version>
